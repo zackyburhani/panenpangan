@@ -79,9 +79,8 @@
             <tr>
               <td><?php echo $data->id_kategori;?></td>
               <td><?php echo $data->nm_kategori;?></td>
-              <?php echo "<td><a href='#myModal' class='btn btn-default btn-small' id='custId' data-toggle='modal' data-id=".$data->id_kategori.">Edit</a></td>"; ?>
-              <!-- <td><a class="btn btn-warning btn-circle" id="editkategori" data-id='$data->id_kategori' onclick="edit(<?php echo $data->id_kategori;?>)" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> </a></td> -->
-              <td><a href="<?php blink('Admin/hapusKategori/'.$data->id_kategori)?>" onclick="return konfirmasi()" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+              <td align="center;"><a href="#modalEditKategori<?php echo $data->id_kategori?>"  class="btn btn-warning btn-circle" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> </a></td>
+              <td align="center;"><a href="<?php blink('Admin/hapusKategori/'.$data->id_kategori)?>" onclick="return konfirmasi()" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
             </tr>
             <?php } ?>
           </tbody>
@@ -98,7 +97,7 @@
                     <form method="POST" action="<?php echo site_url('Admin/tambahKategori')?>" enctype="multipart/form-data">
                       <div class="modal-body">
                         <div class="form-group"><label>ID Kategori</label>
-                          <input required class="form-control required text-capitalize" data-placement="top" data-trigger="manual" type="text" name="id_kategori">
+                          <input required class="form-control required text-capitalize" data-placement="top" value="<?php echo $id_kategori ?>" data-trigger="manual" type="text" name="id_kategori" readonly>
                         </div>
 
                         <div class="form-group"><label>Nama Kategori</label>
@@ -107,8 +106,8 @@
 
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
                             <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
                           </div>
                         </form>
@@ -117,71 +116,48 @@
                   </div>
                 <!-- /.entry kategori modal -->
 
-              <!--MODAL HAPUS-->
-              <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'
-                <div class="modal-dialog modal-sm" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-                    </div>
+                <?php if (isset($dataKategori)){
+                  foreach($dataKategori as $data){
+                 ?>
+                 <div id="modalEditKategori<?php echo $data->id_kategori?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                       <div class="modal-content">
+                         <div class="modal-header">
+                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                             <h3 id="myModalLabel">Edit Data Petani</h3>
+                         </div>
 
-                    <div class='modal-body'>Kamu yakin ingin menghapus?</div>
-                      <div class='modal-footer'>
-                        <input type='hidden' value='' name='nip'>
-                          <button type='button' class='btn btn-default' data-dismiss='modal'>Batal</button>
-                          <button class='btn btn-danger' aria-label='Delete'type='submit' name='hapus'></span>Hapus</button>
-                      </div>
-                    </div>
-                 </form>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        <!-- /.panel-body -->
-        </div>
-        <!--END MODAL HAPUS-->
+                         <form class="form-horizontal" method="post" action="<?php echo site_url('Admin/ubahKategori')?>">
+                             <div class="modal-body">
+                                 <div class="control-group">
+                                     <label class="control-label">ID Kategori</label>
+                                     <div class="controls">
+                                         <input name="id_kategori" class="form-control" type="text" value="<?php echo $data->id_kategori; ?>" class="uneditable-input" readonly="true">
+                                     </div>
+                                 </div>
 
-        <!-- detil modal kategori -->
-         <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-           <div class="modal-dialog">
-             <div class="modal-content">
-               <div class="modal-header">
-                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                 <h3 id="myModalLabel">Detil kategori</h3>
-               </div>
-               <div class="modal-body">
-                 <form method="POST" action="" enctype="multipart/form-data">
-                   <table class="table table-responsive" border="0" style="margin-top: -40px;">
-                     <thead>
-                       <td width="25%" ></td>
-                       <td width="5%" ></td>
-                       <td rowspan="12"><img  src="" alt="foto-guru" width="150" height="150" onmousedown="return false" oncontexmenu="return false" onselectstart="return false"/></td>
-                       <td width="50%" ></td>
-                       <td width="20%" ></td>
-                     </thead>
-                     <tbody>
-                       <tr>
-                         <td>ID</td>
-                         <td>:</td>
-                         <td></td>
-                       </tr>
-                       <tr>
-                         <td>Nama Kategori</td>
-                         <td>:</td>
-                         <td style="text-transform:capitalize;"></td>
-                       </tr>
-                     </tbody>
-                   </table>
-                 </form>
-               </div>
-             </div>
-           </div>
-         </div>
-         <!-- /.Detil modal kategori -->
+                                 <div class="control-group">
+                                     <label class="control-label" >Nama Kategori</label>
+                                     <div class="controls">
+                                         <input name="nm_kategori" type="text" class="form-control" value="<?php echo $data->nm_kategori?>" required>
+                                     </div>
+                                 </div>
 
+                             <div class="modal-footer">
+                                 <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i> Close</button>
+                                 <button class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+                             </div>
+                         </form>
+                       </div>
+
+                     </div>
+                 </div>
+                       </div>
+             <?php }
+         }
+         ?>
       <!-- /.panel body -->
-      </div>
+
     <!-- /.panel -->
     </div>
     <!-- /.col-lg-12 -->

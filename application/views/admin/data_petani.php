@@ -68,13 +68,13 @@
         <table style="table-layout:fixed" class="table table-striped table-bordered table-hover" id="datatablePetani">
           <thead>
             <tr>
-              <th align="center;">ID Petani</th>
+              <th width="80px" align="center;">ID Petani</th>
               <th>Nama</th>
               <th>Tanggal Lahir</th>
               <th>Alamat</th>
               <th>No. Telp</th>
-              <th width="50px"> <center>Edit</center> </th>
-              <th width="50px"> <center>Hapus</center> </th>
+              <th width="40px" align="center;"> <center>Edit</center> </th>
+              <th width="40px" align="center;"> <center>Hapus</center> </th>
             </tr>
           </thead>
           <tbody>
@@ -85,8 +85,8 @@
               <td><?php echo $data->tgl_lahir;?></td>
               <td><?php echo $data->alamat;?></td>
               <td><?php echo $data->no_telp;?></td>
-              <td><a href="#modalEditPetani<?php echo $data->id_petani?>"  class="btn btn-warning btn-circle" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> </a></td>
-              <td><a href="<?php blink('Admin/hapusPetani/'.$data->id_petani)?>" onclick="return konfirmasi()" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+              <td align="center;"><a href="#modalEditPetani<?php echo $data->id_petani?>"  class="btn btn-warning btn-circle" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> </a></td>
+              <td align="center;"><a href="<?php blink('Admin/hapusPetani/'.$data->id_petani)?>" onclick="return konfirmasi()" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
             </tr>
             <?php } ?>
           </tbody>
@@ -125,8 +125,8 @@
 
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
                             <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
                           </div>
                         </form>
@@ -160,60 +160,6 @@
         </div>
         <!--END MODAL HAPUS-->
 
-        <!-- detil modal Petani -->
-         <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-           <div class="modal-dialog">
-             <div class="modal-content">
-               <div class="modal-header">
-                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                 <h3 id="myModalLabel">Detil Petani</h3>
-               </div>
-               <div class="modal-body">
-                 <form method="POST" action="" enctype="multipart/form-data">
-                   <table class="table table-responsive" border="0" style="margin-top: -40px;">
-                     <thead>
-                       <td width="25%" ></td>
-                       <td width="5%" ></td>
-                       <td rowspan="12"><img  src="" alt="foto-guru" width="150" height="150" onmousedown="return false" oncontexmenu="return false" onselectstart="return false"/></td>
-                       <td width="50%" ></td>
-                       <td width="20%" ></td>
-                     </thead>
-                     <tbody>
-                       <tr>
-                         <td>ID</td>
-                         <td>:</td>
-                         <td></td>
-                       </tr>
-                       <tr>
-                         <td>Nama Lengkap</td>
-                         <td>:</td>
-                         <td style="text-transform:capitalize;"></td>
-                       </tr>
-                       <tr>
-                         <td>Tanggal Lahir</td>
-                         <td>:</td>
-                         <td style="text-transform:capitalize;"></td>
-                       </tr>
-                       <tr>
-                         <td>Alamat</td>
-                         <td>:</td>
-                         <td style="text-transform:capitalize;"></td>
-                       </tr>
-                       <tr>
-                         <td>Nomor Telepon</td>
-                         <td>:</td>
-                         <td style="text-transform:capitalize;"></td>
-                       </tr>
-                     </tbody>
-                   </table>
-                 </form>
-               </div>
-             </div>
-           </div>
-         </div>
-         <!-- /.Detil modal petani -->
-
-
          <?php if (isset($dataPetani)){
            foreach($dataPetani as $data){
           ?>
@@ -225,7 +171,7 @@
                       <h3 id="myModalLabel">Edit Data Petani</h3>
                   </div>
 
-                  <form class="form-horizontal" method="post" action="<?php echo site_url('master/edit_user')?>">
+                  <form class="form-horizontal" method="post" action="<?php echo site_url('Admin/ubahPetani')?>">
                       <div class="modal-body">
                           <div class="control-group">
                               <label class="control-label">ID Petani</label>
@@ -237,7 +183,7 @@
                           <div class="control-group">
                               <label class="control-label" >Nama Petani</label>
                               <div class="controls">
-                                  <input name="nama" type="text" class="form-control" value="<?php echo $data->nm_petani?>" required>
+                                  <input name="nm_petani" type="text" class="form-control" value="<?php echo $data->nm_petani?>" required>
                               </div>
                           </div>
 
@@ -264,8 +210,8 @@
                       </div>
 
                       <div class="modal-footer">
-                          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                          <button class="btn btn-primary">Update</button>
+                          <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i> Close</button>
+                          <button class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
                       </div>
                   </form>
                 </div>

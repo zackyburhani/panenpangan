@@ -104,16 +104,33 @@ class ModelAdmin extends CI_Model {
 	}
 
 	//update data, coded by zacky
-	function updateKategori($data,$where,$table)
+	function updateKategori($data,$where)
 	{
-		$this->db->where($where);
-		$this->db->update($table,$data);
+		$this->db->where('id_kategori',$where);
+		$this->db->update('kategori',$data);
 	}
 
 	public function delete($id_Kategori){
 		$this->db->where('id_kategori', $id_Kategori);
 		$this->db->delete('kategori');
 	}
+
+  public function getKodeKategori()
+  {
+    $q = $this->db->query("select MAX(RIGHT(id_kategori,3)) as kd_max from kategori");
+    $kd = "";
+    if($q->num_rows() > 0)
+    {
+      foreach ($q->result() as $k) {
+        $tmp = ((int)$k->kd_max)+1;
+        $kd = sprintf("%03s",$tmp);
+      }
+    } else
+    {
+      $kd = "001";
+    }
+    return "KT".$kd;
+  }
 
 ////////////////////END-KATEGORI////////////////////////
 

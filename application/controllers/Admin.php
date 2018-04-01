@@ -95,12 +95,12 @@ class Admin extends CI_Controller {
 	{
 		$semuaKategori = $this->ModelAdmin->getAllKategori();
 		$data['dataKategori'] = $semuaKategori;
+		$data['id_kategori'] = $this->ModelAdmin->getKodeKategori();
 		$this->load->view('admin/data_kategori',$data);
 	}
 
 	public function tambahKategori()
 	{
-		//$autonumber = $this->ModelAdmin->buat_kode();
 
 		$id_kategori = $this->input->post('id_kategori');
 		$nm_kategori = $this->input->post('nm_kategori');
@@ -120,10 +120,17 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function editKategori($id_kategori)
+	public function ubahKategori()
 	{
-		$data['dataKategori'] =  $this->ModelAdmin->get_idKategori($id_kategori)->result();
-		$this->load->view('admin/modal/petani/UpdateKategori',$data);
+		$id_kategori = $this->input->post('id_kategori');
+		$nm_kategori = $this->input->post('nm_kategori');
+
+		$data = array(
+			'nm_kategori' =>$nm_kategori
+		);
+
+		$result = $this->ModelAdmin->updateKategori($data,$id_kategori);
+		redirect('Admin/Kategori');
 	}
 
 	public function hapusKategori($id_kategori)
