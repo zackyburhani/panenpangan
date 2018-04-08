@@ -88,7 +88,7 @@
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?php blink('assets/AdminLTE/dist/img/user2-160x160.jpg')?>" class="img-circle" alt="User Image">
+                <img src="<?php blink('assets/admin/dist/img/user.png')?>" class="img-circle" alt="User Image">
 
                 <p>
                   <?php echo $nama; ?>
