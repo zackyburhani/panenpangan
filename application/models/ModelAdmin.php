@@ -6,6 +6,16 @@ class ModelAdmin extends CI_Model {
 		parent::__construct();
 	}
 
+
+//////////////////LOGIN////////////////////////////////////////
+	public function readUsername($username,$password)
+  	{
+ 	   $result = $this->db->where('UPPER(username)', strtoupper($username))->where('password',$password)->limit(1)->get('admin');
+		return $result->row();
+	}
+//////////////////LOGIN////////////////////////////////////////
+
+
 //////////////////START-PETANI/////////////////////////////////
 
 	public function InsertPetani($data){
@@ -26,12 +36,6 @@ class ModelAdmin extends CI_Model {
 		return $result->result();
 	}
 
-  // //read semua data
-	// public function readUsername($username,$password){
-	// 	$result = $this->db->where('username', $username)->where('password',md5($password))->limit(1)->get('username');
-	// 	return $result->result();
-	//
-	// }
 
   //fungsi ambil ID dari database
   function get_idPetani($id_petani)
@@ -54,6 +58,11 @@ class ModelAdmin extends CI_Model {
       $this->db->delete('petani');
     }
 
+    public function jumlah($table)
+  	{
+    	$query = $this->db->query("SELECT * FROM $table");
+    	return $query->num_rows();
+  	}
 
     public function getKodePetani()
    	{
@@ -165,16 +174,52 @@ class ModelAdmin extends CI_Model {
 		return $this->db->get();
 	}
 
-	//update data, coded by zacky
-	function updateBarang($data,$where,$table)
+	public function updateBarang($data,$where,$table)
 	{
-		$this->db->where($where);
+		$this->db->where('id_brg',$where);
+	    $query = $this->db->get('barang');
+	    $row = $query->row();
+
+	    unlink("./assets/img/$row->gambar");
+
+		$this->db->where('id_brg', $where);
 		$this->db->update($table,$data);
 	}
 
-	public function deleteBarang($id_barang){
-		$this->db->where('id_barang', $id_barang);
-		$this->db->delete('barang');
+	public function updateBarang2($data,$where,$table)
+	{
+		$this->db->where('id_brg', $where);
+		$this->db->update($table,$data);
+	}
+
+  	public function getKodeBarang()
+   	{
+	  $q = $this->db->query("select MAX(RIGHT(id_brg,3)) as kd_max from barang");
+      $kd = "";
+      if($q->num_rows() > 0)
+      {
+        foreach ($q->result() as $k) {
+       	  $tmp = ((int)$k->kd_max)+1;
+       	  $kd = sprintf("%03s",$tmp);
+        }
+      } else
+       	{
+       		$kd = "001";
+       	}
+      return "BR".$kd;
+    }
+
+    public function deleteBarang($id_brg)
+    {
+
+     $this->db->where('id_brg',$id_brg);
+     $query = $this->db->get('barang');
+     $row = $query->row();
+
+     unlink("./assets/img/$row->gambar");
+
+     $this->db->delete('barang', array('id_brg' => $id_brg));
+
 	}
 
 ////////////////////END-BARANG////////////////////////

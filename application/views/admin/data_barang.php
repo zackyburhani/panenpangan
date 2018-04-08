@@ -1,6 +1,3 @@
-<?php include"application/views/admin/template/header.php" ?>
-<?php include"application/views/admin/template/sidebar.php" ?>
-
 <section class="content-header">
   <h1>
     Dashboard
@@ -14,48 +11,25 @@
     <div class="panel-body"><h4><i class="ion ion-cube"></i> Data Barang</h4></div>
   </div>
 
-  <div class="row">
-    <div class="col-lg-12">
-      <?php
-        if (isset($_GET['tmb'])) {
-        if($_GET['tmb']=="success") {
-      ?>
-    <div class="alert alert-success" id="success-alert-input">
-      Data berhasil disimpan.
-    </div>
-      <?php }else{ ?>
-    <div class="alert alert-danger" id="fail-alert-input">
-      Data gagal disimpan.
-    </div>
-    <?php }
-            }
-      else if (isset($_GET['ubh'])) {
-      if($_GET['ubh']=="success") {
-    ?>
-    <div class="alert alert-success" id="success-alert-edit">
-      Data berhasil diedit.
-    </div>
-    <?php }else{ ?>
-      <div class="alert alert-danger" id="fail-alert-edit">
-        Data gagal diedit.
-      </div>
-      <?php }
-        }
-        else if (isset($_GET['hps'])) {
-        if($_GET['hps']=="success") {
-      ?>
-      <div class="alert alert-success" id="success-alert-delete">
-        Data berhasil dihapus.
-      </div>
-      <?php }else{ ?>
-      <div class="alert alert-danger" id="fail-alert-delete">
-        Data gagal dihapus.
-      </div>
-      <?php }
-        }
-        ?>
-      </div>
-    </div>
+<?php if($this->session->flashdata('pesan') == TRUE ) { ?>
+<div class="row">
+  <div class="col-md-12">
+  <div class="alert alert-success fade in" id="alert">
+    <p><center><b><?php echo $this->session->flashdata('pesan') ?></b></center></p>
+  </div>
+</div>
+</div>
+<?php } ?>
+
+<?php if($this->session->flashdata('pesanGagal') == TRUE ) { ?>
+<div class="row">
+  <div class="col-md-12">
+  <div class="alert alert-danger" id="alert">
+    <p><center><b><?php echo $this->session->flashdata('pesanGagal') ?></b></center></p>
+  </div>
+</div>
+</div>
+<?php } ?>
 
 <div class="row">
   <div class="col-lg-12">
@@ -73,20 +47,25 @@
               <th>Stok</th>
               <th>Harga</th>
 							<th>Rating</th>
-              <th>Aksi</th>
+              <th width="40px" align="center;">Detil</th>
+              <th width="40px" align="center;">Edit</th>
+              <th width="40px" align="center;"  >Hapus</th>
             </tr>
               </thead>
               <tbody>
                 <?php foreach($dataBarang as $data){?>
                 <tr>
-                  <td><?php echo $data->id_barang;?></td>
-                  <td><?php echo $data->nm_barang;?></td>
+                  <td><?php echo $data->id_brg;?></td>
+                  <td><?php echo $data->nm_brg;?></td>
                   <td><?php echo $data->stok;?></td>
                   <td><?php echo $data->harga;?></td>
                   <td><?php echo $data->rating;?></td>
-                  <?php echo "<td><a href='#myModal' class='btn btn-default btn-small' id='custId' data-toggle='modal' data-id=".$data->id_petani.">Edit</a></td>"; ?>
-                  <!-- <td><a class="btn btn-warning btn-circle" id="editBarang" data-id='$data->id_barang' onclick="edit(<?php echo $data->id_petani;?>)" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> </a></td> -->
-                  <td><a href="<?php blink('Barang/hapus/'.$data->id_barang)?>" onclick="return konfirmasi()" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+                  <td><a href="#detilBarangModal<?php echo $data->id_brg ?>" class="btn btn-info btn-circle" id="detilbarang" data-toggle="modal"><span class="glyphicon glyphicon-eye-open"></span> </a></td>
+
+                  <td align="center;"><a href="#modalEditBarang<?php echo $data->id_brg?>"  class="btn btn-warning btn-circle" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> </a></td>
+
+                  <td align="center;"><a href="#modalHapusBarang<?php echo $data->id_brg?>"  class="btn btn-danger btn-circle" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> </a></td>
+
                 </tr>
                 <?php } ?>
               </tbody>
@@ -101,25 +80,25 @@
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                       <h4 class="modal-title" id="myModalLabel"><div class="icon"><i class="ion ion-cube"></i> Tambah Data Barang</div></h4>
                     </div>
-                    <form method="POST" action="<?php echo site_url('Barang/tambah')?>" enctype="multipart/form-data">
+                    <form method="POST" action="<?php echo site_url('admin/tambahBarang')?>" enctype="multipart/form-data">
                       <div class="modal-body">
 
                         <div class="form-group"><label>ID Barang</label>
-                          <input required class="form-control required text-capitalize" placeholder="" data-placement="top" data-trigger="manual" type="text" name="id_barang">
+                          <input required class="form-control required text-capitalize" value="<?php echo $id_brg ?>" readonly data-placement="top" data-trigger="manual" type="text" name="id_brg">
                         </div>
 
 												<div class="form-group"><label>Kategori</label>
 			                    <div class="custom-select">
 			                        <select class="form-control" name="kategori">
-			                            <option value="beras">Beras</option>
-																	<option value="sayur">Sayuran</option>
-																	<option value="Buah">Buah-buahan</option>
-			                        </select>
+                                <?php foreach($dataKategori as $data){ ?>
+			                            <option value="<?php echo $data->id_kategori; ?>"><?php echo $data->nm_kategori; ?></option>
+			                          <?php } ?>
+                              </select>
 			                    </div>
 			                  </div>
 
                         <div class="form-group"><label>Nama Barang</label>
-                          <input required class="form-control required text-capitalize" placeholder="Input Nama Barang" data-placement="top" data-trigger="manual" type="text" name="nm_barang">
+                          <input required class="form-control required text-capitalize" placeholder="Input Nama Barang" data-placement="top" data-trigger="manual" type="text" name="nm_brg">
                         </div>
 
 												<div class="form-group">
@@ -142,10 +121,17 @@
 													<input required class="form-control required text-capitalize" placeholder="Ongkos Kirim" data-placement="top" data-trigger="manual" type="text" name="ongkir">
 												</div>
 
-												<div class="form-group">
-													<label>Gambar</label>
-													<input required data-placement="top" data-trigger="manual" type="file" name="gambar">
-												</div>
+                        <div class="form-group">
+                          <label>Gambar</label>
+                          <div class="input-group">
+                              <span class="input-group-btn">
+                                  <span class="btn btn-default btn-file">
+                                      Upload Gambar <input type="file" name="photo" required accept="image/png, image/jpeg, image/gif" id="imgInp">
+                                  </span>
+                              </span>
+                              <input id='urlname' type="text" class="form-control" readonly>
+                          </div>
+                        </div>
 
 												<div class="form-group"><label>Rating</label>
 			                    <div class="custom-select my-1 mr-sm-2">
@@ -171,34 +157,9 @@
               </div>
               <!-- /.entry Barang modal -->
 
-              <!--MODAL HAPUS-->
-              <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'
-                <div class="modal-dialog modal-sm" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-                    </div>
-
-                    <div class='modal-body'>Kamu yakin ingin menghapus?</div>
-                      <div class='modal-footer'>
-                        <input type='hidden' value='' name='nip'>
-                          <button type='button' class='btn btn-default' data-dismiss='modal'>Batal</button>
-                          <button class='btn btn-danger' aria-label='Delete'type='submit' name='hapus'></span>Hapus</button>
-                      </div>
-                    </div>
-                 </form>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        <!-- /.panel-body -->
-        </div>
-        <!--END MODAL HAPUS-->
-
-
+  <?php foreach($dataBarang as $data){?>
   <!-- detil modal Barang -->
-   <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal fade" tabindex="-1" id="detilBarangModal<?php echo $data->id_brg ?>" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
      <div class="modal-dialog">
        <div class="modal-content">
          <div class="modal-header">
@@ -207,52 +168,47 @@
          </div>
          <div class="modal-body">
            <form method="POST" action="" enctype="multipart/form-data">
-             <table class="table table-responsive" border="0" style="margin-top: -40px;">
-               <thead>
-                 <td width="25%" ></td>
-                 <td width="5%"  ></td>
-                 <td width="50%" ></td>
-                 <td width="20%" ></td>
-								 <td width="50%" ></td>
-                 <td width="20%" ></td>
-								 <td width="50%" ></td>
-               </thead>
+             <table class="table table-responsive" border="0">
                <tbody>
                  <tr>
                    <td>ID Kategori</td>
                    <td>:</td>
-                   <td style="text-transform:capitalize;"></td>
+                   <td style="text-transform:capitalize;"><?php echo $data->id_kategori ?></td>
                  </tr>
                  <tr>
                    <td>ID Barang</td>
                    <td>:</td>
-                   <td></td>
-                   <td rowspan="12"><img  src="" alt="foto-guru" width="150" height="150" onmousedown="return false" oncontexmenu="return false" onselectstart="return false"/></td>
+                   <td style="text-transform:capitalize;"><?php echo $data->id_brg ?></td>
                  </tr>
                  <tr>
                    <td>Nama Barang</td>
                    <td>:</td>
-                   <td style="text-transform:capitalize;"></td>
+                   <td style="text-transform:capitalize;"><?php echo $data->nm_brg ?></td>
                  </tr>
                  <tr>
                    <td>Stok</td>
                    <td>:</td>
-                   <td style="text-transform:capitalize;"></td>
+                   <td style="text-transform:capitalize;"><?php echo $data->stok ?></td>
                  </tr>
                  <tr>
                    <td>Harga</td>
                    <td>:</td>
-                   <td style="text-transform:capitalize;"></td>
+                   <td style="text-transform:capitalize;"><?php echo $data->harga ?></td>
                  </tr>
                  <tr>
                    <td>Ongos Kirim</td>
                    <td>:</td>
-                   <td style="text-transform:capitalize;"></td>
+                   <td style="text-transform:capitalize;"><?php echo $data->ongkir ?></td>
                  </tr>
                  <tr>
                    <td>Rating</td>
                    <td>:</td>
-                   <td style="text-transform:capitalize;"></td>
+                   <td style="text-transform:capitalize;"><?php echo $data->rating ?></td>
+                 </tr>
+                 <tr>
+                   <td>Gambar</td>
+                   <td>:</td>
+                   <td><img src="<?php echo base_url('assets/img/'.$data->gambar.'');?>" width="200px"></td>
                  </tr>
                </tbody>
              </table>
@@ -262,37 +218,43 @@
      </div>
    </div>
    <!-- /.Detil modal Barang -->
+   <?php } ?>
 
    <!--UPDATE Barang-->
-	 <div class="modal fade" id="updateBarangModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <?php foreach($dataBarang as $data) { ?>
+	 <div class="modal fade" id="modalEditBarang<?php echo $data->id_brg?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		 <div class="modal-dialog">
 			 <div class="modal-content">
 				 <div class="modal-header">
 					 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					 <h4 class="modal-title" id="myModalLabel"><div class="icon"><i class="ion ion-cube"></i> Update Data Barang</div></h4>
 				 </div>
-				 <form method="POST" action="" enctype="multipart/form-data">
+				 <form method="POST" action="<?php echo site_url('admin/ubahBarang')?>" enctype="multipart/form-data">
 					 <div class="modal-body">
+
+             <div class="form-group"><label>ID Barang</label>
+               <input required class="form-control required text-capitalize" placeholder="Input Nama Barang" data-placement="top" data-trigger="manual" value="<?php echo $data->id_brg ?>" type="text" name="id_brg" readonly>
+             </div>
 
 						 <div class="form-group"><label>ID Kategori</label>
 							 <div class="custom-select">
 									 <select class="form-control" name="kategori">
-											 <option value="beras">Beras</option>
-											 <option value="sayur">Sayuran</option>
-											 <option value="Buah">Buah-buahan</option>
-									 </select>
+                      <?php foreach($dataKategori as $data2) { ?>
+											<option value="<?php echo $data2->id_kategori ?>"><?php echo $data2->nm_kategori ?></option>
+									    <?php } ?>
+                   </select>
 							 </div>
 						 </div>
 
 						 <div class="form-group"><label>Nama Barang</label>
-							 <input required class="form-control required text-capitalize" placeholder="Input Nama Barang" data-placement="top" data-trigger="manual" type="text" name="nm_Barang">
+							 <input required class="form-control required text-capitalize" placeholder="Input Nama Barang" data-placement="top" data-trigger="manual" value="<?php echo $data->nm_brg ?>" type="text" name="nm_brg">
 						 </div>
 
 						 <div class="form-group">
 							 <label>Stok</label>
 							 <div class="input-group input-group">
 								 <span class="input-group-addon" id="sizing-addon1">Kg.</span>
-								 <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="Stok" data-placement="top" data-trigger="manual" type="text" name="stok">
+								 <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="Stok" data-placement="top" value="<?php echo $data->stok ?>" data-trigger="manual" type="text" name="stok">
 							 </div>
 						 </div>
 
@@ -300,28 +262,34 @@
 							 <label>Harga</label>
 							 <div class="input-group input-group">
 								 <span class="input-group-addon" id="sizing-addon1">Rp.</span>
-								 <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="Harga" data-placement="top" data-trigger="manual" type="text" name="harga">
+								 <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="Harga" data-placement="top" data-trigger="manual" value="<?php echo $data->harga ?>" type="text" name="harga">
 							 </div>
 						 </div>
 
 						 <div class="form-group"><label>Ongkos Kirim</label>
-							 <input required class="form-control required text-capitalize" placeholder="Ongkos Kirim" data-placement="top" data-trigger="manual" type="text" name="ongkir">
+							 <input required class="form-control required text-capitalize" placeholder="Ongkos Kirim" data-placement="top" data-trigger="manual" value="<?php echo $data->ongkir ?>" type="text" name="ongkir">
 						 </div>
 
-						 <div class="form-group">
-							 <label>Gambar</label>
-							 <input required data-placement="top" data-trigger="manual" type="file" name="gambar">
-						 </div>
+						<div class="form-group">
+              <label>Gambar</label>
+                <div class="input-group">
+                  <span class="input-group-btn">
+                    <span class="btn btn-default btn-file">
+                      Upload Gambar <input type="file" name="photo" accept="image/png, image/jpeg, image/gif" id="imgInp">
+                    </span>
+                  </span>
+                <input id='urlname' type="text" class="form-control" readonly>
+              </div>
+            </div>
 
 						 <div class="form-group"><label>Rating</label>
 							 <div class="custom-select my-1 mr-sm-2">
-									 <select class="form-control" name="kategori">
-											 <option value="null">-</option>
-											 <option value="1">1</option>
-											 <option value="2">2</option>
-											 <option value="3">3</option>
-											 <option value="4">4</option>
-											 <option value="5">5</option>
+									 <select class="form-control" name="rating">
+											 <option <?php if( $data->rating=='1'){echo "selected"; } ?> value="1">1</option>
+											 <option <?php if( $data->rating=='2'){echo "selected"; } ?> value="2">2</option>
+											 <option <?php if( $data->rating=='3'){echo "selected"; } ?> value="3">3</option>
+											 <option <?php if( $data->rating=='4'){echo "selected"; } ?> value="4">4</option>
+											 <option <?php if( $data->rating=='5'){echo "selected"; } ?> value="5">5</option>
 									 </select>
 							 </div>
 						 </div>
@@ -329,14 +297,42 @@
 					 </div>
 					 <div class="modal-footer">
 						 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						 <button type="button" class="btn btn-primary">Submit</button>
+						 <button type="submit" class="btn btn-primary">Submit</button>
 						 <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
 					 </div>
 				 </form>
 			 </div>
 		 </div>
 	 </div>
+   <?php } ?>
 	 <!-- /.Update Barang modal -->
+
+
+<!--MODAL DELETE -->
+<?php if (isset($dataBarang)){
+foreach($dataBarang as $data){ ?>
+<div class="modal fade" id="modalHapusBarang<?php echo $data->id_brg?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+      </div>
+     <div class='modal-body'>Anda yakin ingin menghapus <b><?php echo $data->id_brg ?></b> dengan nama <i><?php echo $data->nm_brg ?></i> ?
+      </div>
+      <div class='modal-footer'>
+        <form class="" action="<?php echo site_url('admin/hapusBarang/'.$data->id_brg) ?>" method="post">
+          <input type='hidden' value='<?php echo $data->id_brg?>' name='id_brg'>
+          <button type='button' class='btn btn-default' data-dismiss='modal'>Batal</button>
+          <button class='btn btn-danger' aria-label='Delete'type='submit' name='hapus'></span>Hapus</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+  <?php }
+  }
+  ?>
 
 
       <!-- /.panel body -->
@@ -349,4 +345,3 @@
   </section>
   <!-- right col -->
 
-<?php include"application/views/admin/template/footer.php" ?>

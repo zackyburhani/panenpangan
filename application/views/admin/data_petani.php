@@ -1,6 +1,3 @@
-<?php include"application/views/admin/template/header.php" ?>
-<?php include"application/views/admin/template/sidebar.php" ?>
-
 <section class="content-header">
   <h1>
     Dashboard
@@ -11,57 +8,35 @@
 <!-- Main content -->
 <section class="content">
   <div class="panel panel-default">
-    <div class="panel-body"><h4><i class="ion ion-cube"></i> Data Petani</h4></div>
+    <div class="panel-body"><h4><i class="fa fa-user"></i> Data Petani</h4></div>
   </div>
 
-  <div class="row">
-    <div class="col-lg-12">
-      <?php
-        if (isset($_GET['tmb'])) {
-        if($_GET['tmb']=="success") {
-      ?>
-    <div class="alert alert-success" id="success-alert-input">
-      Data berhasil disimpan.
-    </div>
-      <?php }else{ ?>
-    <div class="alert alert-danger" id="fail-alert-input">
-      Data gagal disimpan.
-    </div>
-    <?php }
-            }
-      else if (isset($_GET['ubh'])) {
-      if($_GET['ubh']=="success") {
-    ?>
-    <div class="alert alert-success" id="success-alert-edit">
-      Data berhasil diedit.
-    </div>
-    <?php }else{ ?>
-      <div class="alert alert-danger" id="fail-alert-edit">
-        Data gagal diedit.
-      </div>
-      <?php }
-        }
-        else if (isset($_GET['hps'])) {
-        if($_GET['hps']=="success") {
-      ?>
-      <div class="alert alert-success" id="success-alert-delete">
-        Data berhasil dihapus.
-      </div>
-      <?php }else{ ?>
-      <div class="alert alert-danger" id="fail-alert-delete">
-        Data gagal dihapus.
-      </div>
-      <?php }
-        }
-        ?>
-      </div>
-    </div>
+<?php if($this->session->flashdata('pesan') == TRUE ) { ?>
+<div class="row">
+  <div class="col-md-12">
+  <div class="alert alert-success fade in" id="alert">
+    <p><center><b><?php echo $this->session->flashdata('pesan') ?></b></center></p>
+  </div>
+</div>
+</div>
+<?php } ?>
 
+<?php if($this->session->flashdata('pesanGagal') == TRUE ) { ?>
+<div class="row">
+  <div class="col-md-12">
+  <div class="alert alert-danger" id="alert">
+    <p><center><b><?php echo $this->session->flashdata('pesanGagal') ?></b></center></p>
+  </div>
+</div>
+</div>
+<?php } ?>
+
+    
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <button class="btn btn-default" data-toggle="modal" href="#" data-target="#entrypetaniModal"><i class="fa fa-plus"></i></button> Tambah Data Barang
+        <button class="btn btn-default" data-toggle="modal" href="#" data-target="#entrypetaniModal"><i class="fa fa-plus"></i></button> Tambah Data Petani
       </div>
       <!-- /.panel-heading -->
       <div class="panel-body">
@@ -85,12 +60,14 @@
               <td><?php echo $data->tgl_lahir;?></td>
               <td><?php echo $data->alamat;?></td>
               <td><?php echo $data->no_telp;?></td>
-              <td align="center;"><a href="#modalEditPetani<?php echo $data->id_petani?>"  class="btn btn-warning btn-circle" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> </a></td>
-              <td align="center;"><a href="<?php blink('Admin/hapusPetani/'.$data->id_petani)?>" onclick="return konfirmasi()" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+              <td align="center;"><a href="#modalEditPetani<?php echo $data->id_petani?>" class="btn btn-warning btn-circle" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> </a></td>
+              <td align="center;"><a href="#modalHapusPetani<?php echo $data->id_petani?>" class="btn btn-danger btn-circle" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> </a></td>
             </tr>
             <?php } ?>
           </tbody>
         </table>
+        <!-- /.panel body -->
+        </div>
 
               <!-- entry modal petani -->
               <div class="modal fade" id="entrypetaniModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -135,31 +112,6 @@
                   </div>
                 <!-- /.entry petani modal -->
 
-              <!--MODAL HAPUS-->
-              <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'
-                <div class="modal-dialog modal-sm" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-                    </div>
-
-                    <div class='modal-body'>Kamu yakin ingin menghapus?</div>
-                      <div class='modal-footer'>
-                        <input type='hidden' value='' name='nip'>
-                          <button type='button' class='btn btn-default' data-dismiss='modal'>Batal</button>
-                          <button class='btn btn-danger' aria-label='Delete'type='submit' name='hapus'></span>Hapus</button>
-                      </div>
-                    </div>
-                 </form>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        <!-- /.panel-body -->
-        </div>
-        <!--END MODAL HAPUS-->
-
          <?php if (isset($dataPetani)){
            foreach($dataPetani as $data){
           ?>
@@ -168,7 +120,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                      <h3 id="myModalLabel">Edit Data Petani</h3>
+                      <h3 id="myModalLabel"><i class="fa fa-user fa-fw"></i>Edit Data Petani</h3>
                   </div>
 
                   <form class="form-horizontal" method="post" action="<?php echo site_url('Admin/ubahPetani')?>">
@@ -222,10 +174,34 @@
   }
   ?>
 
-
-
-      <!-- /.panel body -->
+<!--MODAL DELETE -->
+<?php if (isset($dataPetani)){
+foreach($dataPetani as $data){ ?>
+<div class="modal fade" id="modalHapusPetani<?php echo $data->id_petani?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-trash fa-fw"></i>Confirm Delete</h4>
       </div>
+      <div class='modal-body'>Anda yakin ingin menghapus <b><?php echo $data->id_petani ?></b> dengan nama <i><?php echo $data->nm_petani ?></i> ?
+      </div>
+      <div class='modal-footer'>
+        <form class="" action="<?php echo site_url('admin/hapusPetani/'.$data->id_petani) ?>" method="post">
+          <input type='hidden' value='<?php echo $data->id_petani?>' name='id_petani'>
+          <button type='button' class='btn btn-default' data-dismiss='modal'>Batal</button>
+          <button class='btn btn-danger' aria-label='Delete'type='submit' name='hapus'></span>Hapus</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+  <?php }
+  }
+  ?>
+
+
+
     <!-- /.panel -->
     </div>
     <!-- /.col-lg-12 -->
@@ -234,4 +210,3 @@
   </section>
   <!-- right col -->
 
-<?php $this->load->view('admin/template/footer'); ?>

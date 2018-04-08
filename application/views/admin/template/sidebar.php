@@ -5,10 +5,10 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php blink('assets/AdminLTE/dist/img/user2-160x160.jpg')?>" class="img-circle" alt="User Image">
+          <img src="<?php blink('assets/admin/dist/img/user.png')?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Admin</p>
+          <p><?php echo $nama; ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -28,7 +28,7 @@
         </li>
         <li>
           <a href="<?php echo site_url('Admin/Kategori') ?>">
-            <i class="fa fa-file"></i> <span>Data Kategori</span>
+            <i class="fa fa-list"></i> <span>Data Kategori</span>
           </a>
         </li>
         <li>

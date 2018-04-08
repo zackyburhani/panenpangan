@@ -80,6 +80,8 @@ $.widget.bridge('uibutton', $.ui.button);
 <script src="<?php blink('/assets/AdminLTE/plugins/datatables/dataTables.bootstrap.js')?>"></script>
 <script type="text/javascript" src="<?php blink('assets/AdminLTE/dist/js/fnSetFilteringDelay.js')?>"></script>
 <script src="<?php blink('/assets/AdminLTE/plugins/bootbox/bootbox.min.js')?>"></script>
+<script src="<?php blink('/assets/js/upload.js')?>"></script>
+
 
 <script type="text/javascript">
 $(document).ready( function () {
@@ -114,22 +116,13 @@ $(document).ready( function () {
  else return false;
  }</script>
 
- <script type="text/javascript">
-     $(document).ready(function(){
-         $('#myModal').on('show.bs.modal', function (e) {
-             var rowid = $(e.relatedTarget).data('id_petani');
-             //menggunakan fungsi ajax untuk pengambilan data
-             $.ajax({
-                 type : 'post',
-                 url : 'detail.php',
-                 data :  'rowid='+ rowid,
-                 success : function(data){
-                 $('.fetched-data').html(data);//menampilkan data ke dalam modal
-                 }
-             });
-          });
-     });
-   </script>
+
+ <script> 
+    window.setTimeout(function() {
+        $(".alert-success").fadeTo(500, 0).slideUp(500, function(){ $(this).remove(); });
+        $(".alert-danger").fadeTo(500, 0).slideUp(500, function(){ $(this).remove(); }); 
+    }, 3000); 
+</script>
 
 </body>
 </html>

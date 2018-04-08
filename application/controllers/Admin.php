@@ -3,15 +3,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
 
-	public function __construct() {
+	public function __construct() 
+	{
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('ModelAdmin');
+		$this->load->helper('form');
+		$this->load->library('upload');
 	}
+
 
 	public function index()
 	{
-		$this->load->view('admin/template/index');
+		$username = $this->session->username;
+		if($username == null)
+		{
+			redirect('Admin/login');
+		} else {
+			$totalPetani = $this->ModelAdmin->jumlah('petani');
+			$totalKategori = $this->ModelAdmin->jumlah('kategori');
+			$totalBarang = $this->ModelAdmin->jumlah('barang');
+			$data = [
+				'nama' => $username,
+				'totalPetani' => $totalPetani,
+				'totalKategori' => $totalKategori,
+				'totalBarang' => $totalBarang,
+			];
+			$this->load->view('admin/template/header',$data);
+			$this->load->view('admin/template/sidebar',$data);	
+			$this->load->view('admin/template/index',$data);
+			$this->load->view('admin/template/footer',$data);
+		}		
+	}
+
+	public function login()
+	{
+		$username = $this->session->username;
+		if($username != null){
+			redirect('Admin');
+		} else{
+			$this->load->view('admin/loginadmin');	
+		}
+		
 	}
 
 
@@ -19,17 +52,23 @@ class Admin extends CI_Controller {
 
 	public function petani()
 	{
-		$semuaPetani = $this->ModelAdmin->getAllPetani();
-		$data['dataPetani'] = $semuaPetani;
-		$data['id_petani'] = $this->ModelAdmin->getKodePetani();
-		$this->load->view('admin/data_petani',$data);
+		$username = $this->session->username;
+		if($username == null){
+			redirect('Admin/login');
+		} else {
+			$semuaPetani = $this->ModelAdmin->getAllPetani();
+			$data['dataPetani'] = $semuaPetani;
+			$data['nama'] = $username;
+			$data['id_petani'] = $this->ModelAdmin->getKodePetani();
+			$this->load->view('admin/template/header',$data);
+			$this->load->view('admin/template/sidebar',$data);	
+			$this->load->view('admin/data_petani',$data);
+			$this->load->view('admin/template/footer',$data);
+		}
 	}
 
 	public function tambahPetani()
 	{
-
-		//$autonumber = $this->ModelAdmin->buat_kode();
-		// $id_petani = "PTN06";
 		$id_petani = $this->input->post('id_petani');
 		$nm_petani = $this->input->post('nm_petani');
 		$tgl_lahir = $this->input->post('tgl_lahir');
@@ -48,21 +87,18 @@ class Admin extends CI_Controller {
 
 		$data = NULL;
 		if ($result){
-			redirect('Admin/Petani');
+			$this->session->set_flashdata('pesan','Data Berhasil Disimpan');
+    		redirect('Admin/Petani');
 		}else{
-			echo json_encode(array('success' => false));
+			$this->session->set_flashdata('pesanGagal','Data Tidak Berhasil Disimpan');
+    		redirect('Admin/Petani');
 		}
-	}
-
-	public function editPetani($id_petani)
-	{
-		$data['dataPetani'] =  $this->ModelAdmin->get_idPetani($id_petani)->result();
-		$this->load->view('admin/modal/petani/UpdatePetani',$data);
 	}
 
 	public function hapusPetani($id_petani)
 	{
 		$this->ModelAdmin->deletePetani($id_petani);
+		$this->session->set_flashdata('pesan','Data Berhasil Dihapus');
 		redirect('Admin/Petani');
 	}
 
@@ -82,7 +118,14 @@ class Admin extends CI_Controller {
 		);
 
 		$result = $this->ModelAdmin->UpdatePetani($id_petani,$data);
-		redirect('Admin/Petani');
+		
+		if (!$result){
+			$this->session->set_flashdata('pesan','Data Berhasil Diubah');
+    		redirect('Admin/Petani');
+		}else{
+			$this->session->set_flashdata('pesanGagal','Data Tidak Berhasil Diubah');
+    		redirect('Admin/Petani');
+		}
 	}
 
 /////////////////////END-PETANI//////////////////////////
@@ -93,10 +136,21 @@ class Admin extends CI_Controller {
 
 	public function kategori()
 	{
-		$semuaKategori = $this->ModelAdmin->getAllKategori();
-		$data['dataKategori'] = $semuaKategori;
-		$data['id_kategori'] = $this->ModelAdmin->getKodeKategori();
-		$this->load->view('admin/data_kategori',$data);
+		$username = $this->session->username;
+		if($username == null){
+			redirect('Admin/login');
+		} else {
+			$semuaKategori = $this->ModelAdmin->getAllKategori();
+			$data['dataKategori'] = $semuaKategori;
+			$data['nama'] = $username;
+			$data['id_kategori'] = $this->ModelAdmin->getKodeKategori();
+
+			$this->load->view('admin/template/header',$data);
+			$this->load->view('admin/template/sidebar',$data);	
+			$this->load->view('admin/data_kategori',$data);
+			$this->load->view('admin/template/footer',$data);
+		}
+		
 	}
 
 	public function tambahKategori()
@@ -113,10 +167,11 @@ class Admin extends CI_Controller {
 
 		$data = NULL;
 		if ($result){
-			echo json_encode(array('success' => true));
-			redirect('Admin/Kategori');
+			$this->session->set_flashdata('pesan','Data Berhasil Disimpan');
+    		redirect('Admin/Kategori');
 		}else{
-			echo json_encode(array('success' => false));
+			$this->session->set_flashdata('pesanGagal','Data Tidak Berhasil Disimpan');
+    		redirect('Admin/Kategori');
 		}
 	}
 
@@ -130,12 +185,19 @@ class Admin extends CI_Controller {
 		);
 
 		$result = $this->ModelAdmin->updateKategori($data,$id_kategori);
-		redirect('Admin/Kategori');
+		if (!$result){
+			$this->session->set_flashdata('pesan','Data Berhasil Diubah');
+    		redirect('Admin/Kategori');
+		}else{
+			$this->session->set_flashdata('pesanGagal','Data Tidak Berhasil Diubah');
+    		redirect('Admin/Kategori');
+		}
 	}
 
 	public function hapusKategori($id_kategori)
 	{
 		$this->ModelAdmin->delete($id_kategori);
+		$this->session->set_flashdata('pesan','Data Berhasil Dihapus');
 		redirect('Admin/Kategori');
 	}
 
@@ -147,57 +209,153 @@ class Admin extends CI_Controller {
 
 	public function barang()
 	{
-		$semuaBarang = $this->ModelAdmin->getAllBarang();
-		$data['dataBarang'] = $semuaBarang;
-		$this->load->view('admin/data_barang',$data);
+		$username = $this->session->username;
+		if($username == null){
+			redirect('Admin/login');
+		} else {
+			$semuaBarang = $this->ModelAdmin->getAllBarang();
+			$semuaKategori = $this->ModelAdmin->getAllKategori();
+			$data['dataKategori'] = $semuaKategori;
+			$data['dataBarang'] = $semuaBarang;
+			$data['id_brg'] = $this->ModelAdmin->getKodeBarang();
+			$data['nama'] = $username;
+			$this->load->view('admin/template/header',$data);
+			$this->load->view('admin/template/sidebar',$data);	
+			$this->load->view('admin/data_barang',$data);
+			$this->load->view('admin/template/footer',$data);
+		}
 	}
 
 	public function tambahBarang()
 	{
-		//$autonumber = $this->ModelAdmin->buat_kode();
+		$this->load->helper(array('form', 'url')); 
+		$nama_file = md5(uniqid(rand(), true));
+		$this->load->library('upload');
+		$config = [
+			'upload_path' => './assets/img/',
+			'allowed_types' => 'gif|jpg|png|jpeg|bmp',
+			'file_name' => $nama_file
+		];
 
-		$id_barang = $this->input->post('id_barang');
-		$nm_barang = $this->input->post('nm_barang');
-		$stok = $this->input->post('stok');
-		$harga = $this->input->post('harga');
-		$ongkir = $this->input->post('ongkir');
-		$rating = $this->input->post('rating');
-		$gambar = $this->input->post('gambar');
-		$id_kategori = $this->input->post('kategori');
+		$this->upload->initialize($config);
+		  if(!$this->upload->do_upload('photo')){
+		      $photo="";
+		  }else{
+		      	$photo=$this->upload->file_name;
+		       	$id_barang = $this->input->post('id_brg');
+				$nm_barang = $this->input->post('nm_brg');
+				$stok = $this->input->post('stok');
+				$harga = $this->input->post('harga');
+				$ongkir = $this->input->post('ongkir');
+				$rating = $this->input->post('rating');
+				$id_kategori = $this->input->post('kategori');
+			
+			$data = array(
+				'id_brg' => $id_barang,
+				'nm_brg' => $nm_barang,
+				'stok' => $stok,
+				'harga' => $harga,
+				'ongkir' => $ongkir,
+				'rating' => $rating,
+				'gambar' => $photo,
+				'id_kategori' => $id_kategori    
+			);
 
-		$data = array(
-			'id_brg' => $id_barang,
-			'nm_brg' => $nm_barang,
-			'stok' => $stok,
-			'harga' => $harga,
-			'ongkir' => $ongkir,
-			'rating' => $rating,
-			'gambar' => $gambar,
-			'id_kategori' => $id_kategori
-		);
+			$result = $this->ModelAdmin->InsertBarang($data); 
+			
+			if ($result){
+				$this->session->set_flashdata('pesan','Data Berhasil Disimpan');
+	    		redirect('Admin/barang');
+			}else{
+				$this->session->set_flashdata('pesanGagal','Data Tidak Berhasil Disimpan');
+	    		redirect('Admin/barang');
+			}
+		}	
+	}
 
-		$result = $this->ModelAdmin->InsertBarang($data);
+	public function ubahBarang()
+	{
+		$this->load->helper(array('form', 'url')); 
+		$nama_file = md5(uniqid(rand(), true));
+		$this->load->library('upload');
+		$config = [
+			'upload_path' => './assets/img/',
+			'allowed_types' => 'gif|jpg|png|jpeg|bmp',
+			'file_name' => $nama_file
+		];
 
-		$data = NULL;
-		if ($result){
-			redirect('Barang');
-		}else{
-			echo json_encode(array('success' => false));
+		$this->upload->initialize($config);
+		  if(!$this->upload->do_upload('photo')){
+		    
+		    $id_barang = $this->input->post('id_brg');
+			$nm_barang = $this->input->post('nm_brg');
+			$stok = $this->input->post('stok');
+			$harga = $this->input->post('harga');
+			$ongkir = $this->input->post('ongkir');
+			$rating = $this->input->post('rating');
+			$id_kategori = $this->input->post('kategori');
+				
+			$data = array(
+				'nm_brg' => $nm_barang,
+				'stok' => $stok,
+				'harga' => $harga,
+				'ongkir' => $ongkir,
+				'rating' => $rating,
+				'id_kategori' => $id_kategori    
+			);
+
+			$result = $this->ModelAdmin->updateBarang2($data,$id_barang,'barang'); 
+			if (!$result){
+				$this->session->set_flashdata('pesan','Data Berhasil Diubah');
+    			redirect('Admin/barang');
+			}else{
+				$this->session->set_flashdata('pesanGagal','Data Tidak Berhasil Diubah');
+    			redirect('Admin/barang');
+			}
+			
+
+		  }else{
+
+			$id_barang = $this->input->post('id_brg');
+			$nm_barang = $this->input->post('nm_brg');
+			$stok = $this->input->post('stok');
+			$harga = $this->input->post('harga');
+			$ongkir = $this->input->post('ongkir');
+			$rating = $this->input->post('rating');
+			$photo=$this->upload->file_name;
+			$id_kategori = $this->input->post('kategori');
+				
+			$data = array(
+				'nm_brg' => $nm_barang,
+				'stok' => $stok,
+				'harga' => $harga,
+				'ongkir' => $ongkir,
+				'rating' => $rating,
+				'gambar' => $photo,
+				'id_kategori' => $id_kategori    
+			);
+
+			$result = $this->ModelAdmin->updateBarang($data,$id_barang,'barang'); 
+			if (!$result){
+				$this->session->set_flashdata('pesan','Data Berhasil Diubah');
+    			redirect('Admin/barang');
+			}else{
+				$this->session->set_flashdata('pesanGagal','Data Tidak Berhasil Diubah');
+    			redirect('Admin/barang');
+			}
 		}
 	}
 
-	public function editBarang($id_Barang)
+	public function hapusBarang($id_barang)
 	{
-		$data['dataBarang'] =  $this->ModelAdmin->get_idBarang($id_barang)->result();
-		$this->load->view('admin/modal/barang/UpdateBarang',$data);
-	}
-
-	public function hapusHapus($id_barang)
-	{
-		$this->ModelAdmin->delete($id_barang);
-		redirect('Barang');
+		$this->ModelAdmin->deleteBarang($id_barang);
+		$this->session->set_flashdata('pesan','Data Berhasil Dihapus');
+		redirect('Admin/barang');
 	}
 
 /////////////////////END-BARANG//////////////////////////
+
+
+
 
 }
