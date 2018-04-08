@@ -36,6 +36,8 @@
   <link rel="stylesheet" href="<?php blink('/assets/AdminLTE/plugins/morris/morris.css')?>">
   <!-- jvectormap -->
   <link rel="stylesheet" href="<?php blink('/assets/AdminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.css')?>">
+  
+  <link rel="shortcut icon" href="<?php blink('metronic/assets/admin/layout7/img/logo/favicon-16x16.png')?>"/>
   <!-- Daterange picker -->
   <link rel="stylesheet" href="<?php blink('/assets/AdminLTE/plugins/daterangepicker/daterangepicker.css')?>">
   <!-- Date Picker -->
@@ -60,12 +62,12 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="<?php blink('Admin') ?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>PP</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -80,6 +82,9 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
+          <li>
+             <label class="pull-left" style="color: white; font-size: 15px; margin-top: 15px; margin-right: 15px;">Tanggal : <?php echo date("d-m-Y"); ?></label>
+          </li>
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php blink('assets/admin/dist/img/user.png')?>" class="user-image" alt="User Image">
@@ -99,10 +104,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" class="btn btn-default btn-flat"><i class="fa fa-info"></i> Profil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php blink('Login/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php blink('Login/logout') ?>" class="btn btn-default btn-flat"><i class="fa fa-sign-out"></i> Keluar</a>
                 </div>
               </li>
             </ul>

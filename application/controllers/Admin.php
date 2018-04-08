@@ -12,7 +12,6 @@ class Admin extends CI_Controller {
 		$this->load->library('upload');
 	}
 
-
 	public function index()
 	{
 		$username = $this->session->username;
@@ -88,7 +87,7 @@ class Admin extends CI_Controller {
 		$data = NULL;
 		if ($result){
 			$this->session->set_flashdata('pesan','Data Berhasil Disimpan');
-    		redirect('Admin/Petani');
+	   		redirect('Admin/Petani');
 		}else{
 			$this->session->set_flashdata('pesanGagal','Data Tidak Berhasil Disimpan');
     		redirect('Admin/Petani');
@@ -213,8 +212,10 @@ class Admin extends CI_Controller {
 		if($username == null){
 			redirect('Admin/login');
 		} else {
+			$joinBarang = $this->ModelAdmin->joinBarang();
 			$semuaBarang = $this->ModelAdmin->getAllBarang();
 			$semuaKategori = $this->ModelAdmin->getAllKategori();
+			$data['joinBarang'] = $joinBarang;
 			$data['dataKategori'] = $semuaKategori;
 			$data['dataBarang'] = $semuaBarang;
 			$data['id_brg'] = $this->ModelAdmin->getKodeBarang();
@@ -354,8 +355,4 @@ class Admin extends CI_Controller {
 	}
 
 /////////////////////END-BARANG//////////////////////////
-
-
-
-
 }

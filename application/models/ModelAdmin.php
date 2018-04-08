@@ -18,8 +18,8 @@ class ModelAdmin extends CI_Model {
 
 //////////////////START-PETANI/////////////////////////////////
 
-	public function InsertPetani($data){
-
+	public function InsertPetani($data)
+	{
 		$checkinsert = false;
 		try{
 			$this->db->insert('petani',$data);
@@ -28,26 +28,26 @@ class ModelAdmin extends CI_Model {
 			$checkinsert = false;
 		}
 		return $checkinsert;
-
 	}
 
-  public function getAllPetani(){
+  	public function getAllPetani()
+  	{
 		$result = $this->db->get('petani');
 		return $result->result();
 	}
 
 
-  //fungsi ambil ID dari database
-  function get_idPetani($id_petani)
-  {
-    $this->db->select("*");
-    $this->db->where('id_petani', $id_petani);
-    $this->db->from("petani");
-    return $this->db->get();
-  }
+  	//fungsi ambil ID dari database
+  	public function get_idPetani($id_petani)
+  	{
+    	$this->db->select("*");
+	    $this->db->where('id_petani', $id_petani);
+	    $this->db->from("petani");
+	    return $this->db->get();
+	}
 
     //update data, coded by zacky
-    function updatePetani($id_petani,$data)
+    public function updatePetani($id_petani,$data)
     {
       $this->db->where('id_petani',$id_petani);
       $this->db->update('petani',$data);
@@ -104,7 +104,7 @@ class ModelAdmin extends CI_Model {
 	}
 
 	//fungsi ambil ID dari database
-	function get_idKategori($id_Kategori)
+	public function get_idKategori($id_Kategori)
 	{
 		$this->db->select("*");
 		$this->db->where('id_kategori', $id_Kategori);
@@ -113,7 +113,7 @@ class ModelAdmin extends CI_Model {
 	}
 
 	//update data, coded by zacky
-	function updateKategori($data,$where)
+	public function updateKategori($data,$where)
 	{
 		$this->db->where('id_kategori',$where);
 		$this->db->update('kategori',$data);
@@ -124,22 +124,23 @@ class ModelAdmin extends CI_Model {
 		$this->db->delete('kategori');
 	}
 
-  public function getKodeKategori()
-  {
-    $q = $this->db->query("select MAX(RIGHT(id_kategori,3)) as kd_max from kategori");
-    $kd = "";
-    if($q->num_rows() > 0)
-    {
-      foreach ($q->result() as $k) {
-        $tmp = ((int)$k->kd_max)+1;
-        $kd = sprintf("%03s",$tmp);
-      }
-    } else
-    {
-      $kd = "001";
-    }
-    return "KT".$kd;
-  }
+  	public function getKodeKategori()
+  	{
+    	$q = $this->db->query("select MAX(RIGHT(id_kategori,3)) as kd_max from kategori");
+	    $kd = "";
+	    if($q->num_rows() > 0)
+	    {
+	      foreach ($q->result() as $k) 
+	      {
+	        $tmp = ((int)$k->kd_max)+1;
+	        $kd = sprintf("%03s",$tmp);
+	      }
+	    } else
+	    {
+	      $kd = "001";
+	    }
+	    return "KT".$kd;
+  	}
 
 ////////////////////END-KATEGORI////////////////////////
 
@@ -219,7 +220,15 @@ class ModelAdmin extends CI_Model {
      unlink("./assets/img/$row->gambar");
 
      $this->db->delete('barang', array('id_brg' => $id_brg));
+	}
 
+	public function joinBarang()
+	{
+		$this->db->select('*');
+ 	  	$this->db->from('barang');
+  	 	$this->db->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
+ 	   	$data = $this->db->get();
+    	return $data->result();
 	}
 
 ////////////////////END-BARANG////////////////////////

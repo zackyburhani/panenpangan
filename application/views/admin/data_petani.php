@@ -69,108 +69,108 @@
         <!-- /.panel body -->
         </div>
 
-              <!-- entry modal petani -->
-              <div class="modal fade" id="entrypetaniModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title" id="myModalLabel"><i class="fa fa-user fa-fw"></i>Tambah Data Petani</h4>
-                    </div>
-                    <form method="POST" action="<?php echo site_url('Admin/tambahPetani')?>" enctype="multipart/form-data">
-                      <div class="modal-body">
-                        <div class="form-group"><label>ID Petani</label>
-                          <input required class="form-control required text-capitalize" value="<?php echo $id_petani ?>" data-placement="top" data-trigger="manual" type="text" name="id_petani" readonly>
-                        </div>
+        <!-- entry modal petani -->
+        <div class="modal fade" id="entrypetaniModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel"><i class="fa fa-user fa-fw"></i>Tambah Data Petani</h4>
+              </div>
+              <form method="POST" action="<?php echo site_url('Admin/tambahPetani')?>" enctype="multipart/form-data">
+              <div class="modal-body">
+                <div class="form-group"><label>ID Petani</label>
+                  <input required class="form-control required text-capitalize" value="<?php echo $id_petani ?>" data-placement="top" data-trigger="manual" type="text" name="id_petani" readonly>
+                  <alert><p><?php echo form_error('id_'); ?></alert>
+                </div>
+                
+                <div class="form-group"><label>Nama Petani</label>
+                  <input required class="form-control required text-capitalize" placeholder="Input Nama Petani" data-placement="top" data-trigger="manual" type="text" name="nm_petani">
+                </div>
 
-                        <div class="form-group"><label>Nama Petani</label>
-                          <input required class="form-control required text-capitalize" placeholder="Input Nama Petani" data-placement="top" data-trigger="manual" type="text" name="nm_petani">
-                          </div>
+                <div class="form-group"><label>Tanggal Lahir</label>
+                  <input required class="form-control" placeholder="yyyy-mm-dd" data-placement="top" data-trigger="manual" type="date" name="tgl_lahir">
+                </div>
 
-                          <div class="form-group"><label>Tanggal Lahir</label>
-                            <input required class="form-control" placeholder="yyyy-mm-dd" data-placement="top" data-trigger="manual" type="date" name="tgl_lahir">
-                          </div>
+                <div class="form-group"><label>Alamat</label>
+                  <textarea class="form-control" name="alamat" required></textarea>
+                </div>
 
-                          <div class="form-group"><label>Alamat</label>
-                            <textarea class="form-control" name="alamat" required></textarea>
-                          </div>
-
-                          <div class="form-group">
-                            <label>Nomor Telepon</label>
-                            <input required class="form-control required" placeholder="Nomor Telepon" data-placement="top" data-trigger="manual" type="text" name="no_telp" id="no_telp" maxlength="13">
-                          </div>
-
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
-                            <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                <!-- /.entry petani modal -->
-
-         <?php if (isset($dataPetani)){
-           foreach($dataPetani as $data){
-          ?>
-          <div id="modalEditPetani<?php echo $data->id_petani?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                      <h3 id="myModalLabel"><i class="fa fa-user fa-fw"></i>Edit Data Petani</h3>
-                  </div>
-
-                  <form class="form-horizontal" method="post" action="<?php echo site_url('Admin/ubahPetani')?>">
-                      <div class="modal-body">
-                          <div class="control-group">
-                              <label class="control-label">ID Petani</label>
-                              <div class="controls">
-                                  <input name="id_petani" class="form-control" type="text" value="<?php echo $data->id_petani; ?>" class="uneditable-input" readonly="true">
-                              </div>
-                          </div>
-
-                          <div class="control-group">
-                              <label class="control-label" >Nama Petani</label>
-                              <div class="controls">
-                                  <input name="nm_petani" type="text" class="form-control" value="<?php echo $data->nm_petani?>" required>
-                              </div>
-                          </div>
-
-                          <div class="control-group">
-                              <label class="control-label">Tanggal Lahir</label>
-                              <div class="controls">
-                                  <input name="tgl_lahir" type="date" class="form-control" value="<?php echo $data->tgl_lahir?>" required>
-                              </div>
-                          </div>
-
-                          <div class="control-group">
-                              <label class="control-label">Alamat</label>
-                              <div class="controls">
-                                <textarea name="alamat" class="form-control"><?php echo $data->alamat?></textarea>
-                             </div>
-                          </div>
-
-                          <div class="control-group">
-                              <label class="control-label" >Nomor Telepon</label>
-                              <div class="controls">
-                                  <input name="no_telp" class="form-control" type="text" value="<?php echo $data->no_telp?>" required>
-                              </div>
-                          </div>
-                      </div>
-
-                      <div class="modal-footer">
-                          <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i> Close</button>
-                          <button class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
-                      </div>
-                  </form>
+                <div class="form-group">
+                  <label>Nomor Telepon</label>
+                  <input required class="form-control required" placeholder="Nomor Telepon" data-placement="top" data-trigger="manual" type="text" name="no_telp" id="no_telp" maxlength="13">
                 </div>
 
               </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
+                <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
+              </div>
+            </form>
           </div>
-      <?php }
+        </div>
+      </div>
+      <!-- /.entry petani modal -->
+
+      <?php if (isset($dataPetani)){
+        foreach($dataPetani as $data){
+      ?>
+      <div id="modalEditPetani<?php echo $data->id_petani?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel"><i class="fa fa-user fa-fw"></i>Edit Data Petani</h3>
+            </div>
+
+            <form class="form-horizontal" method="post" action="<?php echo site_url('Admin/ubahPetani')?>">
+              <div class="modal-body">
+                <div class="control-group">
+                  <label class="control-label">ID Petani</label>
+                    <div class="controls">
+                      <input name="id_petani" class="form-control" type="text" value="<?php echo $data->id_petani; ?>" class="uneditable-input" readonly="true">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                  <label class="control-label" >Nama Petani</label>
+                    <div class="controls">
+                      <input name="nm_petani" type="text" class="form-control" value="<?php echo $data->nm_petani?>" required>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                  <label class="control-label">Tanggal Lahir</label>
+                    <div class="controls">
+                      <input name="tgl_lahir" type="date" class="form-control" value="<?php echo $data->tgl_lahir?>" required>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                  <label class="control-label">Alamat</label>
+                    <div class="controls">
+                      <textarea name="alamat" class="form-control"><?php echo $data->alamat?></textarea>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                  <label class="control-label" >Nomor Telepon</label>
+                    <div class="controls">
+                      <input name="no_telp" class="form-control" type="text" value="<?php echo $data->no_telp?>" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal-footer">
+                  <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i> Close</button>
+                  <button class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+    <?php }
   }
   ?>
 
@@ -202,8 +202,8 @@ foreach($dataPetani as $data){ ?>
 
 
 
-    <!-- /.panel -->
-    </div>
+     <!-- /.panel -->
+     </div>
     <!-- /.col-lg-12 -->
     </div>
 

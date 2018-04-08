@@ -60,7 +60,7 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition login-page" style="background: #004d66">
+<body class="hold-transition login-page" style="background: #595959">
 
 <div class="login-box">
   <!-- /.login-logo -->
@@ -89,7 +89,7 @@
       <div class="row">
         <!-- /.col -->
         <div class="col-md-12">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Log In</button>
+          <button type="submit" class="btn btn-success btn-block btn-flat"><i class="fa fa-sign-in"></i> Masuk</button>
         </div>
         <!-- /.col -->
       </div>

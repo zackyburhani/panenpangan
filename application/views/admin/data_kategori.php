@@ -60,109 +60,109 @@
           </tbody>
         </table>
 
-              <!-- entry modal kategori -->
-              <div class="modal fade" id="entrykategoriModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title" id="myModalLabel"><i class="fa fa-list fa-fw"></i>Tambah Data kategori</h4>
-                    </div>
-                    <form method="POST" action="<?php echo site_url('Admin/tambahKategori')?>" enctype="multipart/form-data">
-                      <div class="modal-body">
-                        <div class="form-group"><label>ID Kategori</label>
-                          <input required class="form-control required text-capitalize" data-placement="top" value="<?php echo $id_kategori ?>" data-trigger="manual" type="text" name="id_kategori" readonly>
-                        </div>
-
-                        <div class="form-group"><label>Nama Kategori</label>
-                          <input required class="form-control required text-capitalize" placeholder="Input Nama kategori" data-placement="top" data-trigger="manual" type="text" name="nm_kategori">
-                        </div>
-
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
-                            <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
+        <!-- entry modal kategori -->
+        <div class="modal fade" id="entrykategoriModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-list fa-fw"></i>Tambah Data kategori</h4>
+              </div>
+              <form method="POST" action="<?php echo site_url('Admin/tambahKategori')?>" enctype="multipart/form-data">
+                <div class="modal-body">
+                  <div class="form-group"><label>ID Kategori</label>
+                    <input required class="form-control required text-capitalize" data-placement="top" value="<?php echo $id_kategori ?>" data-trigger="manual" type="text" name="id_kategori" readonly>
                   </div>
-                <!-- /.entry kategori modal -->
 
-                <?php if (isset($dataKategori)){
-                  foreach($dataKategori as $data){
-                 ?>
-                 <div id="modalEditKategori<?php echo $data->id_kategori?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                     <div class="modal-dialog">
-                       <div class="modal-content">
-                         <div class="modal-header">
-                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                             <h3 id="myModalLabel"><i class="fa fa-list fa-fw"></i>Edit Data Petani</h3>
-                         </div>
+                  <div class="form-group"><label>Nama Kategori</label>
+                    <input required class="form-control required text-capitalize" placeholder="Input Nama kategori" data-placement="top" data-trigger="manual" type="text" name="nm_kategori">
+                  </div>
 
-                         <form class="form-horizontal" method="post" action="<?php echo site_url('Admin/ubahKategori')?>">
-                             <div class="modal-body">
-                                 <div class="control-group">
-                                     <label class="control-label">ID Kategori</label>
-                                     <div class="controls">
-                                         <input name="id_kategori" class="form-control" type="text" value="<?php echo $data->id_kategori; ?>" class="uneditable-input" readonly="true">
-                                     </div>
-                                 </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
+                  <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- END entry kategori modal -->
 
-                                 <div class="control-group">
-                                     <label class="control-label" >Nama Kategori</label>
-                                     <div class="controls">
-                                         <input name="nm_kategori" type="text" class="form-control" value="<?php echo $data->nm_kategori?>" required>
-                                     </div>
-                                 </div>
+        <!-- START update kategori modal -->
+        <?php if (isset($dataKategori)){
+          foreach($dataKategori as $data){
+        ?>
+        <div id="modalEditKategori<?php echo $data->id_kategori?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel"><i class="fa fa-list fa-fw"></i>Edit Data Petani</h3>
+                  </div>
 
-                             <div class="modal-footer">
-                                 <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i> Close</button>
-                                 <button class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
-                             </div>
-                         </form>
-                       </div>
+                  <form class="form-horizontal" method="post" action="<?php echo site_url('Admin/ubahKategori')?>">
+                    <div class="modal-body">
+                      <div class="control-group">
+                        <label class="control-label">ID Kategori</label>
+                          <div class="controls">
+                            <input name="id_kategori" class="form-control" type="text" value="<?php echo $data->id_kategori; ?>" class="uneditable-input" readonly="true">
+                          </div>
+                      </div>
 
-                     </div>
-                 </div>
-                       </div>
-             <?php }
+                      <div class="control-group">
+                        <label class="control-label" >Nama Kategori</label>
+                          <div class="controls">
+                              <input name="nm_kategori" type="text" class="form-control" value="<?php echo $data->nm_kategori?>" required>
+                          </div>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i> Close</button>
+                        <button class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php }
          }
          ?>
+         <!-- START update kategori modal -->
 
 
-<!--MODAL DELETE -->
-<?php if (isset($dataKategori)){
-foreach($dataKategori as $data){ ?>
-<div class="modal fade" id="modalHapusKategori<?php echo $data->id_kategori?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-trash fa-fw"></i>Confirm Delete</h4>
-      </div>
-      <div class='modal-body'>Anda yakin ingin menghapus <b><?php echo $data->id_kategori ?></b> dengan nama <i><?php echo $data->nm_kategori ?></i> ?
-      </div>
-      <div class='modal-footer'>
-        <form class="" action="<?php echo site_url('admin/hapusKategori/'.$data->id_kategori) ?>" method="post">
-          <input type='hidden' value='<?php echo $data->id_kategori?>' name='id_kategori'>
-          <button type='button' class='btn btn-default' data-dismiss='modal'>Batal</button>
-          <button class='btn btn-danger' aria-label='Delete'type='submit' name='hapus'></span>Hapus</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-  <?php }
-  }
-  ?>
-      <!-- /.panel body -->
+        <!--MODAL DELETE -->
+        <?php if (isset($dataKategori)){
+        foreach($dataKategori as $data){ ?>
+        <div class="modal fade" id="modalHapusKategori<?php echo $data->id_kategori?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-trash fa-fw"></i>Confirm Delete</h4>
+              </div>
+              <div class='modal-body'>Anda yakin ingin menghapus <b><?php echo $data->id_kategori ?></b> dengan nama <i><?php echo $data->nm_kategori ?></i> ?
+              </div>
+              <div class='modal-footer'>
+                <form class="" action="<?php echo site_url('admin/hapusKategori/'.$data->id_kategori) ?>" method="post">
+                  <input type='hidden' value='<?php echo $data->id_kategori?>' name='id_kategori'>
+                  <button type='button' class='btn btn-default' data-dismiss='modal'>Batal</button>
+                  <button class='btn btn-danger' aria-label='Delete'type='submit' name='hapus'></span>Hapus</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <?php }
+        }
+        ?>
 
-    <!-- /.panel -->
-    </div>
+
+      <!-- /.panel -->
+      </div>
     <!-- /.col-lg-12 -->
     </div>
-
   </section>
   <!-- right col -->
