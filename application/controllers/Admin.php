@@ -154,42 +154,93 @@ class Admin extends CI_Controller {
 
 	public function tambahKategori()
 	{
+		$this->load->helper(array('form', 'url')); 
+		$nama_file = md5(uniqid(rand(), true));
+		$this->load->library('upload');
+		$config = [
+			'upload_path' => './assets/img/',
+			'allowed_types' => 'gif|jpg|png|jpeg|bmp',
+			'file_name' => $nama_file
+		];
 
-		$id_kategori = $this->input->post('id_kategori');
-		$nm_kategori = $this->input->post('nm_kategori');
-		$data = array(
+		$this->upload->initialize($config);
+		  if(!$this->upload->do_upload('photo')){
+		      $photo="";
+		      $this->session->set_flashdata('pesanGagal','Data Tidak Berhasil Disimpan');
+	    	  redirect('Admin/kategori');
+		  }else{
+		      	$photo=$this->upload->file_name;
+		       	$id_kategori = $this->input->post('id_kategori');
+				$nm_kategori = $this->input->post('nm_kategori');
+			
+			$data = array(
 			'id_kategori' => $id_kategori,
-			'nm_kategori' =>$nm_kategori
-		);
+			'nm_kategori' => $nm_kategori,
+			'gambar_kategori' => $photo
+			);
 
-		$result = $this->ModelAdmin->InsertKategori($data);
-
-		$data = NULL;
-		if ($result){
-			$this->session->set_flashdata('pesan','Data Berhasil Disimpan');
-    		redirect('Admin/Kategori');
-		}else{
-			$this->session->set_flashdata('pesanGagal','Data Tidak Berhasil Disimpan');
-    		redirect('Admin/Kategori');
+			$result = $this->ModelAdmin->InsertKategori($data); 
+			
+			if ($result){
+				$this->session->set_flashdata('pesan','Data Berhasil Disimpan');
+	    		redirect('Admin/kategori');
+			}else{
+				$this->session->set_flashdata('pesanGagal','Data Tidak Berhasil Disimpan');
+	    		redirect('Admin/kategori');
+			}
 		}
 	}
 
 	public function ubahKategori()
 	{
-		$id_kategori = $this->input->post('id_kategori');
-		$nm_kategori = $this->input->post('nm_kategori');
+		$this->load->helper(array('form', 'url')); 
+		$nama_file = md5(uniqid(rand(), true));
+		$this->load->library('upload');
+		$config = [
+			'upload_path' => './assets/img/',
+			'allowed_types' => 'gif|jpg|png|jpeg|bmp',
+			'file_name' => $nama_file
+		];
 
-		$data = array(
-			'nm_kategori' =>$nm_kategori
-		);
+		$this->upload->initialize($config);
+		  if(!$this->upload->do_upload('photo')){
 
-		$result = $this->ModelAdmin->updateKategori($data,$id_kategori);
-		if (!$result){
-			$this->session->set_flashdata('pesan','Data Berhasil Diubah');
-    		redirect('Admin/Kategori');
-		}else{
-			$this->session->set_flashdata('pesanGagal','Data Tidak Berhasil Diubah');
-    		redirect('Admin/Kategori');
+		    $id_kategori = $this->input->post('id_kategori');
+			$nm_kategori = $this->input->post('nm_kategori');
+				
+			$data = array(
+				'nm_kategori' => $nm_kategori
+			);
+
+			$result = $this->ModelAdmin->updateKategori2($data,$id_kategori,'kategori'); 
+			if (!$result){
+				$this->session->set_flashdata('pesan','Data Berhasil Diubah');
+    			redirect('Admin/kategori');
+			}else{
+				$this->session->set_flashdata('pesanGagal','Data Tidak Berhasil Diubah');
+    			redirect('Admin/kategori');
+			}
+
+		  }else{
+
+			$id_kategori = $this->input->post('id_kategori');
+			$nm_kategori = $this->input->post('nm_kategori');
+			$photo=$this->upload->file_name;
+				
+			$data = array(
+				'nm_kategori' => $nm_kategori,
+				'gambar_kategori' => $photo
+			);
+
+
+			$result = $this->ModelAdmin->updateKategori($data,$id_kategori,'kategori'); 
+			if (!$result){
+				$this->session->set_flashdata('pesan','Data Berhasil Diubah');
+    			redirect('Admin/kategori');
+			}else{
+				$this->session->set_flashdata('pesanGagal','Data Tidak Berhasil Diubah');
+    			redirect('Admin/kategori');
+			}
 		}
 	}
 
@@ -258,7 +309,7 @@ class Admin extends CI_Controller {
 				'harga' => $harga,
 				'ongkir' => $ongkir,
 				'rating' => $rating,
-				'gambar' => $photo,
+				'gambar_barang' => $photo,
 				'id_kategori' => $id_kategori    
 			);
 
@@ -332,7 +383,7 @@ class Admin extends CI_Controller {
 				'harga' => $harga,
 				'ongkir' => $ongkir,
 				'rating' => $rating,
-				'gambar' => $photo,
+				'gambar_barang' => $photo,
 				'id_kategori' => $id_kategori    
 			);
 

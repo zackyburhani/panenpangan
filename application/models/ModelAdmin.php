@@ -112,16 +112,34 @@ class ModelAdmin extends CI_Model {
 		return $this->db->get();
 	}
 
-	//update data, coded by zacky
-	public function updateKategori($data,$where)
+	public function updateKategori($data,$where,$table)
 	{
 		$this->db->where('id_kategori',$where);
-		$this->db->update('kategori',$data);
+	    $query = $this->db->get('kategori');
+	    $row = $query->row();
+
+	    unlink("./assets/img/$row->gambar_kategori");
+
+		$this->db->where('id_kategori', $where);
+		$this->db->update($table,$data);
 	}
 
-	public function delete($id_Kategori){
-		$this->db->where('id_kategori', $id_Kategori);
-		$this->db->delete('kategori');
+	public function updateKategori2($data,$where,$table)
+	{
+		$this->db->where('id_kategori', $where);
+		$this->db->update($table,$data);
+	}
+
+	public function delete($id_kategori)
+    {
+
+     $this->db->where('id_kategori',$id_kategori);
+     $query = $this->db->get('kategori');
+     $row = $query->row();
+
+     unlink("./assets/img/$row->gambar_kategori");
+
+     $this->db->delete('kategori', array('id_kategori' => $id_kategori));
 	}
 
   	public function getKodeKategori()
@@ -181,7 +199,7 @@ class ModelAdmin extends CI_Model {
 	    $query = $this->db->get('barang');
 	    $row = $query->row();
 
-	    unlink("./assets/img/$row->gambar");
+	    unlink("./assets/img/$row->gambar_barang");
 
 		$this->db->where('id_brg', $where);
 		$this->db->update($table,$data);
@@ -217,7 +235,7 @@ class ModelAdmin extends CI_Model {
      $query = $this->db->get('barang');
      $row = $query->row();
 
-     unlink("./assets/img/$row->gambar");
+     unlink("./assets/img/$row->gambar_barang");
 
      $this->db->delete('barang', array('id_brg' => $id_brg));
 	}

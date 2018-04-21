@@ -87,15 +87,21 @@
                         <input required class="form-control required text-capitalize" value="<?php echo $id_brg ?>" readonly data-placement="top" data-trigger="manual" type="text" name="id_brg">
                       </div>
 
-										  <div class="form-group"><label>Kategori</label>
+                      <div class="form-group"><label>Kategori</label>
                         <div class="custom-select">
                           <select class="form-control" name="kategori">
-                            <?php foreach($dataKategori as $data){ ?>
-                            <option value="<?php echo $data->id_kategori; ?>"><?php echo $data->nm_kategori; ?></option>
-			                         <?php } ?>
+                            <?php if($dataKategori == null) { ?>
+                              <option value="">-</option>
+                            <?php } else { ?>
+                              <?php foreach($dataKategori as $data){ ?>
+                                <option value="<?php echo $data->id_kategori; ?>"><?php echo $data->nm_kategori; ?></option>
+                              <?php } ?>  
+                            <?php } ?>
                           </select>
-			                   </div>
-			                 </div>
+                         </div>
+                       </div>
+                      
+
 
                        <div class="form-group"><label>Nama Barang</label>
                           <input required class="form-control required text-capitalize" placeholder="Input Nama Barang" data-placement="top" data-trigger="manual" type="text" name="nm_brg">
@@ -117,9 +123,13 @@
 													</div>
 												</div>
 
-												<div class="form-group"><label>Ongkos Kirim</label>
-													<input required class="form-control required text-capitalize" placeholder="Ongkos Kirim" data-placement="top" data-trigger="manual" type="text" name="ongkir">
-												</div>
+                        <div class="form-group">
+                          <label>Ongkos Kirim</label>
+                          <div class="input-group input-group">
+                            <span class="input-group-addon" id="sizing-addon1">Rp.</span>
+                            <input required class="form-control required text-capitalize" placeholder="Ongkos Kirim" data-placement="top" data-trigger="manual" type="text" name="ongkir">
+                          </div>
+                        </div>
 
                         <div class="form-group">
                           <label>Gambar</label>
@@ -208,7 +218,7 @@
                              <tr>
                                <td>Gambar</td>
                                <td>:</td>
-                               <td><img src="<?php echo base_url('assets/img/'.$data->gambar.'');?>" width="200px"></td>
+                               <td><img src="<?php echo base_url('assets/img/'.$data->gambar_barang.'');?>" width="200px"></td>
                              </tr>
                            </tbody>
                          </table>
@@ -266,9 +276,13 @@
             							 </div>
             						 </div>
 
-            						 <div class="form-group"><label>Ongkos Kirim</label>
-            							 <input required class="form-control required text-capitalize" placeholder="Ongkos Kirim" data-placement="top" data-trigger="manual" value="<?php echo $data->ongkir ?>" type="text" name="ongkir">
-            						 </div>
+                         <div class="form-group">
+                           <label>Ongkos Kirim</label>
+                           <div class="input-group input-group">
+                             <span class="input-group-addon" id="sizing-addon1">Rp.</span>
+                             <input required class="form-control required text-capitalize" placeholder="Ongkos Kirim" data-placement="top" data-trigger="manual" value="<?php echo $data->ongkir ?>" type="text" name="ongkir">
+                           </div>
+                         </div> 
 
             						<div class="form-group">
                           <label>Gambar</label>

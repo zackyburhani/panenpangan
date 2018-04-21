@@ -44,6 +44,7 @@
             <tr>
               <th align="center;">ID kategori</th>
               <th>Nama Kategori</th>
+              <th width="50px"> <center>Gambar</center></th>
               <th width="50px"> <center>Edit</center> </th>
               <th width="50px"> <center>Hapus</center> </th>
             </tr>
@@ -53,10 +54,11 @@
             <tr>
               <td><?php echo $data->id_kategori;?></td>
               <td><?php echo $data->nm_kategori;?></td>
+              <td align="center;"><a href="#modalDetailKategori<?php echo $data->id_kategori?>"  class="btn btn-info btn-circle" data-toggle="modal"><span class="glyphicon glyphicon-eye-open"></span> </a></td>
               <td align="center;"><a href="#modalEditKategori<?php echo $data->id_kategori?>"  class="btn btn-warning btn-circle" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> </a></td>
               <td align="center;"><a href="#modalHapusKategori<?php echo $data->id_kategori?>"  class="btn btn-danger btn-circle" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span> </a></td>
             </tr>
-            <?php } ?>
+            <?php } ?> 
           </tbody>
         </table>
 
@@ -78,6 +80,18 @@
                     <input required class="form-control required text-capitalize" placeholder="Input Nama kategori" data-placement="top" data-trigger="manual" type="text" name="nm_kategori">
                   </div>
 
+                  <div class="form-group">
+                    <label>Gambar</label>
+                      <div class="input-group">
+                        <span class="input-group-btn">
+                          <span class="btn btn-default btn-file">
+                          Upload Gambar <input type="file" name="photo" required accept="image/png, image/jpeg, image/gif" id="imgInp">
+                          </span>
+                         </span>
+                        <input id='urlname' type="text" class="form-control" readonly>
+                       </div>
+                     </div>
+
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
@@ -90,43 +104,49 @@
         </div>
         <!-- END entry kategori modal -->
 
-        <!-- START update kategori modal -->
+          <!-- START update kategori modal -->
         <?php if (isset($dataKategori)){
           foreach($dataKategori as $data){
         ?>
-        <div id="modalEditKategori<?php echo $data->id_kategori?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalEditKategori<?php echo $data->id_kategori?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="myModalLabel"><i class="fa fa-list fa-fw"></i>Edit Data Petani</h3>
-                  </div>
-
-                  <form class="form-horizontal" method="post" action="<?php echo site_url('Admin/ubahKategori')?>">
-                    <div class="modal-body">
-                      <div class="control-group">
-                        <label class="control-label">ID Kategori</label>
-                          <div class="controls">
-                            <input name="id_kategori" class="form-control" type="text" value="<?php echo $data->id_kategori; ?>" class="uneditable-input" readonly="true">
-                          </div>
-                      </div>
-
-                      <div class="control-group">
-                        <label class="control-label" >Nama Kategori</label>
-                          <div class="controls">
-                              <input name="nm_kategori" type="text" class="form-control" value="<?php echo $data->nm_kategori?>" required>
-                          </div>
-                      </div>
-
-                      <div class="modal-footer">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i> Close</button>
-                        <button class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-list fa-fw"></i>Tambah Data kategori</h4>
               </div>
+              <form method="POST" action="<?php echo site_url('Admin/ubahKategori')?>" enctype="multipart/form-data">
+                <div class="modal-body">
+                  <div class="form-group"><label>ID Kategori</label>
+                    <input required class="form-control required text-capitalize" data-placement="top" value="<?php echo $data->id_kategori; ?>" data-trigger="manual" type="text" name="id_kategori" readonly>
+                  </div>
+
+                  <div class="form-group"><label>Nama Kategori</label>
+                    <input required class="form-control required text-capitalize" placeholder="Input Nama kategori" data-placement="top" data-trigger="manual" value="<?php echo $data->nm_kategori?>" type="text" name="nm_kategori">
+                  </div>
+
+                  <div class="form-group">
+                    <label>Gambar</label>
+                      <div class="input-group">
+                        <span class="input-group-btn">
+                          <span class="btn btn-default btn-file">
+                          Upload Gambar <input type="file" name="photo" accept="image/png, image/jpeg, image/gif" id="imgInp">
+                          </span>
+                         </span>
+                        <input id='urlname' type="text" class="form-control" readonly>
+                       </div>
+                     </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Submit</button>
+                  <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
+                </div>
+              </form>
             </div>
+          </div>
+        </div>
           <?php }
          }
          ?>
@@ -158,6 +178,28 @@
         <?php }
         }
         ?>
+
+        <!-- detil modal Kategori -->
+              <?php foreach($dataKategori as $data){?>
+               <div class="modal fade" tabindex="-1" id="modalDetailKategori<?php echo $data->id_kategori?>" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                 <div class="modal-dialog">
+                   <div class="modal-content">
+                     <div class="modal-header">
+                       <h3 id="myModalLabel">Detil Kategori</h3>
+                     </div>
+                     <div class="modal-body">
+                       <form method="POST" action="">
+                         <center><img src="<?php echo base_url('assets/img/'.$data->gambar_kategori.'');?>" width="500px"></center>
+                       </form>
+                     </div>
+                     <div class="modal-footer">
+                        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i> Close</button>
+                    </div>
+                   </div>
+                 </div>
+               </div>
+               <!-- /.Detil modal Kategori -->
+               <?php } ?>
 
 
       <!-- /.panel -->
