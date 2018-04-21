@@ -69,6 +69,7 @@
 <script src="<?php blink('metronic/assets/admin/layout4/scripts/layout.js')?>" type="text/javascript"></script>
 <script src="<?php blink('metronic/assets/admin/layout2/scripts/quick-sidebar.js')?>" type="text/javascript"></script>
 <script src="<?php blink('metronic/assets/admin/layout4/scripts/demo.js')?>" type="text/javascript"></script>
+<script src="<?php blink('assets/js/tambah.js')?>" type="text/javascript"></script>
 
 <script>
 jQuery(document).ready(function() {

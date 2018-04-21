@@ -38,6 +38,9 @@
 <link href="<?php blink('metronic/assets/global/css/sidebar.css')?>" rel="stylesheet" type="text/css">
 <!--END KOMENTAR BUAT PENAMBAHAN CSS-->
 
+<link href="metronic/assets/admin/layout7/css/custom.css" rel="stylesheet" type="text/css"/>
+<link href="metronic/assets/global/css/button_sebelahan.css" rel="stylesheet" type="text/css">
+
 
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
