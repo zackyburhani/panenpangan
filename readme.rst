@@ -2,5 +2,4 @@ PanenPangan.com
 
 DEVELOPED BY :
 
-Aldis
-Sisca
+KUSI & KUTI 2015
