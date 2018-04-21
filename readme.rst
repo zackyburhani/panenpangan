@@ -6,4 +6,4 @@ Aldsi Fakhri Sorengpati
 Luthfi Arfianto
 Sisca Agdinsa Ramadhan
 Widya Pramesti
-Zacky Burhani Hotib
+Zacky Burhani Hotib 
