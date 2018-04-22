@@ -20,7 +20,7 @@
                 <h3 align="center">Beras Merah</h3>
                 <p align="center">Rp. 20.000/kg</p>
                 <hr>
-                <p align="center"><a href="#" class="btn btn-primary" role="button">Beli Sekarang</a></p>
+                <p align="center"><a href="<?php blink('DetilBarang') ?>" class="btn btn-primary" role="button">Beli Sekarang</a></p>
               </div>
             </div>
           </div>
