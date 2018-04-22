@@ -15,10 +15,10 @@
           <a href="<?php blink('LihatBeras') ?>" class="list-group-item">
               <i class="fa fa-comment-o"></i> Beras
           </a>
-          <a href="#" class="list-group-item">
+          <a href="<?php blink('LihatSayuran') ?>" class="list-group-item">
               <i class="fa fa-search"></i> Sayuran
           </a>
-          <a href="#" class="list-group-item">
+          <a href="<?php blink('LihatBuah') ?>" class="list-group-item">
               <i class="fa fa-user"></i> Buah-buahan
           </a>
       </div>
