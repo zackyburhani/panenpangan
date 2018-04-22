@@ -10,7 +10,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('view_bayar');
+		$this->load->view('view_kategori');
 	}
 
 	public function daftar()
