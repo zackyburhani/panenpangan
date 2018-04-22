@@ -32,7 +32,7 @@
                 <h3 align="center">Beras Grade B</h3>
                 <p align="center">Rp. 80.000/karung</p>
                 <hr>
-                <p align="center"><a href="#" class="btn btn-primary" role="button">Beli Sekarang</a></p>
+                <p align="center"><a href="<?php blink('DetilBarang') ?>" class="btn btn-primary" role="button">Beli Sekarang</a></p>
               </div>
             </div>
           </div>
@@ -44,7 +44,7 @@
                 <h3 align="center">Beras Grade C</h3>
                 <p align="center">Rp. 15.000/kg</p>
                 <hr>
-                <p align="center"><a href="#" class="btn btn-primary" role="button">Beli Sekarang</a></p>
+                <p align="center"><a href="<?php blink('DetilBarang') ?>" class="btn btn-primary" role="button">Beli Sekarang</a></p>
               </div>
             </div>
           </div>
