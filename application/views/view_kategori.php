@@ -12,7 +12,7 @@
           <span href="#" class="list-group-item" id="kategori">
               All Categories
           </span>
-          <a href="#" class="list-group-item">
+          <a href="<?php blink('LihatBeras') ?>" class="list-group-item">
               <i class="fa fa-comment-o"></i> Beras
           </a>
           <a href="#" class="list-group-item">
