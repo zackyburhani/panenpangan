@@ -27,7 +27,7 @@
                     <button class="btn btn-primary" data-dir="up" type="button" style="padding-top : 10px; padding-bottom : 10px;"><i class="fa fa-plus"></i></button>
                   </span>
                 </div>
-								<div class="">
+								<div class="row">
 									<p><a href="#" class="btn btn-primary btnTambah" role="button">Tambah Ke Keranjang</a></p>
 									<p><a href="#" class="btn btn-primary btnBeli" role="button">Beli Sekarang</a></p>
 								</div>
