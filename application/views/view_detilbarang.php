@@ -22,7 +22,7 @@
                   <span class="input-group-btn">
                     <button class="btn btn-primary" data-dir="dwn" type="button" style="padding-top : 10px; padding-bottom : 10px;"><i class="fa fa-minus"></i></button>
                   </span>
-                  <input type="text" class="form-control text-center" style="padding-bottom: 10px;" value="1">
+                  <input type="text" name="quantity" class="form-control text-center" style="padding-bottom: 10px;" value="1">
                   <span class="input-group-btn">
                     <button class="btn btn-primary" data-dir="up" type="button" style="padding-top : 10px; padding-bottom : 10px;"><i class="fa fa-plus"></i></button>
                   </span>
