@@ -143,6 +143,10 @@
                           </div>
                         </div>
 
+                        <div class="form-group"><label>Deskripsi</label>
+                          <textarea class="form-control" name="deskripsi" required></textarea>
+                        </div>
+
 												<div class="form-group"><label>Rating</label>
 			                    <div class="custom-select my-1 mr-sm-2">
                             <select class="form-control" name="rating">
@@ -174,7 +178,7 @@
                    <div class="modal-content">
                      <div class="modal-header">
                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                       <h3 id="myModalLabel">Detil Barang</h3>
+                       <h3 id="myModalLabel"><i class="ion ion-cube"></i> Detil Barang</h3>
                      </div>
                      <div class="modal-body">
                        <form method="POST" action="" enctype="multipart/form-data">
@@ -214,6 +218,11 @@
                                <td>Rating</td>
                                <td>:</td>
                                <td style="text-transform:capitalize;"><?php echo $data->rating ?></td>
+                             </tr>
+                             <tr>
+                               <td>Rating</td>
+                               <td>:</td>
+                               <td style="text-transform:capitalize;"><?php echo $data->deskripsi ?></td>
                              </tr>
                              <tr>
                                <td>Gambar</td>
@@ -294,6 +303,10 @@
                               </span>
                             <input id='urlname' type="text" class="form-control" readonly>
                           </div>
+                        </div>
+
+                        <div class="form-group"><label>Deskripsi</label>
+                          <textarea class="form-control" name="deskripsi" required><?php echo $data->deskripsi ?></textarea>
                         </div>
 
             						 <div class="form-group"><label>Rating</label>
