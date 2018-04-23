@@ -14,7 +14,12 @@ class BarangModel extends CI_Model {
 		$result = $this->db->get('kategori');
 		return $result->result();
 	}
-
+	
+	public function sortir($id_kategori){
+		$result=$this->db->query("SELECT * FROM barang,kategori 
+		where barang.id_kategori =  kategori.id_kategori and kategori.id_kategori = '".$id_kategori."'");
+		return $result->result();
+	}
 	//fungsi ambil ID dari database
 	public function get_idKategori($id_Kategori)
 	{
