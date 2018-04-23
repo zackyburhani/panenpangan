@@ -1,4 +1,3 @@
-<?php include"application/views/master/header.php" ?>
 
 <!-- BEGIN CONTAINER -->
 <div class="page-container page-container-bg-solid">
@@ -11,7 +10,7 @@
             <div class="panel-heading"><span class="fa fa-user" style="font-size:12px; color:Green"></span> Buat Akun</div>
               <div class="card card-body">
                 <div class="panel-body">
-                  <form class="" action="index.html" method="post">
+                  <form class="" action="<?php blink('User/InsertDaftar')?>" method="post">
                     <div class="form-group">
                       <label class="col-md-1 col-md-offset-1 control-label">Username</label>
                         <div class="col-md-9 margin-bottom-10">
@@ -45,7 +44,7 @@
                       </div>
                       <div class="container-fluid">
                         <div class="col-md-1 col-md-offset-8 margin-bottom-10 margin-top-20">
-                          <button type="button" class=" btn btn-success" name="button">Sign Up</button>
+                          <button type="submit" class=" btn btn-success" name="button">Sign Up</button>
                         </div>
                       </div>
                   </form>
@@ -55,5 +54,3 @@
       </div> <!-- END WIDGET GRADIENT -->
   </div> <!-- END CONTENT -->
 </div> <!-- END CONTAINER -->
-
-<?php include"application/views/master/footer.php" ?>
