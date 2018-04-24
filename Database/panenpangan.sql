@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 01, 2018 at 12:03 PM
+-- Generation Time: Apr 24, 2018 at 05:38 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -34,6 +34,13 @@ CREATE TABLE `admin` (
   `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id_admin`, `username`, `password`) VALUES
+('1', 'admin', 'admin');
+
 -- --------------------------------------------------------
 
 --
@@ -45,11 +52,19 @@ CREATE TABLE `barang` (
   `nm_brg` varchar(50) DEFAULT NULL,
   `stok` varchar(11) DEFAULT NULL,
   `harga` decimal(10,2) DEFAULT NULL,
-  `ongkir` int(20) NOT NULL,
+  `ongkir` decimal(10,2) NOT NULL,
   `rating` varchar(5) DEFAULT NULL,
-  `gambar` varchar(200) NOT NULL,
+  `gambar_barang` varchar(200) NOT NULL,
+  `deskripsi` text NOT NULL,
   `id_kategori` char(5) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `barang`
+--
+
+INSERT INTO `barang` (`id_brg`, `nm_brg`, `stok`, `harga`, `ongkir`, `rating`, `gambar_barang`, `deskripsi`, `id_kategori`) VALUES
+('BR001', 'Beras Merah', '3333', '2323.00', '232.00', '1', 'f0296ae400862ec1c9b42ab6dd2156ef.png', 'edit deskripsi barang', 'KT001');
 
 -- --------------------------------------------------------
 
@@ -85,17 +100,19 @@ CREATE TABLE `detil_pesan` (
 
 CREATE TABLE `kategori` (
   `id_kategori` char(5) NOT NULL DEFAULT '',
-  `nm_kategori` varchar(50) DEFAULT NULL
+  `nm_kategori` varchar(50) DEFAULT NULL,
+  `gambar_kategori` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kategori`
 --
 
-INSERT INTO `kategori` (`id_kategori`, `nm_kategori`) VALUES
-('KT001', 'Beras'),
-('KT002', 'Sayuran'),
-('KT003', 'Buah-buahan');
+INSERT INTO `kategori` (`id_kategori`, `nm_kategori`, `gambar_kategori`) VALUES
+('KT001', 'Beras', '977f874699d5acfd95c93497f0e26f0a.jpg'),
+('KT002', 'Sayuran', '3d6d9d36b3b40792f0b52a3012bd8c1e.jpg'),
+('KT003', 'Buah-buahan', 'b78cb5bf1d08ebb84d6b15e8e6153a1c.jpg'),
+('KT004', 'Rempah-rempah', '1beafee80fc0b8f649d80c37ae8da624.jpeg');
 
 -- --------------------------------------------------------
 
@@ -156,7 +173,8 @@ CREATE TABLE `petani` (
 
 INSERT INTO `petani` (`id_petani`, `nm_petani`, `tgl_lahir`, `alamat`, `no_telp`) VALUES
 ('PT001', 'Zacky burhani H', '2018-04-02', 'Jakarta', '083817774827'),
-('PT002', 'Sisca Agdinsa Ramadhan', '2018-04-10', 'Tangerang', '083817774827');
+('PT002', 'Sisca Agdinsa Ramadhan', '2018-04-10', 'Tangerang', '083817774827'),
+('PT003', 'Aldis Fakhri ', '2018-04-10', 'Pamulang', '083891882911');
 
 --
 -- Indexes for dumped tables
