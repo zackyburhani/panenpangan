@@ -11,10 +11,8 @@
       <div class="panel-body">
         <div class="col-sm-3">
           <div class="thumbnail">
-          <?php if($data->id_kategori==$id_kategori){ ?>
-             <img src="<?php echo base_url('assets/img/'.$data->gambar_barang.'');?>" >
-         <?php } else {
-              }?>
+        
+        <img src="<?php echo base_url('assets/img/'.$data->gambar_barang.'');?>" >
                </div>
         </div>
   
@@ -49,8 +47,8 @@
 					</div>
 				</div>
 			</div>
-			<!-- akhir penjelasan produk -->   
-     <?php}?>
+			<!-- akhir penjelasan produk -->
+ <?php } ?>
 
     </div>
   </div>
