@@ -61,7 +61,7 @@
 	            </button>
 							<!-- BEGIN LOGO -->
 							<div class="page-logo">
-								<a href="<?php blink('Home') ?>">
+								<a href="<?php blink('LihatKategori') ?>">
 									<img src="<?php blink('metronic/assets/admin/layout7/img/logo_panen2.png')?>" alt="logo" class="logo-default"/ style="margin-left:-50px;" width="15%">
 								</a>
 							</div>

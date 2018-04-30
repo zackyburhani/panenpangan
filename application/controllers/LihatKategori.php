@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class LihatKategori extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
@@ -13,6 +13,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+
 		$getBarang = $this->BarangModel->getBarang();
 		$semuaBarang = $this->BarangModel->getAllBarang();
 		$semuaKategori = $this->BarangModel->getAllKategori();
@@ -21,18 +22,10 @@ class Home extends CI_Controller {
 		$data['dataBarang'] = $semuaBarang;
 		$data['id_brg'] = $this->BarangModel->getKodeBarang();
 
-		$this->load->view('view_detilbarang',$data);
-	}
+		$barang =$this->session->barang;
+		$data['barang'] = $barang;
 
-	public function daftar()
-	{
-		$this->load->view('view_daftar');
-	}
+			$this->load->view('view_kategori',$data);
 
-	public function tracking()
-	{
-		$this->load->view('view_tracking');
-	}
-
-
+		}
 }
