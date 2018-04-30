@@ -11,22 +11,23 @@ class Home extends CI_Controller {
 		$this->load->library('upload');
 	}
 
+	public function login()
+	{
+		$this->load->view('login');
+	}	
+
 	public function index()
 	{
-		$getBarang = $this->BarangModel->getBarang();
-		$semuaBarang = $this->BarangModel->getAllBarang();
-		$semuaKategori = $this->BarangModel->getAllKategori();
-		$data['getBarang'] = $getBarang;
-		$data['dataKategori'] = $semuaKategori;
-		$data['dataBarang'] = $semuaBarang;
-		$data['id_brg'] = $this->BarangModel->getKodeBarang();
-
-		$this->load->view('view_detilbarang',$data);
+		$this->load->view('master/header');
+		$this->load->view('index');
+		$this->load->view('master/footer');
 	}
 
 	public function daftar()
 	{
-		$this->load->view('view_daftar');
+		$this->load->view('master/header');
+		$this->load->view('view_daftar_lengkap');
+		$this->load->view('master/footer');
 	}
 
 	public function tracking()
