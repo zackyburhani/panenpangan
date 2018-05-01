@@ -3,10 +3,14 @@
 
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 				<?php foreach($dataKategori as $data){ ?>
-				<a href="#" class="btn btn-secondary"><?php echo $data->nm_kategori; ?></a> 
+					<!-- edit disini -->
+				<a href="<?php blink('C_DaftarBarang/sort/'.$data->id_kategori.''); ?>" class="btn btn-secondary"><?php echo $data->nm_kategori; ?></a> 
 				<?php }?> 
 				</div>
 				<hr>
+
+<?php if($dataBarang != null) { ?>
+
 					<div class="row text-center">
 					<?php foreach($dataBarang as $data){?>
 					<div class="col-sm-4">
@@ -25,6 +29,11 @@
 					</div>			
 					<?php } ?>
 					</div>
+<?php } else { ?>
+	<div class="animate-box">
+		<center>Data Barang Kosong</center>
+	</div>
+<?php } ?>
 				
 				</div>
 			</div>

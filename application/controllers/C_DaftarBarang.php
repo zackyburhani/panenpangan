@@ -26,5 +26,18 @@ class C_DaftarBarang extends CI_Controller {
         $this->load->view('view_about',$data);
         $this->load->view('master/footer');
         
+        }
+        
+        public function sort($id)
+    	{
+
+		$semuaKategori = $this->BarangModel->getAllKategori();
+		$data['dataKategori'] = $semuaKategori;
+		$data['dataBarang'] = $this->BarangModel->getSort($id);
+
+        $this->load->view('master/header');
+        $this->load->view('view_about',$data);
+        $this->load->view('master/footer');
+        
 		}
 }
