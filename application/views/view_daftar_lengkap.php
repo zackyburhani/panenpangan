@@ -23,7 +23,7 @@
             <div class="form-group">
               <label class="col-md-2 control-label">Alamat</label>
                 <div class="col-md-9">
-                  <input name="alamat" type="text" placeholder="E-Mail" class="form-control" style="margin-bottom: 20px">
+                  <input name="alamat" type="text" placeholder="Alamat" class="form-control" style="margin-bottom: 20px">
                 </div>
               </div>
 

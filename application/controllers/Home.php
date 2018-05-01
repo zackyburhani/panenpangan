@@ -14,7 +14,7 @@ class Home extends CI_Controller {
 	public function login()
 	{
 		$this->load->view('login');
-	}	
+	}
 
 	public function index()
 	{
@@ -26,7 +26,7 @@ class Home extends CI_Controller {
 	public function daftar()
 	{
 		$this->load->view('master/header');
-		$this->load->view('view_daftar_lengkap');
+		$this->load->view('view_daftar');
 		$this->load->view('master/footer');
 	}
 

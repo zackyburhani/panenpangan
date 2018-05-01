@@ -33,3 +33,4 @@ class ModelDaftar extends CI_Model {
     }
     return "PL".$kd;
   }
+}
