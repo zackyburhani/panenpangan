@@ -39,15 +39,15 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<img alt="" src="metronic/assets/admin/layout7/img/gambar1.jpg"/>
+					<img alt="" src="<?php blink('/assets/img//img/gambar1.png')?>">
 				</div>
 
 				<div class="item">
-					<img alt="" src="metronic/assets/admin/layout7/img/gambar2.jpg"/>
+					<img alt="" src="<?php blink('/assets/img/img/gambar2.jpg') ?>">
 				</div>
 
 				<div class="item">
-					<img alt="" src="metronic/assets/admin/layout7/img/gambar3.jpg"/>
+					<img alt="" src="<?php blink('/assets/img/img/gambar3.jpg') ?>">
 				</div>
 			</div>
 
@@ -79,7 +79,7 @@
 				<!-- BEGIN WIDGET SUBSCRIBE -->
 				<div class="widget-subscribe widget-bg-color-green">
 					<h2 class="widget-subscribe-title" align="center" style="margin-right:40px;">BERAS</h2>
-					<img src="metronic/assets/admin/layout7/img/kategori/beras.jpg" class="img-rounded" alt="Cinque Terre" style="width:100%; box-shadow: 6px 5px 26px -7px rgba(51,49,51,0.62);">
+					<img src="" class="img-rounded" alt="Cinque Terre" style="width:100%; box-shadow: 6px 5px 26px -7px rgba(51,49,51,0.62);">
 				</div>
 				<button type="button" class="btn btn-primary btn-lg btn-block">-Pilih-</button>
 				<!-- END WIDGET SUBSCRIBE -->

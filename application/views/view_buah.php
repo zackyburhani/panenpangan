@@ -12,7 +12,7 @@
 
           </div>
           <!-- end left side space -->
-
+          
           <div class="col-sm-3">
             <div class="thumbnail">
               <img src="metronic/assets/admin/layout7/img/kategori/sayur.jpg" class="img-rounded" alt="Cinque Terre" style="width:100%;">

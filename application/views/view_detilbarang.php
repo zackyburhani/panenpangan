@@ -1,20 +1,24 @@
+
 <?php include"application/views/master/header.php" ?>
 
 <!-- BEGIN CONTAINER -->
 <div class="page-container page-container-bg-solid">
 	<!-- BEGIN CONTENT -->
+ 
 	<div class="container-fluid container-lf-space page-content">
+  <?php foreach($getBarang as $data){?>
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="col-sm-3">
           <div class="thumbnail">
-            <img src="metronic/assets/admin/layout7/img/kategori/sayur.jpg" class="img-rounded" alt="Cinque Terre" style="width:100%;">
-          </div>
+        
+        <img src="<?php echo base_url('assets/img/'.$data->gambar_barang.'');?>" >
+               </div>
         </div>
-
+  
         <div class="col-md-4 col-sm-4 col-xs-4">
-          <h3>Beras Merah</h3><br>
-          <p>Rp. 20.000/kg</p><br>
+          <h3><?php echo $data->nm_brg ?></h3><br>
+          <p><?php echo $data->harga ?>/kg</p><br>
           <div class="center">
             <div class="form-group">
               <label for="inputState" class="col-form-label">JUMLAH PESAN</label>
@@ -44,6 +48,8 @@
 				</div>
 			</div>
 			<!-- akhir penjelasan produk -->
+ <?php } ?>
+
     </div>
   </div>
 

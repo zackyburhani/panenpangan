@@ -300,6 +300,7 @@ class Admin extends CI_Controller {
 				$harga = $this->input->post('harga');
 				$ongkir = $this->input->post('ongkir');
 				$rating = $this->input->post('rating');
+				$deskripsi = $this->input->post('deskripsi');
 				$id_kategori = $this->input->post('kategori');
 			
 			$data = array(
@@ -310,6 +311,7 @@ class Admin extends CI_Controller {
 				'ongkir' => $ongkir,
 				'rating' => $rating,
 				'gambar_barang' => $photo,
+				'deskripsi' => $deskripsi,
 				'id_kategori' => $id_kategori    
 			);
 
@@ -345,6 +347,7 @@ class Admin extends CI_Controller {
 			$harga = $this->input->post('harga');
 			$ongkir = $this->input->post('ongkir');
 			$rating = $this->input->post('rating');
+			$deskripsi = $this->input->post('deskripsi');
 			$id_kategori = $this->input->post('kategori');
 				
 			$data = array(
@@ -353,6 +356,7 @@ class Admin extends CI_Controller {
 				'harga' => $harga,
 				'ongkir' => $ongkir,
 				'rating' => $rating,
+				'deskripsi' => $deskripsi,
 				'id_kategori' => $id_kategori    
 			);
 
@@ -373,6 +377,7 @@ class Admin extends CI_Controller {
 			$stok = $this->input->post('stok');
 			$harga = $this->input->post('harga');
 			$ongkir = $this->input->post('ongkir');
+			$deskripsi = $this->input->post('deskripsi');
 			$rating = $this->input->post('rating');
 			$photo=$this->upload->file_name;
 			$id_kategori = $this->input->post('kategori');
@@ -383,6 +388,7 @@ class Admin extends CI_Controller {
 				'harga' => $harga,
 				'ongkir' => $ongkir,
 				'rating' => $rating,
+				'deskripsi' => $deskripsi,
 				'gambar_barang' => $photo,
 				'id_kategori' => $id_kategori    
 			);
