@@ -1,98 +1,31 @@
-<!-- END fh5co-about -->
-<!-- fh5co-content-section -->
-			<div class="container" style="margin-top: 130px; margin-bottom: 100px">
-					<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-							<a href="#" class="btn btn-secondary">sayuran</a>
-							<a href="#" class="btn btn-secondary">buah-buahan</a>
-							<a href="#" class="btn btn-secondary">beras</a>
-							<a href="#" class="btn btn-secondary">rempah-rempah</a>
-						  </div>
-						  <hr>
-				<div class="row text-center">
+<!-- fh5co-content-section -->		
+<div class="container" style="margin-top: 130px; margin-bottom: 100px">
+
+				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+				<?php foreach($dataKategori as $data){ ?>
+				<a href="#" class="btn btn-secondary"><?php echo $data->nm_kategori; ?></a> 
+				<?php }?> 
+				</div>
+				<hr>
+					<div class="row text-center">
+					<?php foreach($dataBarang as $data){?>
 					<div class="col-sm-4">
 						<div class="animate-box">
 							<div class="thumbnail">
-								<img src="<?php blink('assets/img/img/beras.jpg')?>" class="img-rounded" alt="Cinque Terre" style="width:100%;">
+								<img src="<?php blink('assets/img/'.$data->gambar_barang.''); ?>" class="img-rounded" alt="Cinque Terre" style="width:100%; height:250px">
 								<div class="caption">
-								<h3 align="center">Beras Rajo Lele</h3>
-								<p align="center">Rp. 80.000/karung</p><hr>
+								<h3 align="center"><?php echo $data->nm_brg; ?></h3>
+								<p align="center"><?php echo $data->harga; ?> /karung</p><hr>
 								<p align="center">
 								<a href="#" class="btn btn-primary" role="submit">Tambah Ke Cart</a> |
 								<a href="#modalform" class="btn btn-primary" data-toggle="modal" role="button">Pesan</a></p>
 					 			</div>
 							</div>
 				    	</div>
+					</div>			
+					<?php } ?>
 					</div>
-					<div class="col-sm-4">
-						<div class="animate-box">
-							<div class="thumbnail">
-								<img src="<?php blink('assets/img/img/beras.jpg')?>" class="img-rounded" alt="Cinque Terre" style="width:100%;">
-								<div class="caption">
-								<h3 align="center">Beras Rajo Lele</h3>
-								<p align="center">Rp. 80.000/karung</p><hr>
-								<p align="center">
-								<a href="#" class="btn btn-primary" role="submit">Tambah Ke Cart</a> |
-								<a href="#modalform" class="btn btn-primary" data-toggle="modal" role="button">Pesan</a></p>
-					 			</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="animate-box">
-							<div class="thumbnail">
-								<img src="<?php blink('assets/img/img/beras.jpg')?>" class="img-rounded" alt="Cinque Terre" style="width:100%;">
-								<div class="caption">
-								<h3 align="center">Beras Rajo Lele</h3>
-								<p align="center">Rp. 80.000/karung</p><hr>
-								<p align="center">
-								<a href="#" class="btn btn-primary" role="submit">Tambah Ke Cart</a> |
-								<a href="#modalform" class="btn btn-primary" data-toggle="modal" role="button">Pesan</a></p>
-					 			</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="animate-box">
-							<div class="thumbnail">
-								<img src="<?php blink('assets/img/img/beras.jpg')?>" class="img-rounded" alt="Cinque Terre" style="width:100%;">
-								<div class="caption">
-								<h3 align="center">Beras Rajo Lele</h3>
-								<p align="center">Rp. 80.000/karung</p><hr>
-								<p align="center">
-								<a href="#" class="btn btn-primary" role="submit">Tambah Ke Cart</a> |
-								<a href="#modalform" class="btn btn-primary" data-toggle="modal" role="button">Pesan</a></p>
-					 			</div>
-							</div>
-						</div>
-					</div>	
-					<div class="col-sm-4">
-						<div class="animate-box">
-							<div class="thumbnail">
-								<img src="<?php blink('assets/img/img/beras.jpg')?>" class="img-rounded" alt="Cinque Terre" style="width:100%;">
-								<div class="caption">
-								<h3 align="center">Beras Rajo Lele</h3>
-								<p align="center">Rp. 80.000/karung</p><hr>
-								<p align="center">
-								<a href="#" class="btn btn-primary" role="submit">Tambah Ke Cart</a> |
-								<a href="#modalform" class="btn btn-primary" data-toggle="modal" role="button">Pesan</a></p>
-					 			</div>
-							</div>
-						</div>	
-					</div>
-					<div class="col-sm-4">
-						<div class="animate-box">
-							<div class="thumbnail">
-								<img src="<?php blink('assets/img/img/beras.jpg')?>" class="img-rounded" alt="Cinque Terre" style="width:100%;">
-								<div class="caption">
-								<h3 align="center">Beras Rajo Lele</h3>
-								<p align="center">Rp. 80.000/karung</p><hr>
-								<p align="center">
-								<a href="#" class="btn btn-primary" role="submit">Tambah Ke Cart</a> |
-								<a href="#modalform" class="btn btn-primary" data-toggle="modal" role="button">Pesan</a></p>
-					 		    </div>
-							</div>
-						</div>
-					</div>
+				
 				</div>
 			</div>
 		</div>
@@ -147,5 +80,4 @@
 					</div>
 				</div>
 			<!-- end modal view buku -->
-
 		<!-- end modal view Form Pesan -->

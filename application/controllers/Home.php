@@ -14,9 +14,14 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$nama = $this->session->nm_plg;
-		$data['nama'] = $nama;
+		$semuaKategori = $this->BarangModel->getAllKategori();
+		$data = [
+			'dataKategori' => $semuaKategori,
+			'nama' => $nama
+		];
+		
 		$this->load->view('master/header',$data);
-		$this->load->view('index');
+		$this->load->view('index',$data);
 		$this->load->view('master/footer');
 	}
 

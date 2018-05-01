@@ -22,7 +22,6 @@
 								        <li style="color: white; margin-left: 250px">Fax : 123 - 456 - 789</li>
 								    </ul>
 								</div>
-						
 					</div>
 				</div>
 			</div>
