@@ -47,7 +47,7 @@
 			<div class="container">
 				<div class="row">
 					<?php foreach($dataKategori as $data){?>
-					<div class="col-md-4 animate-box">
+					<div class="col-md-3 animate-box">
 						<div class="panel panel-success">
 							<div class="panel-heading"><center><?php echo $data->nm_kategori; ?></center></div>
 					  			<div class="panel-body">

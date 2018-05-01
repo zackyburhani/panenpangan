@@ -17,9 +17,8 @@
 								<div class="col-md-6 pull-right">
 								    <h3 style="color: white; margin-left: 250px">Contact Us</h3>
 								    <ul>
-								        <li style="color: white; margin-left: 250px">Phone : 123 - 456 - 789</li>
-								        <li style="color: white; margin-left: 250px">E-mail : info@comapyn.com</li>
-								        <li style="color: white; margin-left: 250px">Fax : 123 - 456 - 789</li>
+								        <li style="color: white; margin-left: 250px">Phone : (021) 73378107 </li>
+								        <li style="color: white; margin-left: 250px">E-mail : cs@panenpangan.com</li>
 								    </ul>
 								</div>
 					</div>
