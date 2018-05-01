@@ -26,18 +26,20 @@ class C_DaftarBarang extends CI_Controller {
         $this->load->view('view_about',$data);
         $this->load->view('master/footer');
         
-        }
+    }
         
-        public function sort($id)
-    	{
-
+    public function sort($id)
+    {
+    	$nama = $this->session->nm_plg;
 		$semuaKategori = $this->BarangModel->getAllKategori();
 		$data['dataKategori'] = $semuaKategori;
 		$data['dataBarang'] = $this->BarangModel->getSort($id);
+		$data['nama'] = $nama;
 
-        $this->load->view('master/header');
-        $this->load->view('view_about',$data);
-        $this->load->view('master/footer');
+        $this->load->view('master/header',$data);
+       	$this->load->view('view_about',$data);
+       	$this->load->view('master/footer');
         
-		}
+	}
+
 }
