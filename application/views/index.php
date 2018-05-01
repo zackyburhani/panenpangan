@@ -52,7 +52,7 @@
 							<div class="panel-heading"><center><?php echo $data->nm_kategori; ?></center></div>
 					  			<div class="panel-body">
 									<img src="<?php blink('assets/img/'.$data->gambar_kategori.''); ?>" class="img-rounded" alt="Cinque Terre" style="width:100%; margin-bottom: 10px"><hr>
-									<a href="<?php blink('C_DaftarBarang'); ?>" class="btn btn-sm btn-primary btn-lg btn-block">-Pilih-</a>
+									<a href="<?php blink('C_DaftarBarang/sort/'.$data->id_kategori.''); ?>" class="btn btn-sm btn-primary btn-lg btn-block">-Pilih-</a>
 								</div>
 					  	</div>
 					</div>

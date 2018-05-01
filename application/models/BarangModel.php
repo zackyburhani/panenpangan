@@ -15,6 +15,12 @@ class BarangModel extends CI_Model {
 		return $result->result();
 	}
 
+	public function getSort($id)
+	{
+		$result = $this->db->query("SELECT * FROM barang,kategori WHERE barang.id_kategori = kategori.id_kategori AND barang.id_kategori = '".$id."'");
+		return $result->result();
+	}
+
 	//fungsi ambil ID dari database
 	public function get_idKategori($id_Kategori)
 	{
