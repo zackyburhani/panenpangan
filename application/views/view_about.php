@@ -22,7 +22,7 @@
 								<p align="center"><?php echo $data->harga; ?> /karung</p><hr>
 								<p align="center">
 								<a href="#" class="btn btn-primary" role="submit">Tambah Ke Cart</a> |
-								<a href="#modalform" class="btn btn-primary" data-toggle="modal" role="button">Pesan</a></p>
+								<a href="#modalform<?php echo $data->id_brg ?>" class="btn btn-primary" data-toggle="modal" role="button">Pesan</a></p>
 					 			</div>
 							</div>
 				    	</div>
@@ -39,9 +39,9 @@
 			</div>
 		</div>
 		<!-- END fh5co-services-section -->
-
+<?php foreach($dataBarang as $data){ ?> 
 		<!-- modal view Form Pesan -->
-				<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" id="modalform" aria-hidden="true">
+				<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" id="modalform<?php echo $data->id_brg ?>" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -49,7 +49,7 @@
 								<h3 id="myModalLabel" align="center">Form Pesan Barang</h3>
 							</div>
 							<div class="modal-body">
-								<form method="POST" action="" enctype="multipart/form-data">
+								<form method="POST" action="<?php blink('C_DaftarBarang/pesan/'.$data->id_brg.'/'.$data->harga); ?>" enctype="multipart/form-data">
 									 <table class="table table-striped" border="0">
 									  <thead>
 										<td width="20%" ></td>
@@ -60,33 +60,36 @@
 										<tr>
 										  <td>Item</td>
 										<td>:</td>
-										<td style="text-transform:capitalize;">Jagung</td>
+										<td style="text-transform:capitalize;"><?php echo $data->nm_brg; ?></td>
 									  </tr>
 										 <tr>
 										  <td>quantity</td>
 										<td>:</td>
-										<td style="text-transform:capitalize;"><input type="text" nama=""></td>
+										<td style="text-transform:capitalize;"><input type="text" name="qty" class="form-control" id="qty"></td>
 										 </tr>
 											<tr>
 										  <td>Price</td>
 										  <td>:</td>
-										<td style="text-transform:capitalize;">Rp 20.000</td>
+										<td style="text-transform:capitalize;"><?php echo $data->harga; ?></td>
 									  </tr>
 											<tr>
 										  <td>Description</td>
 										<td>:</td>
-										<td style="text-transform:capitalize;">Baru metik kemaren</td>
+										<td style="text-transform:capitalize;"><?php echo $data->deskripsi; ?></td>
 									  </tr>
 									  </tbody>
 									</table>
-								</form>
+								
 							</div>
 							<div class="modal-footer">
-									<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+							<button type="submit" class="btn btn-success" > Pesan</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
 								  <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
-							</div>
+									</form>
+								</div>
 						</div>
 					</div>
 				</div>
+				<?php }?>
 			<!-- end modal view buku -->
 		<!-- end modal view Form Pesan -->

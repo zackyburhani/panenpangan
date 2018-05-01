@@ -31,6 +31,7 @@ class C_DaftarBarang extends CI_Controller {
     public function sort($id)
     {
     	$nama = $this->session->nm_plg;
+
 		$semuaKategori = $this->BarangModel->getAllKategori();
 		$data['dataKategori'] = $semuaKategori;
 		$data['dataBarang'] = $this->BarangModel->getSort($id);
@@ -40,6 +41,38 @@ class C_DaftarBarang extends CI_Controller {
        	$this->load->view('view_about',$data);
        	$this->load->view('master/footer');
         
-	}
 
+    }
+        
+    public function pesan($id, $harga) {
+
+        $qty = $this->input->post('qty');
+
+            $data = array(
+                'id_pesan'=> 1,
+                'id_brg' => $id,
+                'qty' => $qty,
+                'harga_total' => $harga,
+                'poin' => 0,
+                'status' => "Dalam Perjalanan",
+                );
+      
+        $result = $this->BarangModel->pesan($data);
+      
+        $data = NULL;
+        if($result){
+                    echo "<script type='text/javascript'>
+                    alert ('Sending Request !');
+                    window.location.replace('index');
+                    </script>";
+                    redirect('Home');
+        }else{
+                    echo "<script type='text/javascript'>
+                    alert ('Sending Failed, silahkan Login dulu !');
+                    window.location.replace('index');
+                    </script>";       
+                    redirect('Home');
+        }
+    }
+    
 }
