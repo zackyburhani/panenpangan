@@ -15,8 +15,33 @@ class DaftarLengkap extends CI_Controller {
 		$this->load->view('master/footer');
 	}
 
-  public function getLogin()
+  public function DataLengkap()
   {
+    $idplg = $this->ModelDaftar->getIdPlg();
+
+		$no_telp = $this->input->post('no_telp');
+		$alamat = $this->input->post('alamat');
+		$kodepos = $this->input->post('kodepos');
+		$username = $this->input->post('username');
+
+		$data = array(
+			'no_telp' =>$no_telp,
+			'alamat'=>$alamat,
+			'kodepos' => $kodepos,
+			'username' => $username,
+      'id_plg' => $idplg
+		);
+
+		$result = $this->ModelDaftar->InsertData($data);
+
+		$data = NULL;
+		if ($result){
+			echo json_encode(array('success' => true));
+		}else{
+			echo json_encode(array('success' => false));
+		}
+
+		redirect('');
 
   }
 
