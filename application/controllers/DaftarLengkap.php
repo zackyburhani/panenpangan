@@ -10,14 +10,21 @@ class DaftarLengkap extends CI_Controller {
 
   public function index()
 	{
-		$this->load->view('master/header');
-    $this->load->view('view_daftar_lengkap');
+		$nama = $this->session->nm_plg;
+		$username = $this->session->username;
+		$data = [
+			'nama' => $nama,
+			'username' => $username
+		];
+		$this->load->view('master/header',$data);
+   		$this->load->view('view_daftar_lengkap');
 		$this->load->view('master/footer');
 	}
 
   public function DataLengkap()
   {
-    $idplg = $this->ModelDaftar->getIdPlg();
+
+    	$idplg = $this->ModelDaftar->getIdPlg();
 
 		$no_telp = $this->input->post('no_telp');
 		$alamat = $this->input->post('alamat');
@@ -29,7 +36,7 @@ class DaftarLengkap extends CI_Controller {
 			'alamat'=>$alamat,
 			'kodepos' => $kodepos,
 			'username' => $username,
-      'id_plg' => $idplg
+      		'id_plg' => $idplg
 		);
 
 		$result = $this->ModelDaftar->InsertData($data);

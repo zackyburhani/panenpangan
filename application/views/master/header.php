@@ -52,12 +52,9 @@
 
 	</head>
 	<body>
-		<div id="fh5co-wrapper">
-		<div id="fh5co-page">
-		<div id="fh5co-header">
-			<header id="fh5co-header-section">
-				<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="padding-bottom: 18px">
-			      <div class="container">
+		<header id="fh5co-header-section">
+			<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="padding-bottom: 18px">
+			    <div class="container">
 			        <div class="navbar-header" style="margin-bottom:-70px;">
 			            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 			                <span class="sr-only">Toggle navigation</span>
@@ -140,11 +137,10 @@
 								</div>
 							</div>
 						</div>
-					</div>
-						<!-- END SEARCH -->
-
-	        </div><!--/.nav-collapse -->
-	      </div>
-	    </nav>
-	</header>
+					</div><!-- END SEARCH -->
+	        	</div><!--/.nav-collapse -->
+	      	</div>
+	  	</div>
+	</nav>
+</header>
 		

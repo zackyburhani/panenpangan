@@ -7,11 +7,11 @@ class Login extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('M_Login');
 
-		$email = $this->session->email;
+		// $email = $this->session->email;
 
-		if($email == null){
-			redirect('Home');
-		} 
+		// if($email == null){
+		// 	redirect('Home');
+		// } 
 	}
 
 

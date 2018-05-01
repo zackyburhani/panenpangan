@@ -9,7 +9,7 @@
         <div class="form-group">
           <label class="col-md-2 control-label">Username</label>
             <div class="col-md-9">
-              <input name="username" value="<?php echo $data->username  ?>" type="text" placeholder="Username" class="form-control" style="margin-bottom: 20px" readonly>
+              <input name="username" value="<?php echo $username  ?>" type="text" placeholder="Username" class="form-control" style="margin-bottom: 20px" readonly>
             </div>
           </div>
 
