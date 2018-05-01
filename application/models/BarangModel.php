@@ -9,6 +9,13 @@ class BarangModel extends CI_Model {
 
 ////////////////////START-KATEGORI////////////////////////
 
+////////////////////////pesan//////////////////
+	public function pesan($data){
+	$result = $this->db->insert('detil_pesan', $data);
+	return $result;
+	}
+////////////////////akhir pesan///////////////////////////////
+
 	public function getAllKategori()
 	{
 		$result = $this->db->get('kategori');
