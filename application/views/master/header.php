@@ -44,7 +44,7 @@
 
 
 	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
+	<script src="<?php  blink('assets/pentagon/js/modernizr-2.6.2.min.js')?>"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -52,9 +52,6 @@
 
 	</head>
 	<body>
-		<div id="fh5co-wrapper">
-		<div id="fh5co-page">
-		<div id="fh5co-header">
 			<header id="fh5co-header-section">
 				<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="padding-bottom: 18px">
 			      <div class="container">
@@ -108,7 +105,7 @@
 											<li>
 												<div class="row">
 													<div class="col-md-5" style="margin-top:25px">
-														<a class="btn btn-sm btn-success" name="button" href="<?php blink('Home/login')  ?>" data-target="#login""><i class="fa fa-sign-in"></i> LOGIN</a>
+														<a class="btn btn-sm btn-success" name="button" href="<?php blink('Home/login')  ?>" data-target="#login"><i class="fa fa-sign-in"></i> LOGIN</a>
 													</div>
 													<div class="col-md-5" style="margin-top:25px">
 														<a href="<?php blink('Home/daftar') ?>">
@@ -126,7 +123,8 @@
 						<!-- END SEARCH -->
 
 	        </div><!--/.nav-collapse -->
-	      </div>
+		  </div>
+		</div>
 	    </nav>
 	</header>
 		

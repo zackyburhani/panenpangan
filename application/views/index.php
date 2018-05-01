@@ -46,38 +46,18 @@
 			</div>
 			<div class="container">
 				<div class="row">
-					
-
+					<?php foreach($dataKategori as $data){?>
 					<div class="col-md-4 animate-box">
 						<div class="panel panel-success">
-							<div class="panel-heading"><center>BERAS</center></div>
+							<div class="panel-heading"><center><?php echo $data->nm_kategori; ?></center></div>
 					  			<div class="panel-body">
-									<img src="<?php blink('assets/img/img/beras.jpg')?>" class="img-rounded" alt="Cinque Terre" style="width:100%; margin-bottom: 10px"><hr>
-									<button type="button" class="btn btn-sm btn-primary btn-lg btn-block">-Pilih-</button>
+									<img src="<?php blink('assets/img/'.$data->gambar_kategori.''); ?>" class="img-rounded" alt="Cinque Terre" style="width:100%; margin-bottom: 10px"><hr>
+									<a href="<?php blink('C_DaftarBarang'); ?>" class="btn btn-sm btn-primary btn-lg btn-block">-Pilih-</a>
 								</div>
 					  	</div>
 					</div>
-					
-					<div class="col-md-4 animate-box">
-						<div class="panel panel-success">
-							<div class="panel-heading"><center>BUAH</center></div>
-					  			<div class="panel-body">
-									<img src="<?php blink('assets/img/img/beras.jpg')?>" class="img-rounded" alt="Cinque Terre" style="width:100%; margin-bottom: 10px"><hr>
-									<button type="button" class="btn btn-sm btn-primary btn-lg btn-block">-Pilih-</button>
-								</div>
-					  	</div>
-					</div>
-
-					<div class="col-md-4 animate-box">
-						<div class="panel panel-success">
-							<div class="panel-heading"><center>SAYURAN</center></div>
-					  			<div class="panel-body">
-									<img src="<?php blink('assets/img/img/beras.jpg')?>" class="img-rounded" alt="Cinque Terre" style="width:100%; margin-bottom: 10px"><hr>
-									<button type="button" class="btn btn-sm btn-primary btn-lg btn-block">-Pilih-</button>
-								</div>
-					  	</div>
-					</div>
-
+				<?php	}?>
+				
 				</div>
 			</div>
 		</div>

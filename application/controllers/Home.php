@@ -18,8 +18,11 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+		$semuaKategori = $this->BarangModel->getAllKategori();
+		$data['dataKategori'] = $semuaKategori;
+		
 		$this->load->view('master/header');
-		$this->load->view('index');
+		$this->load->view('index',$data);
 		$this->load->view('master/footer');
 	}
 
