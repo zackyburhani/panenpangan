@@ -4,7 +4,7 @@
       <i class="fa fa-user"></i> Pelanggan
     </div>
     <div class="panel-body">
-      <form class="" action="<?php blink('User/InsertDaftar')?>" method="post">
+      <form class="" action="<?php blink('DaftarLengkap/DataLengkap')?>" method="post">
 
         <div class="form-group">
           <label class="col-md-2 control-label">Username</label>
@@ -13,36 +13,17 @@
             </div>
           </div>
 
-          <div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">@</span>
-          <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-        </div>
-
           <div class="form-group">
-            <label class="col-md-2 control-label">Nama</label>
+            <label class="col-md-2 control-label">Nomor Telepon</label>
               <div class="col-md-9">
-                  <input name="nm_plg" type="text" placeholder="Nama" class="form-control" style="margin-bottom: 20px">
+                  <input name="no_telp" type="text" placeholder="Nomor Telepon" class="form-control" style="margin-bottom: 20px">
               </div>
           </div>
 
             <div class="form-group">
-              <label class="col-md-2 control-label">E-mail</label>
-                <div class="col-md-9">
-                  <input name="email" type="text" placeholder="E-Mail" class="form-control" style="margin-bottom: 20px">
-                </div>
-              </div>
-
-            <div class="form-group">
-              <label class="col-md-2 control-label">No. Telp</label>
-                <div class="col-md-9">
-                  <input name="no_telp" type="text" placeholder="Nomor Telepon" class="form-control" style="margin-bottom: 20px">
-                </div>
-            </div>
-
-            <div class="form-group">
               <label class="col-md-2 control-label">Alamat</label>
                 <div class="col-md-9">
-                  <textarea name="alamat" class="form-control"  style="margin-bottom: 20px"></textarea>
+                  <input name="alamat" type="text" placeholder="E-Mail" class="form-control" style="margin-bottom: 20px">
                 </div>
               </div>
 
