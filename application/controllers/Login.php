@@ -5,38 +5,50 @@ class Login extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->helper('url');
-		$this->load->model('ModelAdmin');
+		$this->load->model('M_Login');
+
+		$email = $this->session->email;
+
+		if($email == null){
+			redirect('Home');
+		} 
 	}
 
 
+	public function index()
+	{
+		$this->load->view('view_login');
+	}
+
 	public function auth()
 	{
-		$username = $this->input->post('username');
+		$username = $this->input->post('email');
 		$password = $this->input->post('password');
 
-		$checkUsername = $this->ModelAdmin->readUsername($username,$password);
+		$checkUsername = $this->M_Login->readUsername($username,$password);
 
 		if($checkUsername==NULL){
 
 			echo "<script type='text/javascript'>
                alert ('Maaf Username Dan Password Anda Salah !');
-               window.location.replace('index');
+               window.location.replace('');
       			</script>";
 
 		}else{
 			$newdata = array(
 				'username'  => $checkUsername->username,
-				'name'  => $checkUsername->nama
+				'nm_plg'  => $checkUsername->nm_plg,
+				'email' => $checkUsername->email
 			  );
 			//set seassion
 			$this->session->set_userdata($newdata);
-			redirect('Admin');
+			redirect('Home');
 		}
 	}
 
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect('Admin/Login');
+		redirect('Home');
 	}
 }

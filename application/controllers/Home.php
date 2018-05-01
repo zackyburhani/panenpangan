@@ -11,14 +11,11 @@ class Home extends CI_Controller {
 		$this->load->library('upload');
 	}
 
-	public function login()
-	{
-		$this->load->view('login');
-	}	
-
 	public function index()
 	{
-		$this->load->view('master/header');
+		$nama = $this->session->nm_plg;
+		$data['nama'] = $nama;
+		$this->load->view('master/header',$data);
 		$this->load->view('index');
 		$this->load->view('master/footer');
 	}
@@ -26,7 +23,7 @@ class Home extends CI_Controller {
 	public function daftar()
 	{
 		$this->load->view('master/header');
-		$this->load->view('view_daftar_lengkap');
+		$this->load->view('view_daftar');
 		$this->load->view('master/footer');
 	}
 

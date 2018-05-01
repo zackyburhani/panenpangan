@@ -106,9 +106,12 @@
 													</ul>
 											</li>
 											<li>
+
+											<?php if($nama == null){ ?>
+
 												<div class="row">
 													<div class="col-md-5" style="margin-top:25px">
-														<a class="btn btn-sm btn-success" name="button" href="<?php blink('Home/login')  ?>" data-target="#login""><i class="fa fa-sign-in"></i> LOGIN</a>
+														<a class="btn btn-sm btn-success" name="button" href="<?php blink('Login')  ?>" data-target="#login""><i class="fa fa-sign-in"></i> LOGIN</a>
 													</div>
 													<div class="col-md-5" style="margin-top:25px">
 														<a href="<?php blink('Home/daftar') ?>">
@@ -116,6 +119,21 @@
 														</a>
 													</div>
 												</div>
+											<?php } else { ?>
+
+												<div class="row">
+													<div class="col-md-6" style="margin-top:25px">
+														<p><b><?php echo $nama ?></b></p>
+													</div>
+													<div class="col-md-6" style="margin-top:25px">
+														<a href="<?php blink('Login/logout') ?>">
+															<button type="button" id="daftar" data-target="#e" class="btn btn-sm btn-success" name="button"><i class="fa fa-sign-out"></i> LOGOUT</button>
+														</a>
+													</div>
+												</div>
+
+											<?php } ?>
+
 											</li>
 										</ul>
 									</div>
