@@ -66,7 +66,9 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <div class="login-logo">
-      <img src="<?php blink('assets/img/img/panen.png')?>" alt="User Image" width="35%"><br>
+      <a href="<?php blink('Home') ?>">
+        <img src="<?php blink('assets/img/img/panen.png')?>" alt="User Image" width="35%"><br>
+      </a>
     </div>
     <hr>
     <p class="login-box-msg"><b>Silahkan login sebagai Admin</p>
