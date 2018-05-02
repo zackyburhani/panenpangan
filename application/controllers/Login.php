@@ -21,6 +21,11 @@ class Login extends CI_Controller {
 		$this->load->view('view_login');
 	}
 
+	public function admin()
+	{
+		$this->load->view('admin/loginadmin');
+	}
+
 	public function auth()
 	{
 		$username = $this->input->post('username');
@@ -32,7 +37,7 @@ class Login extends CI_Controller {
 
 			echo "<script type='text/javascript'>
                alert ('Maaf Username Dan Password Anda Salah !');
-               window.location.replace('');
+               window.location.replace('admin');
       			</script>";
 
 		}else{
@@ -64,7 +69,7 @@ class Login extends CI_Controller {
 
 			echo "<script type='text/javascript'>
                alert ('Maaf Username Dan Password Anda Salah !');
-               window.location.replace('');
+               window.location.replace('index');
       			</script>";
 
 		}else{
