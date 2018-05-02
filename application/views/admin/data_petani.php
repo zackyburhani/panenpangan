@@ -81,7 +81,6 @@
               <div class="modal-body">
                 <div class="form-group"><label>ID Petani</label>
                   <input required class="form-control required text-capitalize" value="<?php echo $id_petani ?>" data-placement="top" data-trigger="manual" type="text" name="id_petani" readonly>
-                  <alert><p><?php echo form_error('id_'); ?></alert>
                 </div>
                 
                 <div class="form-group"><label>Nama Petani</label>

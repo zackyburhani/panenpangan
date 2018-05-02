@@ -83,6 +83,20 @@
                   <form method="POST" action="<?php echo site_url('admin/tambahBarang')?>" enctype="multipart/form-data">
                     <div class="modal-body">
 
+                      <div class="form-group"><label>Nama Petani</label>
+                        <div class="custom-select">
+                          <select class="form-control" name="petani">
+                            <?php if($dataPetani == null) { ?>
+                              <option value="">-</option>
+                            <?php } else { ?>
+                              <?php foreach($dataPetani as $data){ ?>
+                                <option value="<?php echo $data->id_petani; ?>"><?php echo $data->nm_petani; ?></option>
+                              <?php } ?>  
+                            <?php } ?>
+                          </select>
+                         </div>
+                       </div>
+
                       <div class="form-group"><label>ID Barang</label>
                         <input required class="form-control required text-capitalize" value="<?php echo $id_brg ?>" readonly data-placement="top" data-trigger="manual" type="text" name="id_brg">
                       </div>
@@ -100,8 +114,6 @@
                           </select>
                          </div>
                        </div>
-                      
-
 
                        <div class="form-group"><label>Nama Barang</label>
                           <input required class="form-control required text-capitalize" placeholder="Input Nama Barang" data-placement="top" data-trigger="manual" type="text" name="nm_brg">
@@ -184,6 +196,11 @@
                        <form method="POST" action="" enctype="multipart/form-data">
                          <table class="table table-responsive" border="0">
                            <tbody>
+                            <tr>
+                               <td>Nama Petani</td>
+                               <td>:</td>
+                               <td style="text-transform:capitalize;"><?php echo $data->nm_petani ?></td>
+                             </tr>
                              <tr>
                                <td>Nama Kategori</td>
                                <td>:</td>

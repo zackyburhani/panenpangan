@@ -87,13 +87,13 @@
           </li>
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php blink('assets/admin/dist/img/user.png')?>" class="user-image" alt="User Image">
+              <img src="<?php blink('assets/img/img/logo/apple-icon-120x120.png')?>" class="user-image" alt="User Image">
               <span class="hidden-xs"><?php echo $nama; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?php blink('assets/admin/dist/img/user.png')?>" class="img-circle" alt="User Image">
+                <img src="<?php blink('assets/img/img/logo/apple-icon-120x120.png')?>" class="img-circle" alt="User Image">
 
                 <p>
                   <?php echo $nama; ?>

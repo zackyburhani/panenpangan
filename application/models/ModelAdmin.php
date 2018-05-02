@@ -178,6 +178,18 @@ class ModelAdmin extends CI_Model {
 		return $checkinsert;
 	}
 
+	public function InsertDetilBarang($data)
+	{
+		$checkinsert = false;
+		try{
+			$this->db->insert('detil_barang',$data);
+			$checkinsert = true;
+		}catch (Exception $ex) {
+			$checkinsert = false;
+		}
+		return $checkinsert;
+	}
+
 	public function getAllBarang()
 	{
 		$result = $this->db->get('barang');
@@ -240,13 +252,16 @@ class ModelAdmin extends CI_Model {
      $this->db->delete('barang', array('id_brg' => $id_brg));
 	}
 
+	public function deleteDetilBarang($id_barang){
+      $this->db->where('id_brg', $id_barang);
+      $this->db->delete('detil_barang');
+    }
+
+
 	public function joinBarang()
 	{
-		$this->db->select('*');
- 	  	$this->db->from('barang');
-  	 	$this->db->join('kategori', 'kategori.id_kategori = barang.id_kategori', 'left');
- 	   	$data = $this->db->get();
-    	return $data->result();
+		$result = $this->db->query("SELECT * FROM petani,detil_barang,barang,kategori WHERE detil_barang.id_brg = barang.id_brg and kategori.id_kategori = barang.id_kategori AND detil_barang.id_petani = petani.id_petani;");
+    	return $result->result();
 	}
 
 ////////////////////END-BARANG////////////////////////

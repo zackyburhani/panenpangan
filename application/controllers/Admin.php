@@ -266,8 +266,10 @@ class Admin extends CI_Controller {
 		} else {
 			$joinBarang = $this->ModelAdmin->joinBarang();
 			$semuaBarang = $this->ModelAdmin->getAllBarang();
+			$semuaPetani = $this->ModelAdmin->getAllPetani();
 			$semuaKategori = $this->ModelAdmin->getAllKategori();
 			$data['joinBarang'] = $joinBarang;
+			$data['dataPetani'] = $semuaPetani;
 			$data['dataKategori'] = $semuaKategori;
 			$data['dataBarang'] = $semuaBarang;
 			$data['id_brg'] = $this->ModelAdmin->getKodeBarang();
@@ -295,6 +297,7 @@ class Admin extends CI_Controller {
 		      $photo="";
 		  }else{
 		      	$photo=$this->upload->file_name;
+		      	$id_petani = $this->input->post('petani');
 		       	$id_barang = $this->input->post('id_brg');
 				$nm_barang = $this->input->post('nm_brg');
 				$stok = $this->input->post('stok');
@@ -317,8 +320,15 @@ class Admin extends CI_Controller {
 			);
 
 			$result = $this->ModelAdmin->InsertBarang($data); 
+
+			$dataDetil = array(
+				'id_petani' => $id_petani,
+				'id_brg' => $id_barang,   
+			);
+
+			$result2 = $this->ModelAdmin->InsertDetilBarang($dataDetil);
 			
-			if ($result){
+			if ($result && $result2){
 				$this->session->set_flashdata('pesan','Data Berhasil Disimpan');
 	    		redirect('Admin/barang');
 			}else{
@@ -407,6 +417,7 @@ class Admin extends CI_Controller {
 
 	public function hapusBarang($id_barang)
 	{
+		$this->ModelAdmin->deleteDetilBarang($id_barang);
 		$this->ModelAdmin->deleteBarang($id_barang);
 		$this->session->set_flashdata('pesan','Data Berhasil Dihapus');
 		redirect('Admin/barang');
