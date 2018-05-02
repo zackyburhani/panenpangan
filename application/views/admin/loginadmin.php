@@ -66,7 +66,7 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <div class="login-logo">
-      <img src="<?php blink('metronic/assets/admin/layout7/img/panen.png')?>" alt="User Image" width="35%"><br>
+      <img src="<?php blink('assets/img/img/panen.png')?>" alt="User Image" width="35%"><br>
     </div>
     <hr>
     <p class="login-box-msg"><b>Silahkan login sebagai Admin</p>

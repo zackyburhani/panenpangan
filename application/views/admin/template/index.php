@@ -30,7 +30,7 @@
         </style>
     		<div class="row">
     			<div class="form-group">
-					<img class="col-md-1" src="<?php blink('metronic/assets/admin/layout7/img/panen.png')?>" width="20%">
+					<img class="col-md-1" src="<?php blink('assets/img/img/panen.png')?>" width="20%">
 						<div class="col-md-4">
 							<h4 style="margin-top: 20px;">Selamat Datang <i><?php echo $nama; ?></i> !</h4>
 						</div>

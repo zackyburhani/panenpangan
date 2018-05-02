@@ -244,6 +244,7 @@ class Admin extends CI_Controller {
 		}
 	}
 
+
 	public function hapusKategori($id_kategori)
 	{
 		$this->ModelAdmin->delete($id_kategori);

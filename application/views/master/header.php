@@ -123,7 +123,7 @@
 														<p><b><?php echo $nama ?></b></p>
 													</div>
 													<div class="col-md-6" style="margin-top:25px">
-														<a href="<?php blink('Login/logout') ?>">
+														<a href="<?php blink('Login/logoutCustomer') ?>">
 															<button type="button" id="daftar" data-target="#e" class="btn btn-sm btn-success" name="button"><i class="fa fa-sign-out"></i> LOGOUT</button>
 														</a>
 													</div>

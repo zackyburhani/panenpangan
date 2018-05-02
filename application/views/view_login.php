@@ -32,7 +32,7 @@
       </a>
     </p>
 
-    <form action="<?php blink('Login/auth') ?>" method="post">
+    <form action="<?php blink('Login/authCustomer') ?>" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" name="email" placeholder="E-mail">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

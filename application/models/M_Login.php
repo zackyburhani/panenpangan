@@ -6,7 +6,7 @@ class M_Login extends CI_Model {
 		parent::__construct();
 	}
 
-	public function readUsername($username,$password)
+	public function readUsername2($username,$password)
   	{
  	   $result = $this->db->where('UPPER(email)', strtoupper($username))->where('password',md5($password))->limit(1)->get('login');
 		return $result->row();
