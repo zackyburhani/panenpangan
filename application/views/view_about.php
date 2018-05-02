@@ -9,8 +9,7 @@
 				</div>
 				<hr>
 
-<?php if($dataBarang != null) { ?>
-
+				<?php if($dataBarang != null) { ?>
 					<div class="row text-center">
 					<?php foreach($dataBarang as $data){?>
 					<div class="col-sm-4">
@@ -19,10 +18,12 @@
 								<img src="<?php blink('assets/img/'.$data->gambar_barang.''); ?>" class="img-rounded" alt="Cinque Terre" style="width:100%; height:250px">
 								<div class="caption">
 								<h3 align="center"><?php echo $data->nm_brg; ?></h3>
-								<p align="center"><?php echo $data->harga; ?> /karung</p><hr>
+								<p align="center"><?php echo $data->harga; ?> /kg</p>
+								<input type="number" name="quantity" id="<?php echo $data->id_brg; ?>" value="1" class="quantity form-control">
+								<hr>
 								<p align="center">
-								<a href="#" class="btn btn-primary" role="submit">Tambah Ke Cart</a> |
-								<a href="#modalform<?php echo $data->id_brg ?>" class="btn btn-primary" data-toggle="modal" role="button">Pesan</a></p>
+							<button class="add_cart btn btn-primary" data-produkid="<?php echo $data->id_brg;?>" data-produknama="<?php echo $data->nm_brg;?>" data-produkharga="<?php echo $data->harga;?>">Add To Cart</button>
+							<a href="#modalform<?php echo $data->id_brg ?>" class="btn btn-primary" data-toggle="modal" role="button">Pesan</a></p>
 					 			</div>
 							</div>
 				    	</div>
@@ -38,6 +39,47 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- java cart -->
+<script type="text/javascript" src="<?php echo base_url().'assets/js/jquery-2.2.3.min.js'?>"></script>
+<script type="text/javascript" src="<?php echo base_url().'assets/js/bootstrap.js'?>"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.add_cart').click(function(){
+			var id_brg  = $(this).data("produkid");
+			var nm_brg  = $(this).data("produknama");
+			var harga 	= $(this).data("produkharga");
+			var quantity     = $('#' + id_brg).val();
+			$.ajax({
+				url : "<?php echo base_url();?>index.php/user/add_to_cart",
+				method : "POST",
+				data : {id_brg: id_brg, nm_brg: nm_brg, harga: harga, quantity: quantity},
+				success: function(data){
+					$('#detail_cart').html(data);
+				}
+			});
+		});
+
+		// Load shopping cart
+		$('#detail_cart').load("<?php echo base_url();?>index.php/user/load_cart");
+
+		//Hapus Item Cart
+		$(document).on('click','.hapus_cart',function(){
+			var row_id=$(this).attr("id"); //mengambil row_id dari artibut id
+			$.ajax({
+				url : "<?php echo base_url();?>User/hapus_cart",
+				method : "POST",
+				data : {row_id : row_id},
+				success :function(data){
+					$('#detail_cart').html(data);
+				}
+			});
+		});
+	});
+</script>
+
+		<!-- akhir java cart -->
+
 		<!-- END fh5co-services-section -->
 <?php foreach($dataBarang as $data){ ?> 
 		<!-- modal view Form Pesan -->
