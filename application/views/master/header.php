@@ -44,7 +44,7 @@
 
 
 	<!-- Modernizr JS -->
-	<script src="<?php  blink('assets/pentagon/js/modernizr-2.6.2.min.js')?>"></script>
+	<script src="<?php  blink('assets/pentagon/js/modernizr-2.6.2.min')?>"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -79,7 +79,7 @@
 							<div class="col-md-6 col-lg-offset-2" style="margin-top:20px">
 								<form class="search" action="extra_search.html" method="GET">
 									<div class="input-group">
-								      <input type="name" class="form-control" name="query" placeholder="Search...">
+								      <input type="name" class="form-control" name="search" placeholder="Search...">
 								      <span class="input-group-btn">
 								        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
 								      </span>
@@ -93,11 +93,28 @@
 										<ul class="nav navbar-nav pull-right">
 											<li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
 												<a  href="javascript:;" class="dropdown-toggle" style="margin-top :-20px; margin-right:10px;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-														<span class="glyphicon glyphicon-shopping-cart" style="margin-top:31px"></span> <span class="label label-danger" >7</span>
+														<span class="glyphicon glyphicon-shopping-cart" style="margin-top:31px"></span> <span class="label label-danger" >new</span>
 												</a>
 													<ul class="dropdown-menu">
 														<li class="external">
-															<h3><span class="bold">12 pending</span> notifications</h3>
+															<!-- nampilin cart -->
+												<div class="col-md-4">
+													<h5>Shopping Cart</h5>
+														<table class="table table-striped">
+																<thead>
+																	<tr>
+																	<th>Barang</th>
+																	<th>Harga</th>
+																	<th>Qty</th>
+																	<th>Subtotal</th>
+																	<th>Aksi</th>
+																	</tr>
+																</thead>
+															<tbody id="detail_cart">	
+															</tbody>
+														</table>
+																</div> 
+																<!-- akhir nampilin -->
 																<a href="extra_profile.html">view all</a>
 														</li>
 													</ul>

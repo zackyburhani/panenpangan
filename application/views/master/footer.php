@@ -28,21 +28,21 @@
 	
 
 	<!-- jQuery -->
-	<script src="<?php blink('assets/pentagon/js/jquery.min.js')?>"></script>
+	<script src="<?php blink('assets/pentagon/js/jquery.min')?>"></script>
 	<!-- jQuery Easing -->
-	<script src="<?php blink('assets/pentagon/js/jquery.easing.1.3.js')?>"></script>
+	<script src="<?php blink('assets/pentagon/js/jquery.easing.1.3')?>"></script>
 	<!-- Bootstrap -->
-	<script src="<?php blink('assets/pentagon/js/bootstrap.min.js')?>"></script>
+	<script src="<?php blink('assets/pentagon/js/bootstrap.min')?>"></script>
 	<!-- Waypoints -->
-	<script src="<?php blink('assets/pentagon/js/jquery.waypoints.min.js')?>"></script>
+	<script src="<?php blink('assets/pentagon/js/jquery.waypoints.min')?>"></script>
 	<!-- Stellar -->
-	<script src="<?php blink('assets/pentagon/js/jquery.stellar.min.js')?>"></script>
+	<script src="<?php blink('assets/pentagon/js/jquery.stellar.min')?>"></script>
 	<!-- Superfish -->
-	<script src="<?php blink('assets/pentagon/js/hoverIntent.js')?>"></script>
-	<script src="<?php blink('assets/pentagon/js/superfish.js')?>"></script>
+	<script src="<?php blink('assets/pentagon/js/hoverIntent')?>"></script>
+	<script src="<?php blink('assets/pentagon/js/superfish')?>"></script>
 
 	<!-- Main JS -->
-	<script src="<?php blink('assets/pentagon/js/main.js')?>"></script>
+	<script src="<?php blink('assets/pentagon/js/main')?>"></script>
 
 	</body>
 </html>
