@@ -98,27 +98,27 @@
 													<ul class="dropdown-menu">
 														<li class="external">
 															<!-- nampilin cart -->
-												<div class="col-md-4">
-													<h5>Shopping Cart</h5>
-														<table class="table table-striped">
-																<thead>
-																	<tr>
-																	<th>Barang</th>
-																	<th>Harga</th>
-																	<th>Qty</th>
-																	<th>Subtotal</th>
-																	<th>Aksi</th>
-																	</tr>
-																</thead>
-															<tbody id="detail_cart">	
-															</tbody>
-														</table>
+															<div class="col-md-4">
+																<h5>Shopping Cart</h5>
+																	<table class="table table-striped">
+																		<thead>
+																			<tr>
+																				<th>Barang</th>
+																				<th>Harga</th>
+																				<th>Qty</th>
+																				<th>Subtotal</th>
+																				<th>Aksi</th>
+																			</tr>
+																		</thead>
+																		<tbody id="detail_cart">	
+																		</tbody>
+																	</table>
 																</div> 
 																<!-- akhir nampilin -->
-																<a href="extra_profile.html">view all</a>
+															<a href="extra_profile.html">view all</a>
 														</li>
 													</ul>
-											</li>
+												</li>
 											<li>
 
 											<?php if($nama == null){ ?>
@@ -137,7 +137,31 @@
 
 												<div class="row">
 													<div class="col-md-6" style="margin-top:25px">
-														<p><b><?php echo $nama ?></b></p>
+														<!-- <p><b><?php echo $nama ?></b></p> -->
+														<a  href="javascript:;" class="dropdown-toggle" style="margin-top :-20px; margin-right:10px;" data-toggle="dropdown" data-hover="dropdown" 			data-close-others="true">
+															<?php echo $nama ?>
+														</a>
+														<ul class="dropdown-menu">
+														<li class="external">
+															<!-- nampilin cart -->
+															<div class="col-md-4">
+																<table class="table">
+																	<tbody>
+																	<tr>
+																		<td><button class="btn btn-sm btn-block btn-success"><i class="fa fa-gears"></i>Pengaturan</button></td>	
+																	</tr>
+																	<tr>
+																		<td>
+																			<a href="<?php blink('Tracking') ?>">
+																				<button class="btn btn-sm btn-block btn-success"><i class="fa fa-map"></i>Tracking</button>
+																			</a>
+																		</td>	
+																	</tr>
+																	</tbody>
+																</table>
+															</div> 
+														</li>
+													</ul>
 													</div>
 													<div class="col-md-6" style="margin-top:25px">
 														<a href="<?php blink('Login/logoutCustomer') ?>">

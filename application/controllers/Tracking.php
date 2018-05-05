@@ -6,14 +6,19 @@ class Tracking extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->helper('url');
-		$this->load->model('BarangModel');
+		$this->load->model('M_Customer');
 		$this->load->helper('form');
 		$this->load->library('upload');
 	}
 
 	public function index()
 	{
-		$this->load->view('master/header');
+		$nama = $this->session->nm_plg;
+		$data = [
+			'nama' => $nama
+		];
+
+		$this->load->view('master/header',$data);
 		$this->load->view('view_tracking');
 		$this->load->view('master/footer');
 	}
@@ -25,9 +30,19 @@ class Tracking extends CI_Controller {
 		$this->load->view('master/footer');
 	}
 
-	public function tracking()
+	public function cari()
 	{
-		$this->load->view('view_tracking');
+		$nama = $this->session->nm_plg;
+		$id_transaksi = $this->input->get('no_transaksi');
+		$cari = $this->M_Customer->getTracking($id_transaksi);
+		$data = [
+			'nama' => $nama,
+			'id_transaksi' => $cari
+		];
+
+		$this->load->view('master/header',$data);
+		$this->load->view('view_tracking',$data);
+		$this->load->view('master/footer');
 	}
 
 
