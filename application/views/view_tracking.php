@@ -51,26 +51,26 @@
 </div> <!-- END CONTAINER -->
 
 <?php if (isset($id_transaksi)){
-foreach($id_transaksi as $data){ ?>
-<div class="modal fade" id="modalKonfirmasiPesan<?php echo $data->id_pesan?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-ok fa-fw"></i>Konfirmasi Pesanan</h4>
-      </div>
-      <div class='modal-body'>Anda Yakin Sudah Terima Barang <b><?php echo $data->id_pesan ?></b> dengan nama <i><?php echo $data->nm_brg ?></i> ?
-      </div>
-      <div class='modal-footer'>
-        <form class="" action="<?php echo site_url('Tracking/konfirmasi/'.$data->id_pesan) ?>" method="post">
-          <input type='hidden' value='<?php echo $data->id_pesan?>' name='id_pesan'>
-          <button type='button' class='btn btn-default' data-dismiss='modal'>Batal</button>
-          <button class='btn btn-success' type='submit' name='konfirmasi'></span>Konfirmasi</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+	foreach($id_transaksi as $data){ ?>
+		<div class="modal fade" id="modalKonfirmasiPesan<?php echo $data->id_pesan?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog modal-sm" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-ok fa-fw"></i>Konfirmasi Pesanan</h4>
+		      </div>
+		      <div class='modal-body'>Anda Yakin Sudah Terima Barang <b><?php echo $data->id_pesan ?></b> dengan nama <i><?php echo $data->nm_brg ?></i> ?
+		      </div>
+		      <div class='modal-footer'>
+		        <form class="" action="<?php echo site_url('Tracking/konfirmasi/'.$data->id_pesan) ?>" method="post">
+		          <input type='hidden' value='<?php echo $data->id_pesan?>' name='id_pesan'>
+		          <button type='button' class='btn btn-default' data-dismiss='modal'>Batal</button>
+		          <button class='btn btn-success' type='submit' name='konfirmasi'></span>Konfirmasi</button>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
   <?php }
   }
   ?>
