@@ -33,31 +33,54 @@ class Tracking extends CI_Controller {
 	public function cari()
 	{
 		$nama = $this->session->nm_plg;
-		$id_transaksi = $this->input->post('no_transaksi');
+		$id_transaksi = $this->input->get('no_transaksi');
 		$cari = $this->M_Customer->getTracking($id_transaksi);
+		$status = $cari;
 		$data = [
 			'nama' => $nama,
 			'id_transaksi' => $cari
 		];
 
-		$this->load->view('master/header',$data);
-		$this->load->view('view_tracking',$data);
-		$this->load->view('master/footer');
+		if($cari == null) {
+			$notFound = "Data Tidak Ditemukan";
+			$data2 = [
+				'nama' => $nama,
+				'id_transaksi' => $cari,
+				'notFound'=> $notFound
+			];
+
+			$this->load->view('master/header',$data2);
+			$this->load->view('view_tracking',$data2);
+			$this->load->view('master/footer');
+		} else {
+
+			$this->load->view('master/header',$data);
+			$this->load->view('view_tracking',$data);
+			$this->load->view('master/footer');
+		}
 	}
 
-	public function konfirmasi()
+	public function konfirmasi($konfirmasi)
 	{
-		$konfirmasi = $this->input->post('id_pesan');
+		$nama = $this->session->nm_plg;
 		
-		$status = 1;
+		$status = 2;
 
-		$data = [
+		$update = [
 			'status' => $status
 		];
 
-		$result = $this->M_Customer->status($konfirmasi,$data);
-		echo json_encode($data);
+		$result = $this->M_Customer->status($konfirmasi,$update);
+		$cari = $this->M_Customer->getTracking($konfirmasi);
 
+		$data = [
+			'nama'=> $nama,
+			'id_transaksi' => $cari,
+		];
+
+		$this->load->view('master/header',$data);
+		$this->load->view('view_tracking',$data);
+		$this->load->view('master/footer');
 	}
 
 }
