@@ -52,7 +52,7 @@ fh5co-content-section -->
 								<h3 id="myModalLabel" align="center">Form Pesan Barang</h3>
 							</div>
 							<div class="modal-body">
-								<form method="POST" action="<?php blink('C_DaftarBarang/pesan/'.$data->id_brg.'/'.$data->harga); ?>" enctype="multipart/form-data">
+								<form method="POST" action="<?php blink('User/pesan/'.$data->id_brg.'/'.$data->harga); ?>" enctype="multipart/form-data">
 									 <table class="table table-striped" border="0">
 									  <thead>
 										<td width="20%" ></td>
@@ -60,6 +60,9 @@ fh5co-content-section -->
 									  <td width="60%" ></td>
 									</thead>
 									<tbody>
+									<div class="form-group"><label>ID Pesan</label>
+                        <input required class="form-control required text-capitalize" value="<?php echo $id_pesan ?>" readonly data-placement="top" data-trigger="manual" type="text" name="id_pesan">
+                      </div>
 										<tr>
 										  <td>Item</td>
 										<td>:</td>
@@ -68,7 +71,7 @@ fh5co-content-section -->
 										 <tr>
 										  <td>quantity</td>
 										<td>:</td>
-										<td style="text-transform:capitalize;"><input type="text" name="qty" class="form-control" id="qty"></td>
+										<td style="text-transform:capitalize;"><input type="number" name="qty" id="qty" value="1" class="quantity form-control"></td>
 										 </tr>
 											<tr>
 										  <td>Price</td>

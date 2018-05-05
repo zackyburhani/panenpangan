@@ -25,7 +25,9 @@
 													<td>Total Harga </td>
 													<td> &nbsp;: Rp.00 </td>
 												</tr>
-													<td><br><center><a href="#" class="btn btn-sm btn-success">Bayar</a></center></td>
+													<td><br><center><a href="#" class="btn btn-sm btn-success">Bayar</a>
+													<a href="#" class="btn btn-sm btn-info">Cetak</a>
+													</center></td>
 											</table>
 										</center></td>
 											</tr>
