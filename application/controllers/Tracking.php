@@ -33,7 +33,7 @@ class Tracking extends CI_Controller {
 	public function cari()
 	{
 		$nama = $this->session->nm_plg;
-		$id_transaksi = $this->input->get('no_transaksi');
+		$id_transaksi = $this->input->post('no_transaksi');
 		$cari = $this->M_Customer->getTracking($id_transaksi);
 		$data = [
 			'nama' => $nama,
@@ -45,5 +45,19 @@ class Tracking extends CI_Controller {
 		$this->load->view('master/footer');
 	}
 
+	public function konfirmasi()
+	{
+		$konfirmasi = $this->input->post('id_pesan');
+		
+		$status = 1;
+
+		$data = [
+			'status' => $status
+		];
+
+		$result = $this->M_Customer->status($konfirmasi,$data);
+		echo json_encode($data);
+
+	}
 
 }

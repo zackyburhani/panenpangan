@@ -81,5 +81,11 @@ class M_Customer extends CI_Model {
       return $result->result();
     }
 
+    public function status($konfirmasi,$data)
+    {
+      $this->db->where('id_pesan',$konfirmasi);
+      $this->db->update('detil_pesan',$data);
+    }
+
 
 }

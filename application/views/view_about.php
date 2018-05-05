@@ -40,45 +40,6 @@ fh5co-content-section -->
 			</div>
 		</div>
 
-		<!-- java cart -->
-<script type="text/javascript" src="<?php echo base_url().'assets/js/jquery-2.2.3.min.js'?>"></script>
-<script type="text/javascript" src="<?php echo base_url().'assets/js/bootstrap.js'?>"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.add_cart').click(function(){
-			var id_brg  = $(this).data("produkid");
-			var nm_brg  = $(this).data("produknama");
-			var harga 	= $(this).data("produkharga");
-			var quantity     = $('#' + id_brg).val();
-			$.ajax({
-				url : "<?php echo base_url();?>index.php/user/add_to_cart",
-				method : "POST",
-				data : {id_brg: id_brg, nm_brg: nm_brg, harga: harga, quantity: quantity},
-				success: function(data){
-					$('#detail_cart').html(data);
-				}
-			});
-		});
-
-		// Load shopping cart
-		$('#detail_cart').load("<?php echo base_url();?>index.php/user/load_cart");
-
-		//Hapus Item Cart
-		$(document).on('click','.hapus_cart',function(){
-			var row_id=$(this).attr("id"); //mengambil row_id dari artibut id
-			$.ajax({
-				url : "<?php echo base_url();?>User/hapus_cart",
-				method : "POST",
-				data : {row_id : row_id},
-				success :function(data){
-					$('#detail_cart').html(data);
-				}
-			});
-		});
-	});
-</script>
-
-		<!-- akhir java cart -->
 
 		<!-- END fh5co-services-section -->
 <?php foreach($dataBarang as $data){ ?> 
