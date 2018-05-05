@@ -33,4 +33,19 @@ class ModelDaftar extends CI_Model {
     }
     return "PL".$kd;
   }
+
+  public function getAllPelanggan($username)
+  {
+    $result = $this->db->query("SELECT * from pelanggan where username ='".$username."'");
+    return $result->result();
+  }
+
+  public function UpdateData($id,$data)
+  {
+    $this->db->where('username',$id);
+    $this->db->update('pelanggan',$data);
+  }
+
+
+
 }

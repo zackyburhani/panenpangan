@@ -29,6 +29,8 @@
 
 	<!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'> -->
 	
+	<!-- GAMBAR ICON POJOK KIRI ATAS -->
+	<link rel="SHORTCUT ICON" href="<?php echo base_url('assets/img/img/logo/favicon.ico') ?>">
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="<?php blink('assets/pentagon/css/animate.css')?>">
 	<!-- Icomoon Icon Fonts-->
@@ -135,9 +137,9 @@
 												</div>
 											<?php } else { ?>
 
-												<div class="row" style="margin-left: 90px">
+												<div class="row" style="margin-left: 20px; margin-right: 90px;">
 													<div class="col-md-12" style="margin-top:25px">
-														<a  href="javascript:;" class="dropdown-toggle" style="margin-top :-20px; margin-left: -90px	" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+														<a  href="javascript:;" class="dropdown-toggle" style="margin-top :-20px;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 															<?php echo $nama ?>
 														</a>
 														<ul class="dropdown-menu">
@@ -147,19 +149,22 @@
 																<table class="table">
 																	<tbody>
 																	<tr>
-																		<td><button class="btn btn-sm btn-block btn-success"><i class="fa fa-user"></i>Pengaturan Akun</button></td>	
+																		<td>
+																			<a href="<?php blink('DaftarLengkap') ?>">
+																				<button class="btn btn-sm btn-block btn-success"><i class="fa fa-user"></i> Pengaturan Akun</button></td>	
+																			</a>
 																	</tr>
 																	<tr>
 																		<td>
 																			<a href="<?php blink('Tracking') ?>">
-																				<button class="btn btn-sm btn-block btn-success"><i class="fa fa-map"></i>Tracking</button>
+																				<button class="btn btn-sm btn-block btn-success"><span class="glyphicon glyphicon-map-marker"></span> Tracking</button>
 																			</a>
 																		</td>	
 																	</tr>
 																	<tr>
 																		<td>
 																			<a href="<?php blink('Login/logoutCustomer') ?>">
-																				<button type="button" id="daftar" data-target="#e" class="btn btn-sm btn-success" name="button"><i class="fa fa-sign-out"></i> LOGOUT</button>
+																				<button type="button" id="daftar" data-target="#e" class="btn btn-sm btn-block btn-success" name="button"><i class="fa fa-sign-out"></i> LOGOUT</button>
 																			</a>
 																		</td>	
 																	</tr>

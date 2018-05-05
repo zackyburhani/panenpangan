@@ -84,5 +84,15 @@
 </script>
 <!-- akhir java cart -->
 
+
+<!-- Alert -->
+<script> 
+    window.setTimeout(function() {
+        $(".alert-success").fadeTo(500, 0).slideUp(500, function(){ $(this).remove(); });
+        $(".alert-danger").fadeTo(500, 0).slideUp(500, function(){ $(this).remove(); }); 
+    }, 3000); 
+</script>
+<!-- end Alert -->
+
 	</body>
 </html>
