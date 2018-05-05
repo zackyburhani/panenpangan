@@ -135,10 +135,9 @@
 												</div>
 											<?php } else { ?>
 
-												<div class="row">
-													<div class="col-md-6" style="margin-top:25px">
-														<!-- <p><b><?php echo $nama ?></b></p> -->
-														<a  href="javascript:;" class="dropdown-toggle" style="margin-top :-20px; margin-right:10px;" data-toggle="dropdown" data-hover="dropdown" 			data-close-others="true">
+												<div class="row" style="margin-left: 90px">
+													<div class="col-md-12" style="margin-top:25px">
+														<a  href="javascript:;" class="dropdown-toggle" style="margin-top :-20px; margin-left: -90px	" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 															<?php echo $nama ?>
 														</a>
 														<ul class="dropdown-menu">
@@ -148,7 +147,7 @@
 																<table class="table">
 																	<tbody>
 																	<tr>
-																		<td><button class="btn btn-sm btn-block btn-success"><i class="fa fa-gears"></i>Pengaturan</button></td>	
+																		<td><button class="btn btn-sm btn-block btn-success"><i class="fa fa-user"></i>Pengaturan Akun</button></td>	
 																	</tr>
 																	<tr>
 																		<td>
@@ -157,16 +156,18 @@
 																			</a>
 																		</td>	
 																	</tr>
+																	<tr>
+																		<td>
+																			<a href="<?php blink('Login/logoutCustomer') ?>">
+																				<button type="button" id="daftar" data-target="#e" class="btn btn-sm btn-success" name="button"><i class="fa fa-sign-out"></i> LOGOUT</button>
+																			</a>
+																		</td>	
+																	</tr>
 																	</tbody>
 																</table>
 															</div> 
 														</li>
 													</ul>
-													</div>
-													<div class="col-md-6" style="margin-top:25px">
-														<a href="<?php blink('Login/logoutCustomer') ?>">
-															<button type="button" id="daftar" data-target="#e" class="btn btn-sm btn-success" name="button"><i class="fa fa-sign-out"></i> LOGOUT</button>
-														</a>
 													</div>
 												</div>
 

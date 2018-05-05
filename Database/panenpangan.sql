@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 24, 2018 at 05:38 AM
+-- Generation Time: May 05, 2018 at 05:38 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -89,8 +89,16 @@ CREATE TABLE `detil_pesan` (
   `qty` int(11) NOT NULL,
   `harga_total` decimal(10,2) NOT NULL,
   `poin` decimal(10,2) NOT NULL,
-  `status` enum('Dalam Perjalanan','Selesai') NOT NULL
+  `status` enum('Dalam Perjalanan','Selesai') NOT NULL,
+  `status_bayar` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detil_pesan`
+--
+
+INSERT INTO `detil_pesan` (`id_pesan`, `id_brg`, `qty`, `harga_total`, `poin`, `status`, `status_bayar`) VALUES
+('PS001', 'BR001', 23, '20000.00', '12.00', 'Selesai', '');
 
 -- --------------------------------------------------------
 
@@ -127,6 +135,13 @@ CREATE TABLE `login` (
   `password` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`username`, `nm_plg`, `email`, `password`) VALUES
+('zackyburhani', 'Zacky Burhani', 'zackyburhani99@gmail.com', '202cb962ac59075b964b07152d234b70');
+
 -- --------------------------------------------------------
 
 --
@@ -152,6 +167,14 @@ CREATE TABLE `pesan` (
   `tgl_pesan` date DEFAULT NULL,
   `username` varchar(20) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pesan`
+--
+
+INSERT INTO `pesan` (`id_pesan`, `tgl_pesan`, `username`) VALUES
+('PS001', '2018-05-01', 'zackyburhani'),
+('PS002', '2018-05-09', 'zackyburhani');
 
 -- --------------------------------------------------------
 
