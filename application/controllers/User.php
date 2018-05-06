@@ -103,4 +103,64 @@ class User extends CI_Controller {
 		echo $this->show_cart();
 	}
 
+	/////////////////////pesan barang///////////////////////////////////
+	public function pesan($id, $harga) {
+
+		$nama = $this->session->username;
+		$tgl=date('Y-m-d');
+
+        $qty = $this->input->post('qty');
+		$id_pesan = $this->input->post('id_pesan');
+
+		$harga = $harga*$qty;
+		
+            $data = array(
+                'id_pesan'=> $id_pesan,
+                'id_brg' => $id,
+                'qty' => $qty,
+                'harga_total' => $harga,
+                'poin' => 0,
+                'status' => "Dalam Perjalanan",
+                );
+      
+        $result = $this->UserModel->detilpesan($data);
+	 
+		$data = array(
+		'id_pesan'=> $id_pesan,
+		'tgl_pesan' => $tgl,
+		'username' => $nama
+		);        
+
+		$result2 = $this->UserModel->pesan($data);
+      
+        $data = NULL;
+        if($result && $result2){
+                    echo "<script type='text/javascript'>
+                    alert ('Sending Request !');
+                    window.location.replace('index');
+                    </script>";
+                    redirect('User/invoice');
+        }else{
+                    echo "<script type='text/javascript'>
+                    alert ('Sending Failed, silahkan Login dulu !');
+                    window.location.replace('index');
+                    </script>";       
+                    redirect('Home');
+        }
+	}
+	
+	public function invoice(){
+
+		$nama = $this->session->nm_plg;
+		$username = $this->session->username;
+		$data['nama'] = $nama;
+
+		$invoice = $this->UserModel->invoice($username);
+		$data['idpesan'] = $invoice;
+
+		$this->load->view('master/header',$data);
+        $this->load->view('view_bayar',$data);
+        $this->load->view('master/footer');
+	}
+
 }

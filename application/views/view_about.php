@@ -18,11 +18,11 @@ fh5co-content-section -->
 								<img src="<?php blink('assets/img/'.$data->gambar_barang.''); ?>" class="img-rounded" alt="Cinque Terre" style="width:100%; height:250px">
 								<div class="caption">
 								<h3 align="center"><?php echo $data->nm_brg; ?></h3>
-								<p align="center"><?php echo $data->harga; ?> /kg</p>
+								<p align="center"><?php echo number_format($data->harga); ?> /kg</p>
 								<input type="number" name="quantity" id="<?php echo $data->id_brg; ?>" value="1" class="quantity form-control">
 								<hr>
 								<p align="center">
-							<button class="add_cart btn btn-primary" data-produkid="<?php echo $data->id_brg;?>" data-produknama="<?php echo $data->nm_brg;?>" data-produkharga="<?php echo $data->harga;?>">Add To Cart</button>
+							<button class="add_cart btn btn-primary glyphicon glyphicon-shopping-cart" data-produkid="<?php echo $data->id_brg;?>" data-produknama="<?php echo $data->nm_brg;?>" data-produkharga="<?php echo $data->harga;?>">Add To Cart</button>
 							<a href="#modalform<?php echo $data->id_brg ?>" class="btn btn-primary" data-toggle="modal" role="button">Pesan</a></p>
 					 			</div>
 							</div>
@@ -52,7 +52,7 @@ fh5co-content-section -->
 								<h3 id="myModalLabel" align="center">Form Pesan Barang</h3>
 							</div>
 							<div class="modal-body">
-								<form method="POST" action="<?php blink('C_DaftarBarang/pesan/'.$data->id_brg.'/'.$data->harga); ?>" enctype="multipart/form-data">
+								<form method="POST" action="<?php blink('User/pesan/'.$data->id_brg.'/'.$data->harga); ?>" enctype="multipart/form-data">
 									 <table class="table table-striped" border="0">
 									  <thead>
 										<td width="20%" ></td>
@@ -60,6 +60,9 @@ fh5co-content-section -->
 									  <td width="60%" ></td>
 									</thead>
 									<tbody>
+									<div class="form-group"><label>ID Pesan</label>
+                        <input required class="form-control required text-capitalize" value="<?php echo $id_pesan ?>" readonly data-placement="top" data-trigger="manual" type="text" name="id_pesan">
+                      </div>
 										<tr>
 										  <td>Item</td>
 										<td>:</td>
@@ -68,7 +71,7 @@ fh5co-content-section -->
 										 <tr>
 										  <td>quantity</td>
 										<td>:</td>
-										<td style="text-transform:capitalize;"><input type="text" name="qty" class="form-control" id="qty"></td>
+										<td style="text-transform:capitalize;"><input type="number" name="qty" id="qty" value="1" class="quantity form-control"></td>
 										 </tr>
 											<tr>
 										  <td>Price</td>
