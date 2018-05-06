@@ -42,8 +42,9 @@
 	<!-- Superfish -->
 	<script src="<?php blink('assets/pentagon/js/hoverIntent')?>"></script>
 	<script src="<?php blink('assets/pentagon/js/superfish')?>"></script>
-
 	<!-- Main JS -->
+	<script src="<?php blink('assets/js/jquery-3.3.1.js')?>" type="text/javascript"></script>
+	<script src="<?php blink('assets/js/jquery-ui.js')?>" type="text/javascript"></script>
 	<script src="<?php blink('assets/pentagon/js/main')?>"></script>
 
 
@@ -136,11 +137,24 @@
  
             });
         }
- 
 </script>
 <!-- END UPDATE STATUS -->
 
+<!-- ambil data search -->
+<script type="text/javascript">
+		$(document).ready(function(){
 
+		    $('#title').autocomplete({
+                source: "<?php blink('C_DaftarBarang/get_autocomplete');?>",
+     
+                select: function (event, ui) {
+                    $(this).val(ui.item.label);
+                    $("#form_search").submit(); 
+                }
+            });
 
+		});
+	</script>
+	<!-- akhir ambil data -->
 	</body>
 </html>
