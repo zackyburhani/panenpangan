@@ -40,11 +40,25 @@ class ModelDaftar extends CI_Model {
     return $result->result();
   }
 
+  public function getNm_Plg($username)
+  {
+    $result = $this->db->query("SELECT nm_plg from login where username ='".$username."'");
+    return $result->result();
+  }
+
   public function UpdateData($id,$data)
+  {
+    $this->db->where('username',$id);
+    $this->db->update('login',$data);
+  }
+
+  public function UpdatePelanggan($id,$data)
   {
     $this->db->where('username',$id);
     $this->db->update('pelanggan',$data);
   }
+
+  
 
 
 

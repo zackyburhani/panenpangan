@@ -37,6 +37,16 @@
           </div>
 
           <?php foreach($getAllPelanggan as $data) { ?>
+
+            <?php foreach($getNm_Plg as $data2) { ?>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Nama Lengkap</label>
+                  <div class="col-md-9">
+                      <input name="nm_plg" value="<?php echo $data2->nm_plg ?>" type="text" placeholder="Nama" class="form-control" style="margin-bottom: 20px">
+                  </div>
+              </div>
+              <?php } ?>
+
               <div class="form-group">
                 <label class="col-md-2 control-label">Nomor Telepon</label>
                   <div class="col-md-9">
@@ -85,6 +95,15 @@
               <input name="username" value="<?php echo $username  ?>" type="text" placeholder="Username" class="form-control" style="margin-bottom: 20px">
             </div>
           </div>
+
+               <?php foreach($getNm_Plg as $data2) { ?>
+                <div class="form-group">
+                  <label class="col-md-2 control-label">Nama Lengkap</label>
+                    <div class="col-md-9">
+                      <input name="nm_plg" value="<?php echo $data2->nm_plg ?>" type="text" placeholder="Nama" class="form-control" style="margin-bottom: 20px">
+                    </div>
+                </div>
+                <?php } ?>
 
                 <div class="form-group">
                   <label class="col-md-2 control-label">Nomor Telepon</label>

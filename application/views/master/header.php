@@ -139,10 +139,12 @@
 
 												<div class="row" style="margin-left: 20px; margin-right: 90px;">
 													<div class="col-md-12" style="margin-top:25px">
+														<?php foreach($getNm_Plg as $data){ ?>
 														<a  href="javascript:;" class="dropdown-toggle" style="margin-top :-20px;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-															<?php echo $nama ?>
+															<?php echo $data->nm_plg ?>
 														</a>
-														<ul class="dropdown-menu">
+														<?php } ?>
+														<ul class="dropdown-menu" style="margin-left: -100px">
 														<li class="external">
 															<!-- nampilin cart -->
 															<div class="col-md-4">

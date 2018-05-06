@@ -7,6 +7,7 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('BarangModel');
+		$this->load->model('ModelDaftar');
 		$this->load->helper('form');
 		$this->load->library('upload');
 	}
@@ -14,8 +15,11 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$nama = $this->session->nm_plg;
+		$username = $this->session->username;
 		$semuaKategori = $this->BarangModel->getAllKategori();
+		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$data = [
+			'getNm_Plg' => $getNm_Plg,
 			'dataKategori' => $semuaKategori,
 			'nama' => $nama
 		];
@@ -26,9 +30,10 @@ class Home extends CI_Controller {
 	}
 
 	public function daftar()
-	{
+	{	$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$nama = $this->session->nm_plg;
 		$data = [
+			'getNm_Plg' => $getNm_Plg,
 			'nama' => $nama
 		];
 		$this->load->view('master/header',$data);

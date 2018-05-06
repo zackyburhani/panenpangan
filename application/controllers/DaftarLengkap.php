@@ -13,10 +13,12 @@ class DaftarLengkap extends CI_Controller {
 		$nama = $this->session->nm_plg;
 		$username = $this->session->username;
 		$getAllPelanggan = $this->ModelDaftar->getAllPelanggan($username);
+		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$data = [
 			'nama' => $nama,
 			'username' => $username,
-			'getAllPelanggan' => $getAllPelanggan
+			'getAllPelanggan' => $getAllPelanggan,
+			'getNm_Plg' => $getNm_Plg
 		];
 		$this->load->view('master/header',$data);
    		$this->load->view('view_daftar_lengkap');
@@ -28,7 +30,7 @@ class DaftarLengkap extends CI_Controller {
 
     	$idplg = $this->ModelDaftar->getIdPlg();
 
-
+    	$nm_plg = $this->input->post('nm_plg');
 		$no_telp = $this->input->post('no_telp');
 		$alamat = $this->input->post('alamat');
 		$kodepos = $this->input->post('kodepos');
@@ -44,6 +46,9 @@ class DaftarLengkap extends CI_Controller {
 
 		$result = $this->ModelDaftar->InsertData($data);
 
+		$namaEntry['nm_plg'] = $nm_plg;
+		$result2 = $this->ModelDaftar->UpdateData($username,$namaEntry);
+
 		$data = NULL;
 		if ($result){
 			$this->session->set_flashdata('pesan','Data Berhasil Disimpan');
@@ -56,7 +61,7 @@ class DaftarLengkap extends CI_Controller {
 
   public function UpdateDataLengkap()
   {
-
+  		$nm_plg = $this->input->post('nm_plg');
 		$no_telp = $this->input->post('no_telp');
 		$alamat = $this->input->post('alamat');
 		$kodepos = $this->input->post('kodepos');
@@ -69,10 +74,16 @@ class DaftarLengkap extends CI_Controller {
 			'username' => $username,
 		);
 
-		$result = $this->ModelDaftar->UpdateData($username,$data);
+		$result = $this->ModelDaftar->UpdatePelanggan($username,$data);
+
+		$namaUpdate = [
+			'nm_plg' => $nm_plg
+		];
+
+		$result2 = $this->ModelDaftar->UpdateData($username,$namaUpdate);
 
 		$data = NULL;
-		if (!$result){
+		if (!$result && !$result2){
 			$this->session->set_flashdata('pesan','Data Berhasil Diupdate');
 			redirect('DaftarLengkap');
 		}else{
