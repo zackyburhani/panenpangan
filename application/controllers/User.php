@@ -111,6 +111,8 @@ class User extends CI_Controller {
 
         $qty = $this->input->post('qty');
 		$id_pesan = $this->input->post('id_pesan');
+
+		$harga = $harga*$qty;
 		
             $data = array(
                 'id_pesan'=> $id_pesan,
@@ -150,10 +152,14 @@ class User extends CI_Controller {
 	public function invoice(){
 
 		$nama = $this->session->nm_plg;
+		$username = $this->session->username;
 		$data['nama'] = $nama;
-		
+
+		$invoice = $this->UserModel->invoice($username);
+		$data['idpesan'] = $invoice;
+
 		$this->load->view('master/header',$data);
-        $this->load->view('view_bayar');
+        $this->load->view('view_bayar',$data);
         $this->load->view('master/footer');
 	}
 

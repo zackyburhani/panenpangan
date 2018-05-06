@@ -18,11 +18,11 @@ fh5co-content-section -->
 								<img src="<?php blink('assets/img/'.$data->gambar_barang.''); ?>" class="img-rounded" alt="Cinque Terre" style="width:100%; height:250px">
 								<div class="caption">
 								<h3 align="center"><?php echo $data->nm_brg; ?></h3>
-								<p align="center"><?php echo $data->harga; ?> /kg</p>
+								<p align="center"><?php echo number_format($data->harga); ?> /kg</p>
 								<input type="number" name="quantity" id="<?php echo $data->id_brg; ?>" value="1" class="quantity form-control">
 								<hr>
 								<p align="center">
-							<button class="add_cart btn btn-primary" data-produkid="<?php echo $data->id_brg;?>" data-produknama="<?php echo $data->nm_brg;?>" data-produkharga="<?php echo $data->harga;?>">Add To Cart</button>
+							<button class="add_cart btn btn-primary glyphicon glyphicon-shopping-cart" data-produkid="<?php echo $data->id_brg;?>" data-produknama="<?php echo $data->nm_brg;?>" data-produkharga="<?php echo $data->harga;?>">Add To Cart</button>
 							<a href="#modalform<?php echo $data->id_brg ?>" class="btn btn-primary" data-toggle="modal" role="button">Pesan</a></p>
 					 			</div>
 							</div>
