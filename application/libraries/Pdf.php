@@ -2,7 +2,7 @@
 class Pdf {
  
     function __construct() {
-        include_once APPPATH . '/PDF/fpdf.php';
+        include_once APPPATH . '/third_party/PDF/fpdf.php';
     }
 }
 ?>

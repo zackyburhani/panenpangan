@@ -35,4 +35,73 @@ Class Laporan extends CI_Controller{
         }
         $pdf->Output();
     }
+
+
+    public function bacaexcel()
+    {
+        $file = APPPATH.'wisudamhsw.xls';
+        $this->load->library('excel');
+     
+        $objPHPExcel = PHPExcel_IOFactory::load($file);
+     
+        // Ambil koleksi cell saja
+        $cell_collection = $objPHPExcel->getActiveSheet()->getCellCollection();
+     
+        // Copy ke array semua cell nya
+        $data = array();
+        foreach ($cell_collection as $cell) {
+     
+            $kolom = $objPHPExcel->getActiveSheet()->getCell($cell)->getColumn();
+            $baris = $objPHPExcel->getActiveSheet()->getCell($cell)->getRow();
+            $isi   = $objPHPExcel->getActiveSheet()->getCell($cell)->getValue();
+     
+            if ($baris == 1) {
+                $header[$kolom] = $isi;
+            } else if ($baris >= 1) {
+                $data[$baris][$kolom] = $isi;
+            }
+     
+        }
+     
+        // Untuk keperluan demo, saya tidak pakai view
+        print "<table border='1' cellpadding='5'>";
+        print "<tr>";
+        foreach ($header as $h) {
+            print "<td><b>$h</b></td>";
+        }
+        print "</tr>";
+        foreach($data as $bar) {
+            print "<tr>";
+            foreach ($bar as $kol) {
+                print "<td>$kol</td>";
+            }
+            print "</tr>";
+        }
+        print "</table>"; 
+    }
+
+    public function buatexcel()
+    {
+        $this->load->library('excel');
+        $this->excel->setActiveSheetIndex(0);
+        $this->excel->getActiveSheet()->setTitle('Worksheet1');
+        $this->excel->getActiveSheet()->setCellValue('A1', 'Halo CodeIgniter Indonesia');
+        $this->excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);
+        $this->excel->getActiveSheet()->getStyle('A1')->getFont()->setName("Calibri");
+        $this->excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(true);
+     
+        $filename='wisudawan23.xls'; 
+     
+        // Header file Excel
+        header('Content-Type: application/vnd.ms-excel'); 
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0'); 
+     
+        $objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');
+     
+        // Agar output didownload
+        $objWriter->save('php://output');
+    }
+
+
 }

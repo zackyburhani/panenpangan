@@ -1,4 +1,4 @@
-<section class="content-header">
+ <section class="content-header">
   <h1>
     Dashboard
     <small>Halaman Petani</small>
@@ -18,7 +18,7 @@
     <p><center><b><?php echo $this->session->flashdata('pesan') ?></b></center></p>
   </div>
 </div>
-</div>
+</div> 
 <?php } ?>
 
 <?php if($this->session->flashdata('pesanGagal') == TRUE ) { ?>
