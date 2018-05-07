@@ -65,19 +65,22 @@ class User extends CI_Controller {
 	}
 
 	function show_cart(){ //Fungsi untuk menampilkan Cart
+		$data['id_pesan'] = $this->UserModel->getKodePesan();
 		$output = '';
 		$no = 0;
 		
 	//	print_r($this->cart->contents()); die();
 		foreach ($this->cart->contents() as $items) {
 			$no++;
-			$output .='
+			$output .= 
+			'
 				<tr>
 					<td>'.$items['name'].'</td>
 					<td>'.number_format($items['price']).'</td>
 					<td>'.$items['qty'].'</td>
 					<td>'.number_format($items['subtotal']).'</td>
 					<td><button type="button" id="'.$items['rowid'].'" class="hapus_cart btn btn-danger btn-xs">Batal</button></td>
+					<td><button type="button" id="'.$items['rowid'].'" class="pesan_cart btn btn-success btn-xs">Pesan</button></td>
 				</tr>
 			';
 		}
@@ -95,6 +98,15 @@ class User extends CI_Controller {
 	}
 
 	function hapus_cart(){ //fungsi untuk menghapus item cart
+		$data = array(
+			'rowid' => $this->input->post('row_id'), 
+			'qty' => 0, 
+		);
+		$this->cart->update($data);
+		echo $this->show_cart();
+	}
+
+	function pesan_cart(){ //fungsi untuk memesan item via cart
 		$data = array(
 			'rowid' => $this->input->post('row_id'), 
 			'qty' => 0, 
@@ -137,7 +149,7 @@ class User extends CI_Controller {
         if($result && $result2){
                     echo "<script type='text/javascript'>
                     alert ('Sending Request !');
-                    window.location.replace('index');
+                    window.location.redirect('User/invoice');
                     </script>";
                     redirect('User/invoice');
         }else{
@@ -161,6 +173,61 @@ class User extends CI_Controller {
 		$this->load->view('master/header',$data);
         $this->load->view('view_bayar',$data);
         $this->load->view('master/footer');
+	}
+
+	public function bayar(){
+
+		$encrypted_id = md5("asasjbh");
+
+		$this->load->library('email');
+		$config = array();
+	    $config['charset'] = 'utf-8';
+	    $config['useragent'] = 'Codeigniter';
+	    $config['protocol']= "smtp";
+	    $config['mailtype']= "html";
+	    $config['smtp_host']= "ssl://smtp.gmail.com";
+	    $config['smtp_port']= "465";
+	    $config['smtp_timeout']= "400";
+	    $config['smtp_user']= "verifikasi802@gmail.com";
+	    $config['smtp_pass']= "admin123@"; 
+	    $config['crlf']="\r\n"; 
+	    $config['newline']="\r\n"; 
+	    $config['wordwrap'] = TRUE;
+
+	    $this->email->initialize($config);
+	    //konfigurasi pengiriman
+	    $this->email->from($config['smtp_user']);
+	    $this->email->to("lutvi04@gmail.com");
+	    $this->email->subject("Pemesanan Barang");
+	    $this->email->message(
+	     "Ada yang beli !!<br><br>".
+	      site_url('User/verification/'.$encrypted_id)
+	    );
+
+	    if($this->email->send())
+	    {
+	        echo "<script type='text/javascript'>
+                    alert ('Silahkan Lakukan Pembayaran !');
+                    window.location.replace('invoice');
+                    </script>";
+	    }else
+	    {
+	        echo "<script type='text/javascript'>
+                    alert ('Gagal Melakukan Permintaan Bayar !');
+                    window.location.replace('invoice');
+                    </script>";
+	    }
+	  
+	    echo "<br><br><a href='".site_url("Home")."'>Kembali ke Home</a>";
+	}
+
+	public function verification($key)
+	{
+		$this->load->helper('url');
+		$this->load->model('RestoranRegistModel');
+		$this->RestoranRegistModel->changeActiveState($key);
+		echo "Selamat kamu telah memverifikasi akun kamu";
+		echo "<br><br><a href='".site_url("Home")."'>Kembali ke Home</a>";
 	}
 
 }
