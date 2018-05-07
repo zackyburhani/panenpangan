@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 24, 2018 at 05:38 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Host: 127.0.0.1
+-- Generation Time: May 07, 2018 at 04:53 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -64,7 +64,13 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_brg`, `nm_brg`, `stok`, `harga`, `ongkir`, `rating`, `gambar_barang`, `deskripsi`, `id_kategori`) VALUES
-('BR001', 'Beras Merah', '3333', '2323.00', '232.00', '1', 'f0296ae400862ec1c9b42ab6dd2156ef.png', 'edit deskripsi barang', 'KT001');
+('BR001', 'kangkung', '12', '120000.00', '10000.00', '3', 'cf2365dc2a77653b2b21457c2afdf7e7.jpg', 'baru di petik boss', 'KT001'),
+('BR002', 'apel', '9', '400000.00', '17000.00', '5', 'bf15828729299da01e03ed74a8654e73.jpg', 'masih seger banget nih', 'KT002'),
+('BR003', 'beras raskin', '50', '500000.00', '30000.00', '4', '943a931c439c6556a00b84cc048c92b6.jpg', 'lumayan pulen kok', 'KT001'),
+('BR004', 'asdas', '1231', '123.00', '123.00', '1', 'e92559120bde703bd46259890f6a90e6.jpg', 'sdasdasd', 'KT001'),
+('BR005', 'sdfd', '134', '234.00', '23423.00', '1', '0cfea618cb5103fcb1a55df6fd605d46.jpg', 'dsfdf', 'KT001'),
+('BR006', 'efdf', '234', '234.00', '234234.00', '1', 'd90fd18a30c2a0bcc327b3602878806f.jpg', 'sdfdf', 'KT002'),
+('BR007', 'apel jawa', '19', '20000.00', '10000.00', '4', '34f9caff515d6d124b6b791f4e8759f1.jpg', 'baru metik', 'KT002');
 
 -- --------------------------------------------------------
 
@@ -89,8 +95,22 @@ CREATE TABLE `detil_pesan` (
   `qty` int(11) NOT NULL,
   `harga_total` decimal(10,2) NOT NULL,
   `poin` decimal(10,2) NOT NULL,
-  `status` enum('Dalam Perjalanan','Selesai') NOT NULL
+  `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detil_pesan`
+--
+
+INSERT INTO `detil_pesan` (`id_pesan`, `id_brg`, `qty`, `harga_total`, `poin`, `status`) VALUES
+('PS001', 'BR006', 1, '234.00', '0.00', 'Dalam Perjalanan'),
+('PS002', 'BR007', 4, '80000.00', '0.00', 'Dalam Perjalanan'),
+('PS003', 'BR007', 1, '20000.00', '0.00', 'Dalam Perjalanan'),
+('PS004', 'BR004', 1, '123.00', '0.00', 'Dalam Perjalanan'),
+('PS005', 'BR003', 5, '2500000.00', '0.00', 'Dalam Perjalanan'),
+('PS006', 'BR007', 3, '60000.00', '0.00', 'Dalam Perjalanan'),
+('PS007', 'BR003', 3, '1500000.00', '0.00', 'Dalam Perjalanan'),
+('PS008', 'BR007', 4, '80000.00', '0.00', 'Dalam Perjalanan');
 
 -- --------------------------------------------------------
 
@@ -109,10 +129,9 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nm_kategori`, `gambar_kategori`) VALUES
-('KT001', 'Beras', '977f874699d5acfd95c93497f0e26f0a.jpg'),
-('KT002', 'Sayuran', '3d6d9d36b3b40792f0b52a3012bd8c1e.jpg'),
-('KT003', 'Buah-buahan', 'b78cb5bf1d08ebb84d6b15e8e6153a1c.jpg'),
-('KT004', 'Rempah-rempah', '1beafee80fc0b8f649d80c37ae8da624.jpeg');
+('KT001', 'Sayuran', '7da8e4b95b78a4d9acd493a5fb8bfd4d.jpg'),
+('KT002', 'buah-buahan', 'f03326f14bbe66c241b7af10d4c2a611.jpg'),
+('KT003', 'beras', '84afbe4dd43ed7690b9a2b6f1fec9c0f.jpg');
 
 -- --------------------------------------------------------
 
@@ -126,6 +145,14 @@ CREATE TABLE `login` (
   `email` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`username`, `nm_plg`, `email`, `password`) VALUES
+('lutviarfi', 'lutvi', 'lutvi04@gmail.com', '21232f297a57a5a743894a0e4a801fc3'),
+('paijo', 'paijo', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------
 
@@ -153,6 +180,20 @@ CREATE TABLE `pesan` (
   `username` varchar(20) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pesan`
+--
+
+INSERT INTO `pesan` (`id_pesan`, `tgl_pesan`, `username`) VALUES
+('PS001', '2018-05-06', 'lutviarfi'),
+('PS002', '2018-05-06', 'lutviarfi'),
+('PS003', '2018-05-06', 'lutviarfi'),
+('PS004', '2018-05-06', 'lutviarfi'),
+('PS005', '2018-05-06', 'lutviarfi'),
+('PS006', '2018-05-06', 'lutviarfi'),
+('PS007', '2018-05-06', 'paijo'),
+('PS008', '2018-05-07', 'lutviarfi');
+
 -- --------------------------------------------------------
 
 --
@@ -172,9 +213,7 @@ CREATE TABLE `petani` (
 --
 
 INSERT INTO `petani` (`id_petani`, `nm_petani`, `tgl_lahir`, `alamat`, `no_telp`) VALUES
-('PT001', 'Zacky burhani H', '2018-04-02', 'Jakarta', '083817774827'),
-('PT002', 'Sisca Agdinsa Ramadhan', '2018-04-10', 'Tangerang', '083817774827'),
-('PT003', 'Aldis Fakhri ', '2018-04-10', 'Pamulang', '083891882911');
+('PT001', 'aldis', '2020-06-01', 'jakarta', '08976543');
 
 --
 -- Indexes for dumped tables
@@ -198,7 +237,7 @@ ALTER TABLE `detil_barang`
 -- Indexes for table `detil_pesan`
 --
 ALTER TABLE `detil_pesan`
-  ADD KEY `id_pesan` (`id_pesan`),
+  ADD PRIMARY KEY (`id_pesan`),
   ADD KEY `id_brg` (`id_brg`);
 
 --
@@ -254,7 +293,6 @@ ALTER TABLE `detil_barang`
 -- Constraints for table `detil_pesan`
 --
 ALTER TABLE `detil_pesan`
-  ADD CONSTRAINT `detil_pesan_ibfk_1` FOREIGN KEY (`id_pesan`) REFERENCES `pesan` (`id_pesan`),
   ADD CONSTRAINT `detil_pesan_ibfk_2` FOREIGN KEY (`id_brg`) REFERENCES `barang` (`id_brg`);
 
 --
