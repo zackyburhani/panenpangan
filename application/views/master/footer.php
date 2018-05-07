@@ -12,7 +12,7 @@
 											dan kualitas bahan-bahan yang terjamin mutunya.
 										</p>
 		    						</div>
-								</div>
+						</div>
 
 								<div class="col-md-6 pull-right">
 								    <h3 style="color: white; margin-left: 250px">Contact Us</h3>
@@ -43,13 +43,14 @@
 	<script src="<?php blink('assets/pentagon/js/hoverIntent')?>"></script>
 	<script src="<?php blink('assets/pentagon/js/superfish')?>"></script>
 	<!-- Main JS -->
+	<script src="<?php blink('assets/pentagon/js/main')?>"></script>
+	<!-- searching js -->
 	<script src="<?php blink('assets/js/jquery-3.3.1.js')?>" type="text/javascript"></script>
 	<script src="<?php blink('assets/js/jquery-ui.js')?>" type="text/javascript"></script>
-	<script src="<?php blink('assets/pentagon/js/main')?>"></script>
-
+	
 
 	<!-- java cart -->
-<script type="text/javascript">
+	<script type="text/javascript">
 	$(document).ready(function(){
 		$('.add_cart').click(function(){
 			var id_brg  = $(this).data("produkid");
