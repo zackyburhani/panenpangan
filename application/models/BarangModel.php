@@ -115,4 +115,14 @@ class BarangModel extends CI_Model {
 	}
 
 ////////////////////END-BARANG////////////////////////
+
+/////////// searching//////////////////////
+function search_blog($title){
+	$this->db->like('nm_brg', $title , 'both');
+	$this->db->order_by('id_brg', 'ASC');
+	$this->db->limit(10);
+	return $this->db->get('barang')->result();
+}
+	/////////akhir searching///////////////////
+
 }

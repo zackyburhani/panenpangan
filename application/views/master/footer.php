@@ -12,7 +12,7 @@
 											dan kualitas bahan-bahan yang terjamin mutunya.
 										</p>
 		    						</div>
-								</div>
+						</div>
 
 								<div class="col-md-6 pull-right">
 								    <h3 style="color: white; margin-left: 250px">Contact Us</h3>
@@ -42,13 +42,15 @@
 	<!-- Superfish -->
 	<script src="<?php blink('assets/pentagon/js/hoverIntent')?>"></script>
 	<script src="<?php blink('assets/pentagon/js/superfish')?>"></script>
-
 	<!-- Main JS -->
 	<script src="<?php blink('assets/pentagon/js/main')?>"></script>
-
+	<!-- searching js -->
+	<script src="<?php blink('assets/js/jquery-3.3.1.js')?>" type="text/javascript"></script>
+	<script src="<?php blink('assets/js/jquery-ui.js')?>" type="text/javascript"></script>
+	
 
 	<!-- java cart -->
-<script type="text/javascript">
+	<script type="text/javascript">
 	$(document).ready(function(){
 		$('.add_cart').click(function(){
 			var id_brg  = $(this).data("produkid");
@@ -84,7 +86,6 @@
 </script>
 <!-- akhir java cart -->
 
-
 <!-- Alert -->
 <script> 
     window.setTimeout(function() {
@@ -94,5 +95,21 @@
 </script>
 <!-- end Alert -->
 
+
+<!-- ambil data search -->
+<script type="text/javascript">
+		$(document).ready(function(){
+
+		    $('#title').autocomplete({
+                source: "<?php blink('C_DaftarBarang/get_autocomplete');?>",
+     
+                select: function (event, ui) {
+                    $(this).val(ui.item.label);
+                    $("#form_search").submit(); 
+                }
+            });
+		});
+	</script>
+	<!-- akhir ambil data -->
 	</body>
 </html>

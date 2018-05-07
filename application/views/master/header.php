@@ -41,6 +41,8 @@
 	<link rel="stylesheet" href="<?php blink('assets/pentagon/css/superfish.css')?>">
 
 	<link rel="stylesheet" href="<?php blink('assets/pentagon/css/style.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url().'assets/css/bootstrap.css'?>">
+	<link rel="stylesheet" href="<?php echo base_url().'assets/css/jquery-ui.css'?>">
 
 	<link rel="stylesheet" href="<?php blink('assets/AdminLTE/bower_components/font-awesome/css/font-awesome.min.css')?>">
 
@@ -79,9 +81,9 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-6 col-lg-offset-2" style="margin-top:20px">
-								<form class="search" action="extra_search.html" method="GET">
+								<form id="form_search" action="<?php blink('C_DaftarBarang/search');?>" method="GET">
 									<div class="input-group">
-								      <input type="name" class="form-control" name="search" placeholder="Search...">
+								      <input type="text" class="form-control" name="title" id="title" placeholder="Search...">
 								      <span class="input-group-btn">
 								        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
 								      </span>
@@ -127,7 +129,7 @@
 
 												<div class="row">
 													<div class="col-md-5" style="margin-top:25px">
-														<a class="btn btn-sm btn-success" name="button" href="<?php blink('Login')  ?>" data-target="#login""><i class="fa fa-sign-in"></i> LOGIN</a>
+														<a class="btn btn-sm btn-success" name="button" href="<?php blink('Login')  ?>" data-target="#login"><i class="fa fa-sign-in"></i> LOGIN</a>
 													</div>
 													<div class="col-md-5" style="margin-top:25px">
 														<a href="<?php blink('Home/daftar') ?>">
@@ -142,6 +144,7 @@
 														<?php foreach($getNm_Plg as $data){ ?>
 														<a  href="javascript:;" class="dropdown-toggle" style="margin-top :-20px;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 															<?php echo $data->nm_plg ?>
+
 														</a>
 														<?php } ?>
 														<ul class="dropdown-menu" style="margin-left: -100px">
@@ -190,5 +193,7 @@
 	        	</div><!--/.nav-collapse -->
 	      	</div>
 	  	</div>
+		  <!-- javascript search -->
+ <!-- akhir search -->
 	</nav>
 </header>
