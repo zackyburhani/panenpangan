@@ -76,10 +76,12 @@ class UserModel extends CI_Model {
 
 	public function invoice($username){
 
-		$result = $this->db->query("SELECT * FROM pesan,detil_pesan,barang 
+		$result = $this->db->query("SELECT * FROM login,pesan,detil_pesan,barang,pelanggan 
 		WHERE pesan.id_pesan = detil_pesan.id_pesan 
+		and pelanggan.username = pesan.username
+		and login.username = pelanggan.username
 		and barang.id_brg = detil_pesan.id_brg 
-		and pesan.username ='".$username."'");
+		and pesan.username ='".$username."' and status_bayar = 'Belum Bayar'");
 		return $result->result();
   
 	}
