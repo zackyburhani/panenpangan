@@ -13,6 +13,12 @@ class ModelAdmin extends CI_Model {
  	   $result = $this->db->where('UPPER(username)', strtoupper($username))->where('password',$password)->limit(1)->get('admin');
 		return $result->row();
 	}
+
+	public function getAllLogin($id)
+  	{
+		$result = $this->db->query("SELECT * FROM admin where status_admin= '".$id."'");
+		return $result->result();
+	}
 //////////////////LOGIN////////////////////////////////////////
 
 

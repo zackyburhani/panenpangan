@@ -15,7 +15,8 @@ class Admin extends CI_Controller {
 	public function index()
 	{
 		$username = $this->session->username;
-		if($username == null)
+		$status_admin = $this->ModelAdmin->getAllLogin(1);
+		if($username == null && $status_admin != null)
 		{
 			redirect('Admin/login');
 		} else {

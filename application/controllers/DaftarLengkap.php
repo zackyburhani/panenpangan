@@ -28,9 +28,9 @@ class DaftarLengkap extends CI_Controller {
   public function DataLengkap()
   {
 
-    	$idplg = $this->ModelDaftar->getIdPlg();
+	    $idplg = $this->ModelDaftar->getIdPlg();
 
-    	$nm_plg = $this->input->post('nm_plg');
+	    $nm_plg = $this->input->post('nm_plg');
 		$no_telp = $this->input->post('no_telp');
 		$alamat = $this->input->post('alamat');
 		$kodepos = $this->input->post('kodepos');
@@ -41,11 +41,10 @@ class DaftarLengkap extends CI_Controller {
 			'alamat'=>$alamat,
 			'kodepos' => $kodepos,
 			'username' => $username,
-      		'id_plg' => $idplg
+	      	'id_plg' => $idplg
 		);
 
 		$result = $this->ModelDaftar->InsertData($data);
-
 		$namaEntry['nm_plg'] = $nm_plg;
 		$result2 = $this->ModelDaftar->UpdateData($username,$namaEntry);
 

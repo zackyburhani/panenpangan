@@ -30,7 +30,9 @@ class Home extends CI_Controller {
 	}
 
 	public function daftar()
-	{	$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
+	{	
+		$username = $this->session->username;
+		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$nama = $this->session->nm_plg;
 		$data = [
 			'getNm_Plg' => $getNm_Plg,

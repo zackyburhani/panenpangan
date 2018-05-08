@@ -43,10 +43,11 @@ class Login extends CI_Controller {
 		}else{
 			$newdata = array(
 				'username'  => $checkUsername->username,
-				'nm_plg'  => $checkUsername->nm_plg,
+				'nm_plg'  => $checkUsername->nm_plg
 			  );
 			//set seassion
 			$this->session->set_userdata($newdata);
+			$this->session->set_userdata('status_admin','status_admin');
 			redirect('admin');
 		}
 	}
@@ -68,7 +69,7 @@ class Login extends CI_Controller {
 		if($checkUsername==NULL){
 
 			echo "<script type='text/javascript'>
-               alert ('Maaf Username Dan Password Anda Salah !');
+               alert ('Maaf Email Dan Password Anda Salah !');
                window.location.replace('index');
       			</script>";
 

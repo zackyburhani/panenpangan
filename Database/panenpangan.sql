@@ -2,17 +2,11 @@
 -- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
-<<<<<<< HEAD
+
 -- Host: localhost
 -- Generation Time: May 05, 2018 at 05:38 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
-=======
--- Host: 127.0.0.1
--- Generation Time: May 07, 2018 at 04:53 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.4
->>>>>>> 1736e9a53c6c06806abadd9de2c246052a661ed9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,6 +22,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `panenpangan`
 --
+
+CREATE DATABASE panenpangan;
 
 -- --------------------------------------------------------
 
@@ -102,23 +98,14 @@ CREATE TABLE `detil_pesan` (
   `qty` int(11) NOT NULL,
   `harga_total` decimal(10,2) NOT NULL,
   `poin` decimal(10,2) NOT NULL,
-<<<<<<< HEAD
   `status` enum('Dalam Perjalanan','Selesai') NOT NULL,
   `status_bayar` varchar(20) NOT NULL
-=======
-  `status` varchar(50) NOT NULL
->>>>>>> 1736e9a53c6c06806abadd9de2c246052a661ed9
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `detil_pesan`
 --
 
-<<<<<<< HEAD
 INSERT INTO `detil_pesan` (`id_pesan`, `id_brg`, `qty`, `harga_total`, `poin`, `status`, `status_bayar`) VALUES
-('PS001', 'BR001', 23, '20000.00', '12.00', 'Selesai', '');
-=======
-INSERT INTO `detil_pesan` (`id_pesan`, `id_brg`, `qty`, `harga_total`, `poin`, `status`) VALUES
 ('PS001', 'BR006', 1, '234.00', '0.00', 'Dalam Perjalanan'),
 ('PS002', 'BR007', 4, '80000.00', '0.00', 'Dalam Perjalanan'),
 ('PS003', 'BR007', 1, '20000.00', '0.00', 'Dalam Perjalanan'),
@@ -127,7 +114,6 @@ INSERT INTO `detil_pesan` (`id_pesan`, `id_brg`, `qty`, `harga_total`, `poin`, `
 ('PS006', 'BR007', 3, '60000.00', '0.00', 'Dalam Perjalanan'),
 ('PS007', 'BR003', 3, '1500000.00', '0.00', 'Dalam Perjalanan'),
 ('PS008', 'BR007', 4, '80000.00', '0.00', 'Dalam Perjalanan');
->>>>>>> 1736e9a53c6c06806abadd9de2c246052a661ed9
 
 -- --------------------------------------------------------
 
@@ -169,11 +155,9 @@ CREATE TABLE `login` (
 
 INSERT INTO `login` (`username`, `nm_plg`, `email`, `password`) VALUES
 <<<<<<< HEAD
-('zackyburhani', 'Zacky Burhani', 'zackyburhani99@gmail.com', '202cb962ac59075b964b07152d234b70');
-=======
+('zackyburhani', 'Zacky Burhani', 'zackyburhani99@gmail.com', '202cb962ac59075b964b07152d234b70'),
 ('lutviarfi', 'lutvi', 'lutvi04@gmail.com', '21232f297a57a5a743894a0e4a801fc3'),
 ('paijo', 'paijo', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3');
->>>>>>> 1736e9a53c6c06806abadd9de2c246052a661ed9
 
 -- --------------------------------------------------------
 
@@ -206,19 +190,17 @@ CREATE TABLE `pesan` (
 --
 
 INSERT INTO `pesan` (`id_pesan`, `tgl_pesan`, `username`) VALUES
-<<<<<<< HEAD
+
 ('PS001', '2018-05-01', 'zackyburhani'),
 ('PS002', '2018-05-09', 'zackyburhani');
-=======
-('PS001', '2018-05-06', 'lutviarfi'),
-('PS002', '2018-05-06', 'lutviarfi'),
 ('PS003', '2018-05-06', 'lutviarfi'),
 ('PS004', '2018-05-06', 'lutviarfi'),
 ('PS005', '2018-05-06', 'lutviarfi'),
 ('PS006', '2018-05-06', 'lutviarfi'),
-('PS007', '2018-05-06', 'paijo'),
-('PS008', '2018-05-07', 'lutviarfi');
->>>>>>> 1736e9a53c6c06806abadd9de2c246052a661ed9
+('PS007', '2018-05-06', 'lutviarfi'),
+('PS008', '2018-05-06', 'lutviarfi'),
+('PS009', '2018-05-06', 'paijo'),
+('PS010', '2018-05-07', 'lutviarfi');
 
 -- --------------------------------------------------------
 

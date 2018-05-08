@@ -14,6 +14,7 @@ class Tracking extends CI_Controller {
 
 	public function index()
 	{
+		$username = $this->session->username;
 		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$nama = $this->session->nm_plg;
 		$data = [
@@ -77,10 +78,13 @@ class Tracking extends CI_Controller {
 			'status' => $status
 		];
 
+		$username = $this->session->username;
+		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$result = $this->M_Customer->status($konfirmasi,$update);
 		$cari = $this->M_Customer->getTracking($konfirmasi);
 
 		$data = [
+			'getNm_Plg' => $getNm_Plg,
 			'nama'=> $nama,
 			'id_transaksi' => $cari,
 		];

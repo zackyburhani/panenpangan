@@ -17,6 +17,14 @@ class ModelDaftar extends CI_Model {
 		return $checkinsert;
   }
 
+  function get_id($username)
+  {
+    $this->db->where('login', $username);
+    $this->db->select("*");
+    $this->db->from("username");
+    return $this->db->get();
+  }
+
   public function getIdPlg()
   {
     $q = $this->db->query("select MAX(RIGHT(id_plg,3)) as kd_max from pelanggan");
@@ -58,8 +66,10 @@ class ModelDaftar extends CI_Model {
     $this->db->update('pelanggan',$data);
   }
 
-  
-
-
+  public function getReport($username,$id_pesan)
+  {
+    $result = $this->db->query("SELECT * FROM pesan,detil_pesan,login,barang,pelanggan WHERE barang.id_brg = detil_pesan.id_brg and pelanggan.username = login.username and pesan.id_pesan = detil_pesan.id_pesan AND login.username = '".$username."' and detil_pesan.id_pesan ='".$id_pesan."'");
+    return $result->result();
+  }
 
 }

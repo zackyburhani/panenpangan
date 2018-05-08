@@ -8,6 +8,7 @@ class C_DaftarBarang extends CI_Controller {
 		$this->load->helper('url');
         $this->load->model('BarangModel');
 		$this->load->model('UserModel');
+		$this->load->model('ModelDaftar');
 		$this->load->helper('form');
 		$this->load->library('upload');
 		error_reporting(0);
@@ -19,9 +20,12 @@ class C_DaftarBarang extends CI_Controller {
 		$getBarang = $this->BarangModel->getBarang();
 		$semuaBarang = $this->BarangModel->getAllBarang();
 		$semuaKategori = $this->BarangModel->getAllKategori();
+		$username = $this->session->username;
+		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$data['getBarang'] = $getBarang;
 		$data['dataKategori'] = $semuaKategori;
 		$data['dataBarang'] = $semuaBarang;
+		$data['getNm_Plg'] = $getNm_Plg;
 		$data['id_brg'] = $this->BarangModel->getKodeBarang();
 
         $this->load->view('master/header');
@@ -33,11 +37,14 @@ class C_DaftarBarang extends CI_Controller {
     public function sort($id)
     {
     	$nama = $this->session->nm_plg;
+    	$username = $this->session->username;
+		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 
 		$semuaKategori = $this->BarangModel->getAllKategori();
 		$data['dataKategori'] = $semuaKategori;
 		$data['dataBarang'] = $this->BarangModel->getSort($id);
         $data['nama'] = $nama;
+        $data['getNm_Plg'] = $getNm_Plg;
         $data['id_pesan'] = $this->UserModel->getKodePesan();
 
         $this->load->view('master/header',$data);

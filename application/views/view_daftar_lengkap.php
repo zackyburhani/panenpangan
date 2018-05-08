@@ -44,6 +44,7 @@
                   <div class="col-md-9">
                       <input name="nm_plg" value="<?php echo $data2->nm_plg ?>" type="text" placeholder="Nama" class="form-control" style="margin-bottom: 20px">
                   </div>
+                  <?php echo form_error('nm_plg'); ?>
               </div>
               <?php } ?>
 
@@ -52,6 +53,7 @@
                   <div class="col-md-9">
                       <input name="no_telp" type="text" value="<?php echo $data->no_telp ?> " placeholder="Nomor Telepon" class="form-control" style="margin-bottom: 20px">
                   </div>
+                  <?php echo form_error('no_telp'); ?>
               </div>
 
                 <div class="form-group">
@@ -59,6 +61,7 @@
                     <div class="col-md-9">
                       <textarea name="alamat" type="text" placeholder="" class="form-control" style="margin-bottom: 20px"><?php echo $data->alamat ?></textarea>
                     </div>
+                    <?php echo form_error('alamat'); ?>
                   </div>
 
                 <div class="form-group">
@@ -101,6 +104,7 @@
                   <label class="col-md-2 control-label">Nama Lengkap</label>
                     <div class="col-md-9">
                       <input name="nm_plg" value="<?php echo $data2->nm_plg ?>" type="text" placeholder="Nama" class="form-control" style="margin-bottom: 20px">
+                      <?php echo form_error('nm_plg'); ?>
                     </div>
                 </div>
                 <?php } ?>
@@ -109,13 +113,14 @@
                   <label class="col-md-2 control-label">Nomor Telepon</label>
                     <div class="col-md-9">
                         <input name="no_telp" type="text" placeholder="Nomor Telepon" class="form-control" style="margin-bottom: 20px">
+                        <?php echo form_error('no_telp'); ?>
                     </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-md-2 control-label">Alamat</label>
                     <div class="col-md-9">
-                      <textarea name="alamat" type="text" placeholder="Alamat" class="form-control" style="margin-bottom: 20px"></textarea>
+                      <textarea name="alamat" type="text" placeholder="Alamat" class="form-control" style="margin-bottom: 20px"></textarea><?php echo form_error('alamat'); ?>
                     </div>
                   </div>
 

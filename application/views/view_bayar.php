@@ -29,7 +29,7 @@
 													<td> &nbsp;: Rp. <?php echo number_format($total)?></td>
 												</tr>
 													<td><br><center><a href="#" class="btn btn-sm btn-success glyphicon glyphicon-gift ">Bayar</a>
-													<a href="#" class="btn btn-sm btn-info glyphicon glyphicon-save-file ">Cetak</a>
+													<a href="<?php echo site_url('Laporan/cetak/'.$data->id_pesan) ?>" class="btn btn-sm btn-info glyphicon glyphicon-save-file ">Cetak</a>
 													</center></td>
 											</table>
 										</center></td>
