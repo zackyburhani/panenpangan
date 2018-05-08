@@ -47,6 +47,14 @@
 	<!-- searching js -->
 	<script src="<?php blink('assets/js/jquery-3.3.1.js')?>" type="text/javascript"></script>
 	<script src="<?php blink('assets/js/jquery-ui.js')?>" type="text/javascript"></script>
+
+	<!-- DataTables JavaScript -->
+<script src="<?php blink('/assets/AdminLTE/plugins/datatables/jquery.dataTables.min.js')?>"></script>
+<script src="<?php blink('/assets/AdminLTE/plugins/datatables/dataTables.bootstrap.min.js')?>"></script>
+<!-- Select2 -->
+<script src="<?php blink('/assets/AdminLTE/plugins/select2/select2.full.min.js')?>"></script>
+<!--END script PLUGINS-->
+<script src="<?php blink('/assets/AdminLTE/plugins/datatables/dataTables.bootstrap.js')?>"></script>
 	
 
 	<!-- java cart -->
@@ -96,6 +104,12 @@
 <!-- end Alert -->
 
 
+<script type="text/javascript">
+$(document).ready( function () {
+    $('#tableHistory').DataTable();
+} );
+</script>
+
 <!-- ambil data search -->
 <script type="text/javascript">
 		$(document).ready(function(){
@@ -113,3 +127,4 @@
 	<!-- akhir ambil data -->
 	</body>
 </html>
+

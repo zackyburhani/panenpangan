@@ -87,5 +87,17 @@ class M_Customer extends CI_Model {
       $this->db->update('detil_pesan',$data);
     }
 
+    public function history($username){
+
+      $result = $this->db->query("SELECT * FROM login,pesan,detil_pesan,barang,pelanggan 
+      WHERE pesan.id_pesan = detil_pesan.id_pesan 
+      and pelanggan.username = pesan.username
+      and login.username = pelanggan.username
+      and barang.id_brg = detil_pesan.id_brg 
+      and pesan.username ='".$username."' and status_bayar = 'Lunas'");
+      return $result->result();
+    
+  }
+
 
 }

@@ -46,6 +46,13 @@
 
 	<link rel="stylesheet" href="<?php blink('assets/AdminLTE/bower_components/font-awesome/css/font-awesome.min.css')?>">
 
+	<!-- Datatables -->
+  <link rel="stylesheet" href="<?php blink('assets/AdminLTE/plugins/datatables/dataTables.bootstrap.css')?>">
+  <link rel="stylesheet" href="<?php blink('assets/AdminLTE/plugins/datatables/dataTables.bootstrap.min.css')?>">
+  <link rel="stylesheet" href="<?php blink('assets/AdminLTE/plugins/datatables/jquery.dataTables.css')?>">
+  <link rel="stylesheet" href="<?php blink('assets/AdminLTE/plugins/datatables/jquery.dataTables.min.css')?>">
+  <!--END PLUGINS-->
+
 
 	<!-- Modernizr JS -->
 	<script src="<?php  blink('assets/pentagon/js/modernizr-2.6.2.min')?>"></script>

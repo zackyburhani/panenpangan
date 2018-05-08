@@ -94,4 +94,8 @@ class Tracking extends CI_Controller {
 		$this->load->view('master/footer');
 	}
 
+
+
+
+
 }
