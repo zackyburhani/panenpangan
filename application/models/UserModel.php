@@ -85,4 +85,18 @@ class UserModel extends CI_Model {
   
 	}
 	///////////////akhir invoice/////////////////////
+
+   ////////////////update bayar///////////////////////
+	// function changeActiveState($key)
+	// {
+	// 	$this->load->database();
+	//  	$data = array(
+	// 		'status_bayar'=>"LUNAS"
+	//  	);
+
+	// 	$this->db->where('md5(username)', $key);
+	// 	$this->db->update('detil_pesan', $data);
+
+	// 	return true;
+	// }
 }

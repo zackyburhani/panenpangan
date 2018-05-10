@@ -251,8 +251,8 @@ class User extends CI_Controller {
 	public function verification($key)
 	{
 		$this->load->helper('url');
-		$this->load->model('RestoranRegistModel');
-		$this->RestoranRegistModel->changeActiveState($key);
+		$this->load->model('UserModel');
+		$this->UserModel->changeActiveState($key);
 		echo "Barang sudah di bayar";
 		echo "<br><br><a href='".site_url("Tracking")."'>Silahkan cek di tracking</a>";
 	}
