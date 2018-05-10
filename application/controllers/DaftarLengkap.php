@@ -11,6 +11,7 @@ class DaftarLengkap extends CI_Controller {
   public function index()
 	{
 		$nama = $this->session->nm_plg;
+		$data['id_pesan'] = $this->UserModel->getKodePesan();
 		$username = $this->session->username;
 		$data = [
 			'nama' => $nama,

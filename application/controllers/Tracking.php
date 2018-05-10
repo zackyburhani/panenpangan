@@ -7,6 +7,7 @@ class Tracking extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('M_Customer');
+		$this->load->model('UserModel');
 		$this->load->helper('form');
 		$this->load->library('upload');
 	}
@@ -14,7 +15,9 @@ class Tracking extends CI_Controller {
 	public function index()
 	{
 		$nama = $this->session->nm_plg;
+		$pesan = $this->UserModel->getKodePesan();
 		$data = [
+			'id_pesan' => $pesan,
 			'nama' => $nama
 		];
 
@@ -33,9 +36,11 @@ class Tracking extends CI_Controller {
 	public function cari()
 	{
 		$nama = $this->session->nm_plg;
+		$pesan = $this->UserModel->getKodePesan();
 		$id_transaksi = $this->input->post('no_transaksi');
 		$cari = $this->M_Customer->getTracking($id_transaksi);
 		$data = [
+			'id_pesan' => $pesan,
 			'nama' => $nama,
 			'id_transaksi' => $cari
 		];

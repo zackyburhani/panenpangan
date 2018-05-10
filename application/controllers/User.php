@@ -60,12 +60,13 @@ class User extends CI_Controller {
 			'price' => $this->input->post('harga'), 
 			'qty' => $this->input->post('quantity'), 
 		);
+
 		$this->cart->insert($data);
 		echo $this->show_cart(); //tampilkan cart setelah added
 	}
 
 	function show_cart(){ //Fungsi untuk menampilkan Cart
-		$data['id_pesan'] = $this->UserModel->getKodePesan();
+
 		$output = '';
 		$no = 0;
 		
@@ -75,12 +76,12 @@ class User extends CI_Controller {
 			$output .= 
 			'
 				<tr>
+		
 					<td>'.$items['name'].'</td>
 					<td>'.number_format($items['price']).'</td>
 					<td>'.$items['qty'].'</td>
 					<td>'.number_format($items['subtotal']).'</td>
 					<td><button type="button" id="'.$items['rowid'].'" class="hapus_cart btn btn-danger btn-xs">Batal</button></td>
-					<td><button type="button" id="'.$items['rowid'].'" class="pesan_cart btn btn-success btn-xs">Pesan</button></td>
 				</tr>
 			';
 		}
@@ -107,12 +108,37 @@ class User extends CI_Controller {
 	}
 
 	function pesan_cart(){ //fungsi untuk memesan item via cart
-		$data = array(
-			'rowid' => $this->input->post('row_id'), 
-			'qty' => 0, 
-		);
-		$this->cart->update($data);
-		echo $this->show_cart();
+		
+		$id_pesan = $this->input->post('id_pesan');
+		
+		$cart = $this->cart->contents();
+		foreach($cart as $item){
+		
+			$id_pesan++;
+		$nama = $this->session->username;
+     	$tgl=date('Y-m-d');
+
+		  $data = array(
+			'id_pesan'=> $id_pesan,
+			'id_brg' => $item['id'],
+			'qty' => $item['qty'],
+			'harga_total' => $item['subtotal'],
+			'poin' => 0,
+            'status' => "Dalam Perjalanan"
+		  );
+		  $result = $this->UserModel->detilpesan($data);
+
+		  $data = array(
+			'id_pesan'=> $id_pesan,
+			'tgl_pesan' => $tgl,
+			'username' => $nama
+			);        
+	
+		 $result2 = $this->UserModel->pesan($data);
+
+		}
+	  $this->cart->destroy();
+	  redirect('User/invoice');
 	}
 
 	/////////////////////pesan barang///////////////////////////////////
@@ -166,6 +192,7 @@ class User extends CI_Controller {
 		$nama = $this->session->nm_plg;
 		$username = $this->session->username;
 		$data['nama'] = $nama;
+		$data['id_pesan'] = $this->UserModel->getKodePesan();
 
 		$invoice = $this->UserModel->invoice($username);
 		$data['idpesan'] = $invoice;
@@ -226,8 +253,8 @@ class User extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('RestoranRegistModel');
 		$this->RestoranRegistModel->changeActiveState($key);
-		echo "Selamat kamu telah memverifikasi akun kamu";
-		echo "<br><br><a href='".site_url("Home")."'>Kembali ke Home</a>";
+		echo "Barang sudah di bayar";
+		echo "<br><br><a href='".site_url("Tracking")."'>Silahkan cek di tracking</a>";
 	}
 
 }

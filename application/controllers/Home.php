@@ -9,13 +9,17 @@ class Home extends CI_Controller {
 		$this->load->model('BarangModel');
 		$this->load->helper('form');
 		$this->load->library('upload');
+		$this->load->model('UserModel');
 	}
 
 	public function index()
 	{
 		$nama = $this->session->nm_plg;
+		
+		 $kdpesan = $this->UserModel->getKodePesan();
 		$semuaKategori = $this->BarangModel->getAllKategori();
 		$data = [
+			'id_pesan' => $kdpesan,
 			'dataKategori' => $semuaKategori,
 			'nama' => $nama
 		];
@@ -27,8 +31,10 @@ class Home extends CI_Controller {
 
 	public function daftar()
 	{
+		$kdpesan = $this->UserModel->getKodePesan();
 		$nama = $this->session->nm_plg;
 		$data = [
+			'id_pesan' => $kdpesan,
 			'nama' => $nama
 		];
 		$this->load->view('master/header',$data);

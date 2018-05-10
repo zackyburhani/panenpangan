@@ -82,6 +82,19 @@
 				}
 			});
 		});
+
+		//bayar
+		$(document).on('click','.pesan_cart',function(){
+			var row_id=$(this).attr("id"); //mengambil row_id dari artibut id
+			$.ajax({
+				url : "<?php echo base_url();?>User/pesan_cart",
+				method : "POST",
+				data : {row_id : row_id},
+				success :function(data){
+					$('#detail_cart').html(data);
+				}
+			});
+		});
 	});
 </script>
 <!-- akhir java cart -->

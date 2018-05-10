@@ -72,6 +72,7 @@ class UserModel extends CI_Model {
 	
 	/////////////akhir pesan//////////////////
 
+
 	///////////////////invoice//////////////////
 
 	public function invoice($username){
