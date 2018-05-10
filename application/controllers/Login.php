@@ -12,7 +12,7 @@ class Login extends CI_Controller {
 
 		// if($email == null){
 		// 	redirect('Home');
-		// } 
+		// }
 	}
 
 
