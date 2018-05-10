@@ -50,6 +50,12 @@ class M_Customer extends CI_Model {
       $this->db->update($table,$data);
     }
 
+    function updatePass($username,$password)
+    {
+      $this->db->where('username',$username);
+      $this->db->update('login',$password);
+    }
+
     //Delete, coded by zacky
     public function delete($id_user){
       $this->db->where('id_user', $id_user);
@@ -106,7 +112,7 @@ class M_Customer extends CI_Model {
 
   function changeActiveState($key)
   {
-    $result = $this->db->query("SELECT username FROM login where username = '".md5($key)."'");
+    $result = $this->db->query("SELECT username FROM login where username = '".$key."'");
       return $result->result();
   }
 

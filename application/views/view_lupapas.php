@@ -32,13 +32,18 @@
       </a>
     </p>
 
-    <form action="<?php //blink('Login/authCustomer') ?>" method="post">
+<?php if(isset($username)) { ?>
+
+    <form action="<?php blink('LupaPassword/update') ?>" method="post">
       <div class="form-group has-feedback">
+        <?php foreach($username as $data) { ?>
+        <input type="hidden" value="<?php echo $data->username ?>" class="form-control" name="username" placeholder="Masukkan Password baru">
+        <?php } ?>
         <input type="password" class="form-control" name="password" placeholder="Masukkan Password baru">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" name="password" placeholder="Masukkan kembali password">
+        <input type="password" class="form-control" name="password2" placeholder="Masukkan kembali password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
@@ -59,7 +64,16 @@
   </div>
   <!-- /.login-box-body -->
 </div>
+
 <!-- /.login-box -->
+<?php } else { ?>
+<script type='text/javascript'>
+               alert ('Gagal Memuat Halaman');
+               window.location.replace('Login');
+            </script>
+        <?php }?>
+
+
 
 <!-- jQuery 3 -->
 <script src="<?php blink('assets/AdminLTE/bower_components/jquery/dist/jquery.min.js')?>"></script>
