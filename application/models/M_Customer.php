@@ -96,7 +96,18 @@ class M_Customer extends CI_Model {
       and barang.id_brg = detil_pesan.id_brg 
       and pesan.username ='".$username."' and status_bayar = 'Lunas'");
       return $result->result();
-    
+  }
+
+  public function getEmail($email)
+  { 
+      $result = $this->db->query("SELECT username FROM login where email = '".$email."'");
+      return $result->result();
+  }
+
+  function changeActiveState($key)
+  {
+    $result = $this->db->query("SELECT username FROM login where username = '".md5($key)."'");
+      return $result->result();
   }
 
 
