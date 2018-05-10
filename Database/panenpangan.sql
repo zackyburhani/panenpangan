@@ -100,20 +100,13 @@ CREATE TABLE `detil_pesan` (
   `poin` decimal(10,2) NOT NULL,
   `status` enum('Dalam Perjalanan','Selesai') NOT NULL,
   `status_bayar` varchar(20) NOT NULL
-
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
 --
 -- Dumping data for table `detil_pesan`
 --
 
 INSERT INTO `detil_pesan` (`id_pesan`, `id_brg`, `qty`, `harga_total`, `poin`, `status`, `status_bayar`) VALUES
-('PS001', 'BR006', 1, '234.00', '0.00', 'Dalam Perjalanan'),
-('PS002', 'BR007', 4, '80000.00', '0.00', 'Dalam Perjalanan'),
-('PS003', 'BR007', 1, '20000.00', '0.00', 'Dalam Perjalanan'),
-('PS004', 'BR004', 1, '123.00', '0.00', 'Dalam Perjalanan'),
-('PS005', 'BR003', 5, '2500000.00', '0.00', 'Dalam Perjalanan'),
-('PS006', 'BR007', 3, '60000.00', '0.00', 'Dalam Perjalanan'),
-('PS007', 'BR003', 3, '1500000.00', '0.00', 'Dalam Perjalanan'),
-('PS008', 'BR007', 4, '80000.00', '0.00', 'Dalam Perjalanan');
+('PS001', 'BR006', 1, '234.00', '0.00', 'Dalam Perjalanan','Lunas');
 
 -- --------------------------------------------------------
 
@@ -154,7 +147,6 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`username`, `nm_plg`, `email`, `password`) VALUES
-<<<<<<< HEAD
 ('zackyburhani', 'Zacky Burhani', 'zackyburhani99@gmail.com', '202cb962ac59075b964b07152d234b70'),
 ('lutviarfi', 'lutvi', 'lutvi04@gmail.com', '21232f297a57a5a743894a0e4a801fc3'),
 ('paijo', 'paijo', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3');
@@ -192,7 +184,7 @@ CREATE TABLE `pesan` (
 INSERT INTO `pesan` (`id_pesan`, `tgl_pesan`, `username`) VALUES
 
 ('PS001', '2018-05-01', 'zackyburhani'),
-('PS002', '2018-05-09', 'zackyburhani');
+('PS002', '2018-05-09', 'zackyburhani'),
 ('PS003', '2018-05-06', 'lutviarfi'),
 ('PS004', '2018-05-06', 'lutviarfi'),
 ('PS005', '2018-05-06', 'lutviarfi'),
