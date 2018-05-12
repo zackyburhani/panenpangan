@@ -59,6 +59,15 @@ class UserModel extends CI_Model {
        	}
       return "PS".$kd;
 	}
+
+	public function updateQTY()
+	{
+		$this->db->where('id_brg',$id_pe);
+      	$this->db->update('petani',$data);
+	}
+
+
+
 	////////////pesan//////////////////
 	public function detilpesan($data){
 		$result = $this->db->insert('detil_pesan', $data);

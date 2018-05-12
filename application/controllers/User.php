@@ -10,12 +10,6 @@ class User extends CI_Controller {
 	}
 
 
-	public function index()
-	{
-		
-	}
-
-
 	public function InsertDaftar()
 	{
 
@@ -166,6 +160,7 @@ class User extends CI_Controller {
 	public function pesan($id, $harga) {
 
 		$nama = $this->session->username;
+
 		$tgl=date('Y-m-d');
 
         $qty = $this->input->post('qty');
@@ -185,7 +180,7 @@ class User extends CI_Controller {
       
         $result = $this->UserModel->detilpesan($data);
 	 
-		$data = array(
+	 	$data = array(
 		'id_pesan'=> $id_pesan,
 		'tgl_pesan' => $tgl,
 		'username' => $nama
