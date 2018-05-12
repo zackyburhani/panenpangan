@@ -8,6 +8,7 @@ class History extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('M_Customer');
 		$this->load->model('ModelDaftar');
+		$this->load->model('UserModel');
 		$this->load->helper('form');
 		$this->load->library('upload');
 	}
@@ -15,12 +16,14 @@ class History extends CI_Controller {
 
 	public function index()
 	{
+		$id_pesan = $this->UserModel->getKodePesan();
 		$nama = $this->session->nm_plg;
 		$username = $this->session->username;
 		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$history = $this->M_Customer->history($username);
 
 		$data = [
+			'id_pesan' => $id_pesan,
 			'getNm_Plg' => $getNm_Plg,
 			'nama'=> $nama,
 			'history' => $history,

@@ -6,15 +6,18 @@ class DaftarLengkap extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('ModelDaftar');
+		$this->load->model('UserModel');
 	}
 
   public function index()
 	{
 		$nama = $this->session->nm_plg;
+		$id_pesan = $this->UserModel->getKodePesan();
 		$username = $this->session->username;
 		$getAllPelanggan = $this->ModelDaftar->getAllPelanggan($username);
 		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$data = [
+			'id_pesan' => $id_pesan,
 			'nama' => $nama,
 			'username' => $username,
 			'getAllPelanggan' => $getAllPelanggan,
@@ -89,11 +92,7 @@ class DaftarLengkap extends CI_Controller {
 			$this->session->set_flashdata('pesanGagal','Data Tidak Berhasil Disimpan');
 			redirect('DaftarLengkap');
 		}
-
-		
-
   }
-
 
 
 	public function auth()

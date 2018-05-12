@@ -104,7 +104,7 @@
 										<ul class="nav navbar-nav pull-right">
 											<li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
 												<a  href="javascript:;" class="dropdown-toggle" style="margin-top :-20px; margin-right:10px;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-														<span class="glyphicon glyphicon-shopping-cart" style="margin-top:31px"></span> <span class="label label-danger" >new</span>
+														<span class="glyphicon glyphicon-shopping-cart" style="margin-top:31px"></span> <span class="label label-danger" ><?php echo $this->cart->qty() ?></span>
 												</a>
 													<ul class="dropdown-menu">
 														<li class="external">
@@ -124,9 +124,15 @@
 																		<tbody id="detail_cart">	
 																		</tbody>
 																	</table>
+																	<form method="POST" action="<?php blink('User/pesan_cart/'); ?>" enctype="multipart/form-data">
+																<input required class="form-control required text-capitalize" value="<?php echo $id_pesan ?>" readonly data-placement="top" data-trigger="manual" type="hidden" name="id_pesan">
+																<button type="submit" class="btn btn-primary">Pesan</button>
+																</form>
 																</div> 
 																<!-- akhir nampilin -->
-															<a href="extra_profile.html">view all</a>
+																
+																
+																
 														</li>
 													</ul>
 												</li>
@@ -165,6 +171,13 @@
 																			<a href="<?php blink('DaftarLengkap') ?>">
 																				<button class="btn btn-sm btn-block btn-success"><i class="fa fa-user"></i> Pengaturan Akun</button></td>	
 																			</a>
+																	</tr>
+																	<tr>
+																		<td>
+																			<a href="<?php blink('History') ?>">
+																				<button class="btn btn-sm btn-block btn-success"><span class="glyphicon glyphicon-list"></span> History Belanja</button>
+																			</a>
+																		</td>	
 																	</tr>
 																	<tr>
 																		<td>

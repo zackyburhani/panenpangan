@@ -8,6 +8,7 @@ class Tracking extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('M_Customer');
 		$this->load->model('ModelDaftar');
+		$this->load->model('UserModel');
 		$this->load->helper('form');
 		$this->load->library('upload');
 	}
@@ -17,8 +18,10 @@ class Tracking extends CI_Controller {
 		$username = $this->session->username;
 		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$nama = $this->session->nm_plg;
+		$pesan = $this->UserModel->getKodePesan();
 		$data = [
 			'getNm_Plg'=> $getNm_Plg,
+			'id_pesan' => $pesan,
 			'nama' => $nama
 		];
 
@@ -40,10 +43,13 @@ class Tracking extends CI_Controller {
 		$nama = $this->session->nm_plg;
 		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$id_transaksi = $this->input->get('no_transaksi');
+		$pesan = $this->UserModel->getKodePesan();
+		$id_transaksi = $this->input->post('no_transaksi');
 		$cari = $this->M_Customer->getTracking($id_transaksi);
 		$status = $cari;
 		$data = [
 			'getNm_Plg' => $getNm_Plg,
+			'id_pesan' => $pesan,
 			'nama' => $nama,
 			'id_transaksi' => $cari
 		];
