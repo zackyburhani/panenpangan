@@ -18,7 +18,9 @@ class Home extends CI_Controller {
 		
 		 $kdpesan = $this->UserModel->getKodePesan();
 		$semuaKategori = $this->BarangModel->getAllKategori();
+		$best =$this->BarangModel->bestseller();
 		$data = [
+			'best' => $best,
 			'id_pesan' => $kdpesan,
 			'dataKategori' => $semuaKategori,
 			'nama' => $nama
