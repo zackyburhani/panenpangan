@@ -73,41 +73,19 @@
 			</div>
 			<div class="container">
 				<div class="row row-bottom-padded-md fh5co-blog animate-box">
-					<div class="col-sm-4 ">
-					    <div class="thumbnail">
-								<img src="<?php blink('assets/img/img/sayur.jpg')?>" class="img-rounded" alt="Cinque Terre" style="width:100%;">
-								<div class="caption">
-					        <h3 align="center">Beras Merah</h3>
-					        <p align="center">Rp. 20.000/kg</p>
-									<hr>
-					        <p align="center"><a href="#" class="btn btn-primary" role="button">Beli Sekarang</a></p>
-					      </div>
-					    </div>
-					  </div>
-
+				<?php foreach($best as $data):?>
 					  <div class="col-sm-4 fh5co-blog animate-box">
 					    <div class="thumbnail">
-								<img src="<?php blink('assets/img/img/sayur.jpg')?>" class="img-rounded" alt="Cinque Terre" style="width:100%;">
+								<img src="<?php blink('assets/img/'.$data->gambar_barang.''); ?>" class="img-rounded" alt="Cinque Terre" style="width:100%; height:250px">
 								<div class="caption">
-					        <h3 align="center">Beras Merah</h3>
-					        <p align="center">Rp. 20.000/kg</p>
+					        <h3 align="center"><center><?php echo $data->nm_brg; ?></center></h3>
+					        <p align="center"><center><?php echo $data->harga; ?></center></p>
 									<hr>
 					        <p align="center"><a href="#" class="btn btn-primary" role="button">Beli Sekarang</a></p>
 					      </div>
 					    </div>
 					  </div>
-
-					  <div class="col-sm-4 fh5co-blog animate-box">
-					    <div class="thumbnail">
-								<img src="<?php blink('assets/img/img/sayur.jpg')?>" class="img-rounded" alt="Cinque Terre" style="width:100%;">
-								<div class="caption">
-					        <h3 align="center">Beras Merah</h3>
-					        <p align="center">Rp. 20.000/kg</p>
-									<hr>
-					        <p align="center"><a href="#" class="btn btn-primary" role="button">Beli Sekarang</a></p>
-					      </div>
-					    </div>
-					  </div>
+				<?php endforeach; ?>
 				</div>
 			</div>
 		</div>
