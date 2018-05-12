@@ -104,7 +104,7 @@
 										<ul class="nav navbar-nav pull-right">
 											<li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
 												<a  href="javascript:;" class="dropdown-toggle" style="margin-top :-20px; margin-right:10px;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-														<span class="glyphicon glyphicon-shopping-cart" style="margin-top:31px"></span> <span class="label label-danger" ><?php echo $this->cart->qty() ?></span>
+														<span class="glyphicon glyphicon-shopping-cart" style="margin-top:31px"></span> <span class="label label-danger" >Cart</span>
 												</a>
 													<ul class="dropdown-menu">
 														<li class="external">
@@ -129,10 +129,7 @@
 																<button type="submit" class="btn btn-primary">Pesan</button>
 																</form>
 																</div> 
-																<!-- akhir nampilin -->
-																
-																
-																
+																<!-- akhir nampilin -->	
 														</li>
 													</ul>
 												</li>

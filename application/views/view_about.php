@@ -27,7 +27,8 @@ fh5co-content-section -->
 					 			</div>
 							</div>
 				    	</div>
-					</div>			
+					</div>
+					<?php echo $this->pagination->create_links(); ?>			
 					<?php } ?>
 					</div>
 <?php } else { ?>
@@ -40,8 +41,7 @@ fh5co-content-section -->
 			</div>
 		</div>
 
-
-		<!-- END fh5co-services-section -->
+<!-- END fh5co-services-section -->
 <?php foreach($dataBarang as $data){ ?> 
 		<!-- modal view Form Pesan -->
 				<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" id="modalform<?php echo $data->id_brg ?>" aria-hidden="true">

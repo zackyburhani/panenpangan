@@ -28,8 +28,10 @@ class User extends CI_Controller {
 		if($this->form_validation->run() != true){
 			$username = $this->session->username;
 			$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
+			$id_pesan = $this->UserModel->getKodePesan();
 			$nama = $this->session->nm_plg;
 			$data = [
+				'id_pesan' => $id_pesan,
 				'getNm_Plg' => $getNm_Plg,
 				'nama' => $nama
 			];
@@ -178,6 +180,7 @@ class User extends CI_Controller {
                 'harga_total' => $harga,
                 'poin' => 0,
                 'status' => "Dalam Perjalanan",
+                'status_bayar' => "Belum Bayar"
                 );
       
         $result = $this->UserModel->detilpesan($data);
@@ -211,15 +214,13 @@ class User extends CI_Controller {
 		$nama = $this->session->nm_plg;
 		$username = $this->session->username;
 		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
-		$data['nama'] = $nama;
-
-		$data['getNm_Plg'] = $getNm_Plg;
-		$data['id_pesan'] = $this->UserModel->getKodePesan();
-
 		$invoice = $this->UserModel->invoice($username);
 		$kwitansi = $this->UserModel->kwitansi($username);
 		$data['idpesan'] = $invoice;
 		$data['kwitansi'] = $kwitansi;
+		$data['nama'] = $nama;
+		$data['getNm_Plg'] = $getNm_Plg;
+		$data['id_pesan'] = $this->UserModel->getKodePesan();
 
 		$this->load->view('master/header',$data);
         $this->load->view('view_bayar',$data);

@@ -14,11 +14,11 @@ class ModelAdmin extends CI_Model {
 		return $result->row();
 	}
 
-	public function getAllLogin($id)
-  	{
-		$result = $this->db->query("SELECT * FROM admin where status_admin= '".$id."'");
-		return $result->result();
-	}
+	// public function getAllLogin($id)
+ //  	{
+	// 	$result = $this->db->query("SELECT * FROM admin where status_admin= '".$id."'");
+	// 	return $result->result();
+	// }
 //////////////////LOGIN////////////////////////////////////////
 
 
