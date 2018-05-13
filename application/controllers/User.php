@@ -171,6 +171,7 @@ class User extends CI_Controller {
 	public function pesan($id, $harga) {
 
 		$nama = $this->session->username;
+		$username = $this->session->username;
 
 		if($nama == null)
 		{
@@ -193,9 +194,18 @@ class User extends CI_Controller {
 
 		        $qty = $this->input->post('qty');
 				$id_pesan = $this->input->post('id_pesan');
+				$point = $this->M_Customer->getPoint($username);
+				$data['point'] = $point;
 
-				$harga = $harga*$qty;
-				
+				$hargatotal = $harga*$qty;
+			foreach($point as $data):
+				if($data->poin >= 100 && $hargatotal >= 50000){
+					$harga = $harga*$qty-50000;
+					$result3 = $this->M_Customer->update($username);
+				}else{
+					$harga = $hargatotal;
+				}
+			endforeach;
 		            $data = array(
 		                'id_pesan'=> $id_pesan,
 		                'id_brg' => $id,
@@ -215,7 +225,7 @@ class User extends CI_Controller {
 				);        
 
 				$result2 = $this->UserModel->pesan($data);
-		      
+		        
 		        $data = NULL;
 		        if($result && $result2){
 		                    echo "<script type='text/javascript'>
