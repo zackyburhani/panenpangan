@@ -94,3 +94,62 @@
 		</div>
 
 
+<?php foreach($best as $data){ ?> 
+		<!-- modal view Form Pesan -->
+				<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" id="modalform<?php echo $data->id_brg ?>" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h3 id="myModalLabel" align="center">Form Pesan Barang</h3>
+							</div>
+							<div class="modal-body">
+								<form method="POST" action="<?php blink('User/pesan/'.$data->id_brg.'/'.$data->harga); ?>" enctype="multipart/form-data">
+									 <table class="table table-striped" border="0">
+									  <thead>
+										<td width="20%" ></td>
+									  <td width="10%"  ></td>
+									  <td width="60%" ></td>
+									</thead>
+									<tbody>
+									<div class="form-group"><label>ID Pesan</label>
+                        <input required class="form-control required text-capitalize" value="<?php echo $id_pesan ?>" readonly data-placement="top" data-trigger="manual" type="text" name="id_pesan">
+                      </div>
+										<tr>
+										  <td>Item</td>
+										<td>:</td>
+										<td style="text-transform:capitalize;"><?php echo $data->nm_brg; ?></td>
+									  </tr>
+										 <tr>
+										  <td>quantity</td>
+										<td>:</td>
+										<td style="text-transform:capitalize;"><input type="number" name="qty" id="qty" value="1" class="quantity form-control"></td>
+										 </tr>
+											<tr>
+										  <td>Price</td>
+										  <td>:</td>
+										<td style="text-transform:capitalize;"><?php echo $data->harga; ?></td>
+									  </tr>
+											<tr>
+										  <td>Description</td>
+										<td>:</td>
+										<td style="text-transform:capitalize;"><?php echo $data->deskripsi; ?></td>
+									  </tr>
+									  </tbody>
+									</table>
+								
+							</div>
+							<div class="modal-footer">
+							<button type="submit" class="btn btn-success" > Pesan</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+								  <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
+									</form>
+								</div>
+						</div>
+					</div>
+				</div>
+				<?php }?>
+			<!-- end modal view buku -->
+		<!-- end modal view Form Pesan -->
+
+

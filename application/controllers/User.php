@@ -124,14 +124,18 @@ class User extends CI_Controller {
 
 	function pesan_cart(){ //fungsi untuk memesan item via cart
 		
+		$nama = $this->session->username;
+		if($nama == null)
+		{
+			redirect('Login');
+		} else {
 		$id_pesan = $this->input->post('id_pesan');
 		
 		$cart = $this->cart->contents();
 		foreach($cart as $item){
 		
-			$id_pesan++;
-		$nama = $this->session->username;
-     	$tgl=date('Y-m-d');
+		$id_pesan++;
+	 	$tgl=date('Y-m-d');
 
 		  $data = array(
 			'id_pesan'=> $id_pesan,
@@ -152,16 +156,19 @@ class User extends CI_Controller {
 	
 		 $result2 = $this->UserModel->pesan($data);
 
-		}
+			}
 	  $this->cart->destroy();
 	  redirect('User/invoice');
+		}
 	}
-
 	/////////////////////pesan barang///////////////////////////////////
 	public function pesan($id, $harga) {
 
 		$nama = $this->session->username;
-
+		if($nama == null)
+		{
+			redirect('Login');
+		} else {
 		$tgl=date('Y-m-d');
 
         $qty = $this->input->post('qty');
@@ -202,7 +209,8 @@ class User extends CI_Controller {
                     window.location.replace('index');
                     </script>";       
                     redirect('Home');
-        }
+			}
+		}
 	}
 	
 	public function invoice(){
