@@ -27,26 +27,15 @@
 		</footer>
 	 
 
-	<!-- jQuery -->
-	<script type="text/javascript" src="<?php echo base_url().'assets/js/jquery-2.2.3.min.js'?>"></script>
-	<script type="text/javascript" src="<?php echo base_url().'assets/js/bootstrap.js'?>"></script>
-	<script src="<?php blink('assets/pentagon/js/jquery.min')?>"></script>
-	<!-- jQuery Easing -->
-	<script src="<?php blink('assets/pentagon/js/jquery.easing.1.3')?>"></script>
-	<!-- Bootstrap -->
-	<script src="<?php blink('assets/pentagon/js/bootstrap.min')?>"></script>
-	<!-- Waypoints -->
-	<script src="<?php blink('assets/pentagon/js/jquery.waypoints.min')?>"></script>
-	<!-- Stellar -->
-	<script src="<?php blink('assets/pentagon/js/jquery.stellar.min')?>"></script>
-	<!-- Superfish -->
-	<script src="<?php blink('assets/pentagon/js/hoverIntent')?>"></script>
-	<script src="<?php blink('assets/pentagon/js/superfish')?>"></script>
-	<!-- Main JS -->
-	<script src="<?php blink('assets/pentagon/js/main')?>"></script>
-	<!-- searching js -->
-	<script src="<?php blink('assets/js/jquery-3.3.1.js')?>" type="text/javascript"></script>
-	<script src="<?php blink('assets/js/jquery-ui.js')?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/AdminLTE/bower_components/jquery/dist/jquery.min.js') ?>"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="<?php echo base_url('assets/AdminLTE/bower_components/jquery-ui/jquery-ui.min.js') ?>"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.7 -->
+<script src="<?php echo base_url('assets/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
 
 	<!-- DataTables JavaScript -->
 <script src="<?php blink('/assets/AdminLTE/plugins/datatables/jquery.dataTables.min.js')?>"></script>
@@ -57,9 +46,7 @@
 <script src="<?php blink('/assets/AdminLTE/plugins/datatables/dataTables.bootstrap.js')?>"></script>
 
 <script type="text/javascript">
-    $(window).on('load',function(){
         $('#myModal').modal('show');
-    });
 </script>
 	
 

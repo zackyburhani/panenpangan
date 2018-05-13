@@ -152,16 +152,22 @@
 			<!-- end modal view buku -->
 		<!-- end modal view Form Pesan -->
 
-<div class="modal fade in" id="myModal">
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">×</a>
-    <h3>Modal header</h3>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+        	<?php $no = rand(1,5) ?>
+          <center><img src="<?php echo base_url('assets/img/iklan/'.$no.'.jpg');?>" width="800"></center>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+      
+    </div>
   </div>
-  <div class="modal-body">
-    <p>One fine body…</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn">Close</a>
-    <a href="#" class="btn btn-primary">Save changes</a>
-  </div>
-</div>
