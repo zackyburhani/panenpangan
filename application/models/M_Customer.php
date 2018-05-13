@@ -87,6 +87,12 @@ class M_Customer extends CI_Model {
       return $result->result();
     }
 
+    public function getPoint($username)
+    { 
+      $result = $this->db->query("SELECT SUM(poin) as poin FROM detil_pesan,pesan WHERE pesan.id_pesan = detil_pesan.id_pesan and pesan.username = '".$username."'");
+      return $result->result();
+    }
+
     public function status($konfirmasi,$data)
     {
       $this->db->where('id_pesan',$konfirmasi);
@@ -115,6 +121,18 @@ class M_Customer extends CI_Model {
     $result = $this->db->query("SELECT username FROM login where username = '".$key."'");
       return $result->result();
   }
+
+  //////////////// update harga total dan point (diskon point) ////////////////////
+  public function update($username, $harga, $id){
+    $result = $this->db->set('harga_total',$harga)->where('pesan.id_pesan = detil_pesan.id_pesan')
+    ->where('username',$username)->where('detil_pesan.id_pesan',$id)->update('detil_pesan, pesan');
+    
+	}
+
+  public function update2($username){
+		$result = $this->db->set('poin','0')->where('username',$username)->update('detil_pesan');
+		return $result;
+	}
 
 
 }
