@@ -71,6 +71,7 @@ class Tracking extends CI_Controller {
 				'id_pesan' => $pesan,
 				'getNm_Plg' => $getNm_Plg,
 				'nama' => $nama,
+				'id_pesan' => $pesan,
 				'id_transaksi' => $cari,
 				'notFound'=> $notFound
 			];

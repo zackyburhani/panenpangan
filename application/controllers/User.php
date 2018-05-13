@@ -128,14 +128,18 @@ class User extends CI_Controller {
 
 	function pesan_cart(){ //fungsi untuk memesan item via cart
 		
+		$nama = $this->session->username;
+		if($nama == null)
+		{
+			redirect('Login');
+		} else {
 		$id_pesan = $this->input->post('id_pesan');
 		
 		$cart = $this->cart->contents();
 		foreach($cart as $item){
 		
-			$id_pesan++;
-		$nama = $this->session->username;
-     	$tgl=date('Y-m-d');
+		$id_pesan++;
+	 	$tgl=date('Y-m-d');
 
 		  $data = array(
 			'id_pesan'=> $id_pesan,
@@ -143,8 +147,8 @@ class User extends CI_Controller {
 			'qty' => $item['qty'],
 			'harga_total' => $item['subtotal'],
 			'poin' => 0,
-            'status' => "Dalam Perjalanan",
-            'status_bayar' => "Belum Bayar"
+			'status' => "Dalam Perjalanan",
+			'status_bayar' => "Belum Bayar"
 		  );
 		  $result = $this->UserModel->detilpesan($data);
 
@@ -156,14 +160,10 @@ class User extends CI_Controller {
 	
 		 $result2 = $this->UserModel->pesan($data);
 
-		}
+			}
 	  $this->cart->destroy();
 	  redirect('User/invoice');
-	}
-
-	public function awal()
-	{
-		redirect('Home');
+		}
 	}
 
 	/////////////////////pesan barang///////////////////////////////////
@@ -253,9 +253,9 @@ class User extends CI_Controller {
 
 	}
 
-	public function bayar(){
+	public function bayar($id){
 
-		$encrypted_id = md5("asasjbh");
+		$encrypted_id = md5($id);
 
 		$this->load->library('email');
 		$config = array();
@@ -286,8 +286,9 @@ class User extends CI_Controller {
 	    {
 	        echo "<script type='text/javascript'>
                     alert ('Silahkan Lakukan Pembayaran !');
-                    window.location.replace('invoice');
-                    </script>";
+                    window.location.replace('User/invoice');
+					</script>";
+					redirect('User/invoice');
 	    }else
 	    {
 	        echo "<script type='text/javascript'>
@@ -303,8 +304,8 @@ class User extends CI_Controller {
 	{
 		$this->load->helper('url');
 		$this->load->model('UserModel');
-		$this->UserModel->changeActiveState($key);
-		echo "Barang sudah di bayar";
+		$this->UserModel->changeBayar($key);
+		echo "status bayar berhasil di konfirmasi";
 		echo "<br><br><a href='".site_url("Tracking")."'>Silahkan cek di tracking</a>";
 	}
 
