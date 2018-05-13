@@ -92,13 +92,6 @@
 			</div>
 
 	<?php } ?>
-												<!-- manggil point -->
-												<?php foreach($point as $data):
-												if($data->poin >= 100){?>
-													<a href="<?php echo site_url('User/pakePoint/') ?>" class="btn btn-sm btn-info">Gunakan Poin</a>
-												<?php }else{ ?>
-												<?php }
-												endforeach;	?>
-
+										
 
 

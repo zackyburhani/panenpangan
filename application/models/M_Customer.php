@@ -122,17 +122,15 @@ class M_Customer extends CI_Model {
       return $result->result();
   }
 
-  //////////////// update harga total dan point (diskon point) ////////////////////
-  public function update($username, $harga, $id){
-    $result = $this->db->set('harga_total',$harga)->where('pesan.id_pesan = detil_pesan.id_pesan')
-    ->where('username',$username)->where('detil_pesan.id_pesan',$id)->update('detil_pesan, pesan');
-    
-	}
+  //////////////// update point  ////////////////////
 
-  public function update2($username){
-		$result = $this->db->set('poin','0')->where('username',$username)->update('detil_pesan');
-		return $result;
-	}
+  public function update($username){
+    $result = $this->db->query("UPDATE pesan, detil_pesan SET detil_pesan.poin='0'
+  WHERE pesan.id_pesan=detil_pesan.id_pesan AND username = '".$username."';
+  ");	
+  
+    return $result;
+  }
 
 
 }

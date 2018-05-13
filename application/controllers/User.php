@@ -171,6 +171,7 @@ class User extends CI_Controller {
 	public function pesan($id, $harga) {
 
 		$nama = $this->session->username;
+		$username = $this->session->username;
 
 		if($nama == null)
 		{
@@ -193,9 +194,18 @@ class User extends CI_Controller {
 
 		        $qty = $this->input->post('qty');
 				$id_pesan = $this->input->post('id_pesan');
+				$point = $this->M_Customer->getPoint($username);
+				$data['point'] = $point;
 
-				$harga = $harga*$qty;
-				
+				$hargatotal = $harga*$qty;
+			foreach($point as $data):
+				if($data->poin >= 100 && $hargatotal >= 50000){
+					$harga = $harga*$qty-50000;
+					$result3 = $this->M_Customer->update($username);
+				}else{
+					$harga = $hargatotal;
+				}
+			endforeach;
 		            $data = array(
 		                'id_pesan'=> $id_pesan,
 		                'id_brg' => $id,
@@ -215,7 +225,7 @@ class User extends CI_Controller {
 				);        
 
 				$result2 = $this->UserModel->pesan($data);
-		      
+		        
 		        $data = NULL;
 		        if($result && $result2){
 		                    echo "<script type='text/javascript'>
@@ -256,35 +266,6 @@ class User extends CI_Controller {
 
 	}
 
-	/////// method buat point ///////////////
-	public function pakePoint($id, $harga){
-
-		$nama = $this->session->nm_plg;
-		$username = $this->session->username;
-		$point = $this->M_Customer->getPoint($username);
-		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
-		$invoice = $this->UserModel->invoice($username);
-		$kwitansi = $this->UserModel->kwitansi($username);
-		
-		$data['point'] = $point;
-		$data['idpesan'] = $invoice;
-		$data['kwitansi'] = $kwitansi;
-		$data['nama'] = $nama;
-		$data['getNm_Plg'] = $getNm_Plg;
-		$data['id_pesan'] = $this->UserModel->getKodePesan();
-
-		$harga = $harga*$data->poin;
-
-		//update point dan harga///
-		$update = $this->M_Customer->update($username, $harga, $id);
-		
-
-		$update2 = $this->M_Customer->update2($username);
-		
-
-        redirect('User/invoice');			
-	}
-/////////////////////////////////////////////////////////
 	public function bayar($id){
 
 		$encrypted_id = md5($id);
