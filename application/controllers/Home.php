@@ -11,6 +11,7 @@ class Home extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('upload');
 		$this->load->model('UserModel');
+		$this->load->model('M_Customer');
 	}
 
 	public function index()
@@ -18,14 +19,15 @@ class Home extends CI_Controller {
 		$nama = $this->session->nm_plg;
 		$username = $this->session->username;
 
-		
-		 $kdpesan = $this->UserModel->getKodePesan();
+		$point = $this->M_Customer->getPoint($username);
+		$kdpesan = $this->UserModel->getKodePesan();
 		$semuaKategori = $this->BarangModel->getAllKategori();
 		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$best =$this->BarangModel->bestseller();
 		
 		$data = [
 			'getNm_Plg' => $getNm_Plg,
+			'point' => $point,
 			'best' => $best,
 			'id_pesan' => $kdpesan,
 			'dataKategori' => $semuaKategori,

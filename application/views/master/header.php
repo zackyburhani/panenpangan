@@ -171,6 +171,12 @@
 																	</tr>
 																	<tr>
 																		<td>
+																		<?php foreach($point as $data):?>																		
+																			<button class="btn btn-sm btn-block btn-success"> Point Kamu = <?php echo $data->poin; ?> </button></td>	
+																		<?php endforeach;?>
+																	</tr>
+																	<tr>
+																		<td>
 																			<a href="<?php blink('User/invoice') ?>">
 																				<button class="btn btn-sm btn-block btn-success"><i class="fa fa-money"></i> Invoice</button></td>	
 																			</a>

@@ -7,6 +7,7 @@ class User extends CI_Controller {
 		parent::__construct();
 			$this->load->model('UserModel');
 			$this->load->model('ModelDaftar');
+			$this->load->model('M_Customer');
 	}
 
 	public function index()
@@ -146,7 +147,7 @@ class User extends CI_Controller {
 			'id_brg' => $item['id'],
 			'qty' => $item['qty'],
 			'harga_total' => $item['subtotal'],
-			'poin' => 0,
+			'poin' => 1,
 			'status' => "Dalam Perjalanan",
 			'status_bayar' => "Belum Bayar"
 		  );
@@ -200,7 +201,7 @@ class User extends CI_Controller {
 		                'id_brg' => $id,
 		                'qty' => $qty,
 		                'harga_total' => $harga,
-		                'poin' => 0,
+		                'poin' => 1,
 		                'status' => "Dalam Perjalanan",
 		                'status_bayar' => "Belum Bayar"
 		                );
@@ -237,10 +238,12 @@ class User extends CI_Controller {
 
 		$nama = $this->session->nm_plg;
 		$username = $this->session->username;
+		$point = $this->M_Customer->getPoint($username);
 		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$invoice = $this->UserModel->invoice($username);
 		$kwitansi = $this->UserModel->kwitansi($username);
 		
+		$data['point'] = $point;
 		$data['idpesan'] = $invoice;
 		$data['kwitansi'] = $kwitansi;
 		$data['nama'] = $nama;
@@ -253,6 +256,35 @@ class User extends CI_Controller {
 
 	}
 
+	/////// method buat point ///////////////
+	public function pakePoint($id, $harga){
+
+		$nama = $this->session->nm_plg;
+		$username = $this->session->username;
+		$point = $this->M_Customer->getPoint($username);
+		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
+		$invoice = $this->UserModel->invoice($username);
+		$kwitansi = $this->UserModel->kwitansi($username);
+		
+		$data['point'] = $point;
+		$data['idpesan'] = $invoice;
+		$data['kwitansi'] = $kwitansi;
+		$data['nama'] = $nama;
+		$data['getNm_Plg'] = $getNm_Plg;
+		$data['id_pesan'] = $this->UserModel->getKodePesan();
+
+		$harga = $harga*$data->poin;
+
+		//update point dan harga///
+		$update = $this->M_Customer->update($username, $harga, $id);
+		
+
+		$update2 = $this->M_Customer->update2($username);
+		
+
+        redirect('User/invoice');			
+	}
+/////////////////////////////////////////////////////////
 	public function bayar($id){
 
 		$encrypted_id = md5($id);
@@ -286,14 +318,14 @@ class User extends CI_Controller {
 	    {
 	        echo "<script type='text/javascript'>
                     alert ('Silahkan Lakukan Pembayaran !');
-                    window.location.replace('User/invoice');
+                    window.location.href='http://localhost/panenpangan/User/invoice';
 					</script>";
-					redirect('User/invoice');
+					//redirect('User/invoice');
 	    }else
 	    {
 	        echo "<script type='text/javascript'>
                     alert ('Gagal Melakukan Permintaan Bayar !');
-                    window.location.replace('invoice');
+					window.location.href='http://localhost/panenpangan/User/invoice';
                     </script>";
 	    }
 	  
