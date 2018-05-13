@@ -156,11 +156,24 @@ class User extends CI_Controller {
 	  redirect('User/invoice');
 	}
 
+	public function awal()
+	{
+		redirect('Home');
+	}
+
 	/////////////////////pesan barang///////////////////////////////////
 	public function pesan($id, $harga) {
 
 		$nama = $this->session->username;
 
+		if($nama == null)
+		{
+			echo "<script type='text/javascript'>
+                    alert ('Anda Harus Login Terlebih Dahulu');
+                    window.location.href='http://localhost/panenpangan';
+                    </script>";
+		} else {
+		
 		$tgl=date('Y-m-d');
 
         $qty = $this->input->post('qty');
@@ -201,7 +214,8 @@ class User extends CI_Controller {
                     window.location.replace('index');
                     </script>";       
                     redirect('Home');
-        }
+        	}
+		}
 	}
 	
 	public function invoice(){
