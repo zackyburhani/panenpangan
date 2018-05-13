@@ -3,7 +3,7 @@
 </div> 
 
 <div class="page-container page-container-bg-solid">
-	<div class="container container-lf-space page-content" style="margin-top : 200px; margin-bottom: 200px">
+	<div class="container container-lf-space page-content" style="margin-top : 150px; margin-bottom: 200px">
 		<div class="margin-bottom-10">
 			<div class="clearfix"></div>
           		<div class="panel panel-success	">
@@ -27,7 +27,10 @@
 															<td><center><?php echo $data->id_pesan ?></center></td>
 															<td><center><?php echo $data->tgl_pesan ?></center></td>
 															<td><center><?php echo $data->status_bayar ?></center></td>
-															<td align="center"><a href="#detilModal<?php echo $data->id_pesan ?>" data-toggle="modal" class="btn btn-sm btn-info btn-circle"><span class="glyphicon glyphicon-eye-open"></span> </a></td>
+															<td align="center">
+                                <a href="#detilModal<?php echo $data->id_pesan ?>" data-toggle="modal" class="btn btn-sm btn-info btn-circle"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                <a href="<?php echo site_url('Laporan/cetak/'.$data->id_pesan) ?>" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-print"></span></a>
+                              </td>
 														</tr>
 												<?php } ?>
 											<?php } else { ?>

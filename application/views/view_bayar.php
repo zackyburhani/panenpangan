@@ -52,8 +52,8 @@
 										<tr>
 											<td colspan="5" align="center">
 												<a href="<?php echo site_url('User/hapus/'.$data->id_pesan) ?>" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> Batal</a>
-												<a href="<?php echo site_url('User/bayar/'.$data->id_pesan) ?>" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-gift"></span>Sudah Melakukan Pembayaran</a>
-												<a href="<?php echo site_url('Laporan/cetak/'.$data->id_pesan) ?>" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-save-file"></span>Cetak</a>
+												<a href="<?php echo site_url('User/bayar/'.$data->id_pesan) ?>" class="btn btn-sm btn-success"><span class="fa fa-money"></span> Bayar Sekarang</a>
+												<a href="<?php echo site_url('Laporan/cetak/'.$data->id_pesan) ?>" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-print"></span>Cetak</a>
 											</td>
 										</tr>	
 									</tbody>
@@ -92,13 +92,3 @@
 			</div>
 
 	<?php } ?>
-								<!-- manggil point -->
-												<?php foreach($point as $data):
-												if($data->poin >= 100){?>
-													<a href="<?php echo site_url('User/pakePoint/') ?>" class="btn btn-sm btn-info">Gunakan Poin</a>
-												<?php }else{ ?>
-												<?php }
-												endforeach;	?>
-
-
-

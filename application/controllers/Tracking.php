@@ -99,7 +99,7 @@ class Tracking extends CI_Controller {
 		$username = $this->session->username;
 		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$result = $this->M_Customer->status($konfirmasi,$update);
-		$cari = $this->M_Customer->getTracking($konfirmasi);
+		$cari = $this->M_Customer->getTracking($konfirmasi,$username);
 
 		$data = [
 			'id_pesan' => $pesan,

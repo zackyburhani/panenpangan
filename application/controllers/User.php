@@ -256,35 +256,6 @@ class User extends CI_Controller {
 
 	}
 
-	/////// method buat point ///////////////
-	public function pakePoint($id, $harga){
-
-		$nama = $this->session->nm_plg;
-		$username = $this->session->username;
-		$point = $this->M_Customer->getPoint($username);
-		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
-		$invoice = $this->UserModel->invoice($username);
-		$kwitansi = $this->UserModel->kwitansi($username);
-		
-		$data['point'] = $point;
-		$data['idpesan'] = $invoice;
-		$data['kwitansi'] = $kwitansi;
-		$data['nama'] = $nama;
-		$data['getNm_Plg'] = $getNm_Plg;
-		$data['id_pesan'] = $this->UserModel->getKodePesan();
-
-		$harga = $harga*$data->poin;
-
-		//update point dan harga///
-		$update = $this->M_Customer->update($username, $harga, $id);
-		
-
-		$update2 = $this->M_Customer->update2($username);
-		
-
-        redirect('User/invoice');			
-	}
-/////////////////////////////////////////////////////////
 	public function bayar($id){
 
 		$encrypted_id = md5($id);
@@ -310,14 +281,14 @@ class User extends CI_Controller {
 	    $this->email->to("zackyburhani99@gmail.com");
 	    $this->email->subject("Pemesanan Barang");
 	    $this->email->message(
-	     "Pembelian Barang Barang !!<br><br>".
+	     "Pembelian Barang !!<br><br>".
 	      site_url('User/verification/'.$encrypted_id)
 	    );
 
 	    if($this->email->send())
 	    {
 	        echo "<script type='text/javascript'>
-                    alert ('Silahkan Lakukan Pembayaran !');
+                    alert ('Silahkan Lakukan Pembayaran ke Nomor Rekening : 1673617283727182 !');
                     window.location.href='http://localhost/panenpangan/User/invoice';
 					</script>";
 					//redirect('User/invoice');
@@ -337,8 +308,10 @@ class User extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('UserModel');
 		$this->UserModel->changeBayar($key);
-		echo "status bayar berhasil di konfirmasi";
-		echo "<br><br><a href='".site_url("Tracking")."'>Silahkan cek di tracking</a>";
+		echo "<script type='text/javascript'>
+                    alert ('Status Bayar Telah Dikonfirmasi');
+                    window.location.href='http://localhost/panenpangan';
+					</script>";
 	}
 
 	public function hapus($id_pesan)

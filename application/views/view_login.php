@@ -17,6 +17,9 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php blink('assets/AdminLTE/plugins/iCheck/square/blue.css')?>">
 
+  <!-- GAMBAR ICON POJOK KIRI ATAS -->
+  <link rel="SHORTCUT ICON" href="<?php echo base_url('assets/img/img/logo/favicon.ico') ?>">
+
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>

@@ -43,7 +43,7 @@ class M_Customer extends CI_Model {
 		return $result->result();
 	}
 
-    //update data, coded by zacky
+
     function update_data($data,$where,$table)
     {
       $this->db->where($where);
@@ -56,7 +56,6 @@ class M_Customer extends CI_Model {
       $this->db->update('login',$password);
     }
 
-    //Delete, coded by zacky
     public function delete($id_user){
       $this->db->where('id_user', $id_user);
       $this->db->delete('username');
@@ -84,12 +83,6 @@ class M_Customer extends CI_Model {
     public function getTracking($id_pesan,$username)
     { 
       $result = $this->db->query("SELECT * FROM detil_pesan,barang,pesan WHERE pesan.id_pesan = detil_pesan.id_pesan and barang.id_brg = detil_pesan.id_brg and detil_pesan.id_pesan ='".$id_pesan."' and username = '".$username."'");
-      return $result->result();
-    }
-
-    public function getPoint($username)
-    { 
-      $result = $this->db->query("SELECT SUM(poin) as poin FROM detil_pesan,pesan WHERE pesan.id_pesan = detil_pesan.id_pesan and pesan.username = '".$username."'");
       return $result->result();
     }
 
@@ -124,9 +117,12 @@ class M_Customer extends CI_Model {
 
   //////////////// update harga total dan point (diskon point) ////////////////////
   public function update($username, $harga, $id){
-    $result = $this->db->set('harga_total',$harga)->where('pesan.id_pesan = detil_pesan.id_pesan')
-    ->where('username',$username)->where('detil_pesan.id_pesan',$id)->update('detil_pesan, pesan');
-    
+    $this->db->set('harga_total',$harga);
+    $this->db->from('pesan');
+    $this->db->join('detil_pesan', 'pesan.id_pesan = pesan.id_pesan');
+    $this->db->where('username',$username);
+    $this->db->where('id_pesan',$id);
+    $this->db->update('detil_pesan');
 	}
 
   public function update2($username){
