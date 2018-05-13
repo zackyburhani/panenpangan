@@ -122,4 +122,14 @@ class UserModel extends CI_Model {
 		return true;
 	}
 
+	public function deleteDetilPesan($id_pesan){
+      $this->db->where('id_pesan', $id_pesan);
+      $this->db->delete('detil_pesan');
+    }
+
+    public function deletePesan($id_pesan){
+      $this->db->where('id_pesan', $id_pesan);
+      $this->db->delete('pesan');
+    }
+
 }

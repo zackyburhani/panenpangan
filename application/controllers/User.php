@@ -180,7 +180,7 @@ class User extends CI_Controller {
 		} else {
 
 			$pelanggan = $this->UserModel->getTablePelanggan($nama);
-			if(isset($pelanggan))
+			if($pelanggan == null)
 			{
 			 echo "<script type='text/javascript'>
                     alert ('Data Anda Belum Lengkap, Silahkan Lengkapi Terlebih Dahulu !');
@@ -307,6 +307,14 @@ class User extends CI_Controller {
 		$this->UserModel->changeBayar($key);
 		echo "status bayar berhasil di konfirmasi";
 		echo "<br><br><a href='".site_url("Tracking")."'>Silahkan cek di tracking</a>";
+	}
+
+	public function hapus($id_pesan)
+	{	
+		$this->UserModel->deleteDetilPesan($id_pesan);
+		$this->UserModel->deletePesan($id_pesan);
+		$this->session->set_flashdata('pesan','Data Berhasil Dihapus');
+		redirect('User/invoice');
 	}
 
 }

@@ -171,6 +171,12 @@
 																	</tr>
 																	<tr>
 																		<td>
+																			<a href="<?php blink('User/invoice') ?>">
+																				<button class="btn btn-sm btn-block btn-success"><i class="fa fa-money"></i> Invoice</button></td>	
+																			</a>
+																	</tr>
+																	<tr>
+																		<td>
 																			<a href="<?php blink('History') ?>">
 																				<button class="btn btn-sm btn-block btn-success"><span class="glyphicon glyphicon-list"></span> History Belanja</button>
 																			</a>

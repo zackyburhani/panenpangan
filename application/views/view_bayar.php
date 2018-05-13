@@ -1,3 +1,4 @@
+<?php if($idpesan != null) { ?>
 <!-- end:header-top -->
 	<div id="fh5co-blog-section" class="fh5co-section-gray" style="margin-top: 30px">
 		<?php foreach($idpesan as $data): ?>
@@ -50,6 +51,7 @@
 										</tr>
 										<tr>
 											<td colspan="5" align="center">
+												<a href="<?php echo site_url('User/hapus/'.$data->id_pesan) ?>" class="btn btn-sm btn-danger glyphicon glyphicon-trash">Batal</a>
 												<a href="<?php echo site_url('User/bayar/'.$data->id_pesan) ?>" class="btn btn-sm btn-success glyphicon glyphicon-gift">Bayar</a>
 												<a href="<?php echo site_url('Laporan/cetak/'.$data->id_pesan) ?>" class="btn btn-sm btn-info glyphicon glyphicon-save-file ">Cetak</a>
 											</td>
@@ -62,5 +64,33 @@
 				</div>
 			<?php endforeach; ?>
 		</div>
+	<?php } else { ?>
+
+	<div class="container" style="margin-bottom: 100px; margin-top: 150px">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading">	<span class="glyphicon glyphicon-usd"></span> INVOICE
+					</div>
+						<div class="panel-body">
+							<table class="table">
+								<thead>
+									<tr>
+										<th width="150px"></th>
+										<th></th>
+										<th width="200px"></th>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+								<center><i><h4>Anda Tidak Memiliki Barang Yang Dibeli</h4></i></center>
+								</tbody>
+							</table>
+						</div>
+			  	    </div>
+				</div>
+			</div>
+
+	<?php } ?>
 
 
