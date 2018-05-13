@@ -14,7 +14,7 @@ class User extends CI_Controller {
 	{
 		redirect('Home');
 	}
-
+ 
 
 	public function InsertDaftar()
 	{
@@ -307,10 +307,10 @@ class User extends CI_Controller {
 	    $this->email->initialize($config);
 	    //konfigurasi pengiriman
 	    $this->email->from($config['smtp_user']);
-	    $this->email->to("lutvi04@gmail.com");
+	    $this->email->to("zackyburhani99@gmail.com");
 	    $this->email->subject("Pemesanan Barang");
 	    $this->email->message(
-	     "Ada yang beli !!<br><br>".
+	     "Pembelian Barang Barang !!<br><br>".
 	      site_url('User/verification/'.$encrypted_id)
 	    );
 

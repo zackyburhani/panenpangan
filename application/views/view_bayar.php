@@ -1,5 +1,5 @@
 <?php if($idpesan != null) { ?>
-<!-- end:header-top -->
+<!-- end:header-top --> 
 	<div id="fh5co-blog-section" class="fh5co-section-gray" style="margin-top: 30px">
 		<?php foreach($idpesan as $data): ?>
 			<div class="container">
@@ -51,9 +51,9 @@
 										</tr>
 										<tr>
 											<td colspan="5" align="center">
-												<a href="<?php echo site_url('User/hapus/'.$data->id_pesan) ?>" class="btn btn-sm btn-danger glyphicon glyphicon-trash">Batal</a>
-												<a href="<?php echo site_url('User/bayar/'.$data->id_pesan) ?>" class="btn btn-sm btn-success glyphicon glyphicon-gift">Bayar</a>
-												<a href="<?php echo site_url('Laporan/cetak/'.$data->id_pesan) ?>" class="btn btn-sm btn-info glyphicon glyphicon-save-file ">Cetak</a>
+												<a href="<?php echo site_url('User/hapus/'.$data->id_pesan) ?>" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> Batal</a>
+												<a href="<?php echo site_url('User/bayar/'.$data->id_pesan) ?>" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-gift"></span>Sudah Melakukan Pembayaran</a>
+												<a href="<?php echo site_url('Laporan/cetak/'.$data->id_pesan) ?>" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-save-file"></span>Cetak</a>
 											</td>
 										</tr>	
 									</tbody>
@@ -92,7 +92,7 @@
 			</div>
 
 	<?php } ?>
-												<!-- manggil point -->
+								<!-- manggil point -->
 												<?php foreach($point as $data):
 												if($data->poin >= 100){?>
 													<a href="<?php echo site_url('User/pakePoint/') ?>" class="btn btn-sm btn-info">Gunakan Poin</a>
