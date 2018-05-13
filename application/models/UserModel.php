@@ -101,17 +101,19 @@ class UserModel extends CI_Model {
 		$result = $this->db->query("SELECT * FROM pesan,detil_pesan,barang WHERE pesan.id_pesan = detil_pesan.id_pesan and detil_pesan.id_brg = barang.id_brg and pesan.username = '".$username."'");
 		return $result->result();
 	}
+	
+	
+	function changeBayar($key)
+	{
+		$this->load->database();
+	 	$data = array(
+			'status_bayar'=>"Lunas"
+	 	);
+
+		$this->db->where('md5(id_pesan)', $key);
+		$this->db->update('detil_pesan', $data);
+
+		return true;
+	}
+
 }
-   ////////////////update bayar///////////////////////
-	// function changeActiveState($key)
-	// {
-	// 	$this->load->database();
-	//  	$data = array(
-	// 		'status_bayar'=>"LUNAS"
-	//  	);
-
-	// 	$this->db->where('md5(username)', $key);
-	// 	$this->db->update('detil_pesan', $data);
-
-	// 	return true;
-	// }

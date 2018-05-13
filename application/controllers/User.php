@@ -223,9 +223,9 @@ class User extends CI_Controller {
         $this->load->view('master/footer');
 	}
 
-	public function bayar(){
+	public function bayar($id){
 
-		$encrypted_id = md5("asasjbh");
+		$encrypted_id = md5($id);
 
 		$this->load->library('email');
 		$config = array();
@@ -256,8 +256,9 @@ class User extends CI_Controller {
 	    {
 	        echo "<script type='text/javascript'>
                     alert ('Silahkan Lakukan Pembayaran !');
-                    window.location.replace('invoice');
-                    </script>";
+                    window.location.replace('User/invoice');
+					</script>";
+					redirect('User/invoice');
 	    }else
 	    {
 	        echo "<script type='text/javascript'>
@@ -273,8 +274,8 @@ class User extends CI_Controller {
 	{
 		$this->load->helper('url');
 		$this->load->model('UserModel');
-		$this->UserModel->changeActiveState($key);
-		echo "Barang sudah di bayar";
+		$this->UserModel->changeBayar($key);
+		echo "status bayar berhasil di konfirmasi";
 		echo "<br><br><a href='".site_url("Tracking")."'>Silahkan cek di tracking</a>";
 	}
 
