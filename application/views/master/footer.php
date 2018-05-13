@@ -55,6 +55,11 @@
 <script src="<?php blink('/assets/AdminLTE/plugins/select2/select2.full.min.js')?>"></script>
 <!--END script PLUGINS-->
 <script src="<?php blink('/assets/AdminLTE/plugins/datatables/dataTables.bootstrap.js')?>"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<script>
+$('#myModal').modal('show');
+</script>
 	
 
 	<!-- java cart -->
@@ -122,6 +127,8 @@ $(document).ready( function () {
     $('#tableHistory').DataTable();
 } );
 </script>
+
+
 
 <!-- ambil data search -->
 <script type="text/javascript">
