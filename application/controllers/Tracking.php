@@ -55,10 +55,13 @@ class Tracking extends CI_Controller {
 		];
 
 		if($cari == null) {
+
+			$pesan = $this->UserModel->getKodePesan();
 			$notFound = "Data Tidak Ditemukan";
 			$data2 = [
 				'getNm_Plg' => $getNm_Plg,
 				'nama' => $nama,
+				'id_pesan' => $pesan,
 				'id_transaksi' => $cari,
 				'notFound'=> $notFound
 			];

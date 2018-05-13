@@ -80,9 +80,12 @@
 								<div class="caption">
 					        <h3 align="center"><center><?php echo $data->nm_brg; ?></center></h3>
 					        <p align="center"><center><?php echo $data->harga; ?></center></p>
-									<hr>
-					        <p align="center"><a href="#" class="btn btn-primary" role="button">Beli Sekarang</a></p>
-					      </div>
+							<input type="number" name="quantity" id="<?php echo $data->id_brg; ?>" value="1" class="quantity form-control">
+								<hr>
+								<p align="center">
+								<button class="add_cart btn btn-primary" data-produkid="<?php echo $data->id_brg;?>" data-produknama="<?php echo $data->nm_brg;?>" data-produkharga="<?php echo $data->harga;?>"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
+								<a href="#modalform<?php echo $data->id_brg ?>" class="btn btn-primary" data-toggle="modal" role="button">Pesan</a></p>
+					 			</div>
 					    </div>
 					  </div>
 				<?php endforeach; ?>
