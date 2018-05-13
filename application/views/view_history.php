@@ -1,7 +1,11 @@
+<div>
+  <button class="btn btn-success">Barang Lunas</button>
+</div> 
+
 <div class="page-container page-container-bg-solid">
 	<div class="container container-lf-space page-content" style="margin-top : 200px; margin-bottom: 200px">
 		<div class="margin-bottom-10">
-			<div class="clearfix"></div> 
+			<div class="clearfix"></div>
           		<div class="panel panel-success	">
             		<div class="panel-heading"><span class="glyphicon glyphicon-file"></span> History Pembayaran</div>
               			<div class="card card-body">

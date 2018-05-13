@@ -84,7 +84,7 @@ Class Laporan extends CI_Controller{
 
             $a['total'] = $total;
 
-            $pdf->SetFont('Arial','',10);
+            $pdf->SetFont('Arial','B',10);
             $pdf->Cell(150,20,'TOTAL',0,0, 'R');
             $pdf->Cell(10,20,':',0,0);
             $pdf->Cell(50,20,array_sum($a).".00",0,0);

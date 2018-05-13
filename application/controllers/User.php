@@ -9,6 +9,11 @@ class User extends CI_Controller {
 			$this->load->model('ModelDaftar');
 	}
 
+	public function index()
+	{
+		redirect('Home');
+	}
+
 
 	public function InsertDaftar()
 	{
@@ -91,7 +96,6 @@ class User extends CI_Controller {
 			$output .= 
 			'
 				<tr>
-		
 					<td>'.$items['name'].'</td>
 					<td>'.number_format($items['price']).'</td>
 					<td>'.$items['qty'].'</td>
@@ -139,7 +143,8 @@ class User extends CI_Controller {
 			'qty' => $item['qty'],
 			'harga_total' => $item['subtotal'],
 			'poin' => 0,
-            'status' => "Dalam Perjalanan"
+            'status' => "Dalam Perjalanan",
+            'status_bayar' => "Belum Bayar"
 		  );
 		  $result = $this->UserModel->detilpesan($data);
 
@@ -170,54 +175,64 @@ class User extends CI_Controller {
 		{
 			echo "<script type='text/javascript'>
                     alert ('Anda Harus Login Terlebih Dahulu');
-                    window.location.href='http://localhost/panenpangan';
+                    window.location.href='http://localhost/panenpangan/Login';
                     </script>";
 		} else {
-		
-		$tgl=date('Y-m-d');
 
-        $qty = $this->input->post('qty');
-		$id_pesan = $this->input->post('id_pesan');
+			$pelanggan = $this->UserModel->getTablePelanggan($nama);
+			if(isset($pelanggan))
+			{
+			 echo "<script type='text/javascript'>
+                    alert ('Data Anda Belum Lengkap, Silahkan Lengkapi Terlebih Dahulu !');
+                    window.location.replace('http://localhost/panenpangan/DaftarLengkap');
+                    </script>";   
 
-		$harga = $harga*$qty;
-		
-            $data = array(
-                'id_pesan'=> $id_pesan,
-                'id_brg' => $id,
-                'qty' => $qty,
-                'harga_total' => $harga,
-                'poin' => 0,
-                'status' => "Dalam Perjalanan",
-                'status_bayar' => "Belum Bayar"
-                );
-      
-        $result = $this->UserModel->detilpesan($data);
-	 
-	 	$data = array(
-		'id_pesan'=> $id_pesan,
-		'tgl_pesan' => $tgl,
-		'username' => $nama
-		);        
+			} else {
+				$tgl=date('Y-m-d');
 
-		$result2 = $this->UserModel->pesan($data);
-      
-        $data = NULL;
-        if($result && $result2){
-                    echo "<script type='text/javascript'>
-                    alert ('Sending Request !');
-                    window.location.redirect('User/invoice');
-                    </script>";
-                    redirect('User/invoice');
-        }else{
-                    echo "<script type='text/javascript'>
-                    alert ('Sending Failed, silahkan Login dulu !');
-                    window.location.replace('index');
-                    </script>";       
-                    redirect('Home');
-        	}
+		        $qty = $this->input->post('qty');
+				$id_pesan = $this->input->post('id_pesan');
+
+				$harga = $harga*$qty;
+				
+		            $data = array(
+		                'id_pesan'=> $id_pesan,
+		                'id_brg' => $id,
+		                'qty' => $qty,
+		                'harga_total' => $harga,
+		                'poin' => 0,
+		                'status' => "Dalam Perjalanan",
+		                'status_bayar' => "Belum Bayar"
+		                );
+		      
+		        $result = $this->UserModel->detilpesan($data);
+			 
+			 	$data = array(
+				'id_pesan'=> $id_pesan,
+				'tgl_pesan' => $tgl,
+				'username' => $nama
+				);        
+
+				$result2 = $this->UserModel->pesan($data);
+		      
+		        $data = NULL;
+		        if($result && $result2){
+		                    echo "<script type='text/javascript'>
+		                    alert ('Sending Request !');
+		                    window.location.redirect('User/invoice');
+		                    </script>";
+		                    redirect('User/invoice');
+		        }else{
+		                    echo "<script type='text/javascript'>
+		                    alert ('Sending Failed, silahkan Login dulu !');
+		                    window.location.replace('index');
+		                    </script>";       
+		                    redirect('Home');
+		        }
+			}
 		}
 	}
-	
+
 	public function invoice(){
 
 		$nama = $this->session->nm_plg;
@@ -225,6 +240,7 @@ class User extends CI_Controller {
 		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$invoice = $this->UserModel->invoice($username);
 		$kwitansi = $this->UserModel->kwitansi($username);
+		
 		$data['idpesan'] = $invoice;
 		$data['kwitansi'] = $kwitansi;
 		$data['nama'] = $nama;
@@ -233,7 +249,8 @@ class User extends CI_Controller {
 
 		$this->load->view('master/header',$data);
         $this->load->view('view_bayar',$data);
-        $this->load->view('master/footer');
+        $this->load->view('master/footer');			
+
 	}
 
 	public function bayar(){

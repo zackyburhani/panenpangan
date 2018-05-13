@@ -15,19 +15,30 @@ class Tracking extends CI_Controller {
 
 	public function index()
 	{
-		$username = $this->session->username;
-		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
-		$nama = $this->session->nm_plg;
-		$pesan = $this->UserModel->getKodePesan();
-		$data = [
-			'getNm_Plg'=> $getNm_Plg,
-			'id_pesan' => $pesan,
-			'nama' => $nama
-		];
+		$nama = $this->session->username;
 
-		$this->load->view('master/header',$data);
-		$this->load->view('view_tracking');
-		$this->load->view('master/footer');
+		if($nama == null)
+		{
+			echo "<script type='text/javascript'>
+                    alert ('Anda Harus Login Terlebih Dahulu');
+                    window.location.href='http://localhost/panenpangan/Login';
+                    </script>";
+		} else {
+
+			$username = $this->session->username;
+			$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
+			$nama = $this->session->nm_plg;
+			$pesan = $this->UserModel->getKodePesan();
+			$data = [
+				'getNm_Plg'=> $getNm_Plg,
+				'id_pesan' => $pesan,
+				'nama' => $nama
+			];
+
+			$this->load->view('master/header',$data);
+			$this->load->view('view_tracking');
+			$this->load->view('master/footer');
+		}
 	}
 
 	public function daftar()
@@ -44,8 +55,8 @@ class Tracking extends CI_Controller {
 		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$id_transaksi = $this->input->get('no_transaksi');
 		$pesan = $this->UserModel->getKodePesan();
-		$id_transaksi = $this->input->post('no_transaksi');
-		$cari = $this->M_Customer->getTracking($id_transaksi);
+		$cari = $this->M_Customer->getTracking($id_transaksi,$username);
+
 		$status = $cari;
 		$data = [
 			'getNm_Plg' => $getNm_Plg,
@@ -54,9 +65,10 @@ class Tracking extends CI_Controller {
 			'id_transaksi' => $cari
 		];
 
-		if($cari == null) {
+		if($status == null) {
 			$notFound = "Data Tidak Ditemukan";
 			$data2 = [
+				'id_pesan' => $pesan,
 				'getNm_Plg' => $getNm_Plg,
 				'nama' => $nama,
 				'id_transaksi' => $cari,
@@ -67,7 +79,6 @@ class Tracking extends CI_Controller {
 			$this->load->view('view_tracking',$data2);
 			$this->load->view('master/footer');
 		} else {
-
 			$this->load->view('master/header',$data);
 			$this->load->view('view_tracking',$data);
 			$this->load->view('master/footer');
@@ -77,7 +88,7 @@ class Tracking extends CI_Controller {
 	public function konfirmasi($konfirmasi)
 	{
 		$nama = $this->session->nm_plg;
-		
+		$pesan = $this->UserModel->getKodePesan();
 		$status = 2;
 
 		$update = [
@@ -90,6 +101,7 @@ class Tracking extends CI_Controller {
 		$cari = $this->M_Customer->getTracking($konfirmasi);
 
 		$data = [
+			'id_pesan' => $pesan,
 			'getNm_Plg' => $getNm_Plg,
 			'nama'=> $nama,
 			'id_transaksi' => $cari,

@@ -81,9 +81,9 @@ class M_Customer extends CI_Model {
       return "TS".$kd;
     }
 
-    public function getTracking($id_pesan)
+    public function getTracking($id_pesan,$username)
     { 
-      $result = $this->db->query("SELECT * FROM detil_pesan,barang,pesan WHERE pesan.id_pesan = detil_pesan.id_pesan and barang.id_brg = detil_pesan.id_brg and detil_pesan.id_pesan ='".$id_pesan."'");
+      $result = $this->db->query("SELECT * FROM detil_pesan,barang,pesan WHERE pesan.id_pesan = detil_pesan.id_pesan and barang.id_brg = detil_pesan.id_brg and detil_pesan.id_pesan ='".$id_pesan."' and username = '".$username."'");
       return $result->result();
     }
 
@@ -100,7 +100,7 @@ class M_Customer extends CI_Model {
       and pelanggan.username = pesan.username
       and login.username = pelanggan.username
       and barang.id_brg = detil_pesan.id_brg 
-      and pesan.username ='".$username."' and status_bayar = 'Lunas'");
+      and pesan.username ='".$username."'");
       return $result->result();
   }
 

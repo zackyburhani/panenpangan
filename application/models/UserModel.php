@@ -82,6 +82,12 @@ class UserModel extends CI_Model {
 	/////////////akhir pesan//////////////////
 
 
+	public function getTablePelanggan($username)
+    {
+      $result = $this->db->query("SELECT * FROM pelanggan where username = '".$username."'");
+      return $result->result();
+    }
+
 	///////////////////invoice//////////////////
 
 	public function invoice($username){

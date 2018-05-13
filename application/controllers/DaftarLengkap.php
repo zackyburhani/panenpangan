@@ -11,6 +11,17 @@ class DaftarLengkap extends CI_Controller {
 
   public function index()
 	{
+
+		$nama = $this->session->username;
+
+		if($nama == null)
+		{
+			echo "<script type='text/javascript'>
+                    alert ('Anda Harus Login Terlebih Dahulu');
+                    window.location.href='http://localhost/panenpangan/Login';
+                    </script>";
+		} else {
+			
 		$nama = $this->session->nm_plg;
 		$id_pesan = $this->UserModel->getKodePesan();
 		$username = $this->session->username;
@@ -26,6 +37,7 @@ class DaftarLengkap extends CI_Controller {
 		$this->load->view('master/header',$data);
    		$this->load->view('view_daftar_lengkap');
 		$this->load->view('master/footer');
+		}
 	}
 
   public function DataLengkap()

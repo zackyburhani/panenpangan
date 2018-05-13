@@ -11,9 +11,9 @@
 								<table class="table">
 									<thead>
 										<tr>
+											<th width="150px"></th>
 											<th></th>
-											<th></th>
-											<th width="100px"></th>
+											<th width="200px"></th>
 											<th></th>
 											<th></th>
 										</tr>
@@ -42,9 +42,9 @@
 											<td> &nbsp;: Rp. <?php echo number_format($total)?></td>
 										</tr>
 										<tr>
-											<td></td>
-											<td width="10px"></td>
-											<td width="5"></td>
+											<td>Barang</td>
+											<td width="10px">:</td>
+											<td width="5"><?php echo $data->nm_brg ?></td>
 											<td align="right">Status Bayar</td>
 											<td> &nbsp;: <?php echo $data->status_bayar ?></td>
 										</tr>
