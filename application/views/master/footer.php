@@ -55,10 +55,11 @@
 <script src="<?php blink('/assets/AdminLTE/plugins/select2/select2.full.min.js')?>"></script>
 <!--END script PLUGINS-->
 <script src="<?php blink('/assets/AdminLTE/plugins/datatables/dataTables.bootstrap.js')?>"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-<script>
-$('#myModal').modal('show');
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#myModal').modal('show');
+    });
 </script>
 	
 

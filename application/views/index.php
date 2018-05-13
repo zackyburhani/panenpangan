@@ -152,23 +152,16 @@
 			<!-- end modal view buku -->
 		<!-- end modal view Form Pesan -->
 
-<div id="myModal" class="modal" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Welcome</h4>
-            </div>
-            <div class="modal-body">
-                <p><img src="http://erllang.ga/logo.png"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-    </div>
+<div class="modal fade in" id="myModal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn">Close</a>
+    <a href="#" class="btn btn-primary">Save changes</a>
+  </div>
 </div>
-
