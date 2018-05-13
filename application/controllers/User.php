@@ -139,7 +139,8 @@ class User extends CI_Controller {
 			'qty' => $item['qty'],
 			'harga_total' => $item['subtotal'],
 			'poin' => 0,
-            'status' => "Dalam Perjalanan"
+			'status' => "Dalam Perjalanan",
+			'status_bayar' => "Belum Bayar"
 		  );
 		  $result = $this->UserModel->detilpesan($data);
 
