@@ -29,7 +29,9 @@ class Tracking extends CI_Controller {
 			$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 			$nama = $this->session->nm_plg;
 			$pesan = $this->UserModel->getKodePesan();
+			$point = $this->M_Customer->getPoint($username);
 			$data = [
+				'point' => $point,
 				'getNm_Plg'=> $getNm_Plg,
 				'id_pesan' => $pesan,
 				'nama' => $nama
@@ -56,13 +58,15 @@ class Tracking extends CI_Controller {
 		$id_transaksi = $this->input->get('no_transaksi');
 		$pesan = $this->UserModel->getKodePesan();
 		$cari = $this->M_Customer->getTracking($id_transaksi,$username);
+		$point = $this->M_Customer->getPoint($username);
 
 		$status = $cari;
 		$data = [
 			'getNm_Plg' => $getNm_Plg,
 			'id_pesan' => $pesan,
 			'nama' => $nama,
-			'id_transaksi' => $cari
+			'id_transaksi' => $cari,
+			'point' => $point
 		];
 
 		if($status == null) {
@@ -73,6 +77,7 @@ class Tracking extends CI_Controller {
 				'nama' => $nama,
 				'id_pesan' => $pesan,
 				'id_transaksi' => $cari,
+				'point' => $point,
 				'notFound'=> $notFound
 			];
 
@@ -100,12 +105,14 @@ class Tracking extends CI_Controller {
 		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 		$result = $this->M_Customer->status($konfirmasi,$update);
 		$cari = $this->M_Customer->getTracking($konfirmasi,$username);
+		$point = $this->M_Customer->getPoint($username);
 
 		$data = [
 			'id_pesan' => $pesan,
 			'getNm_Plg' => $getNm_Plg,
 			'nama'=> $nama,
 			'id_transaksi' => $cari,
+			'point' => $point
 		];
 
 		$this->load->view('master/header',$data);

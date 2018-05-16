@@ -19,7 +19,7 @@ fh5co-content-section -->
 								<div class="caption">
 								<h3 align="center"><?php echo $data->nm_brg; ?></h3>
 								<p align="center"><?php echo number_format($data->harga); ?> /kg</p>
-								<input type="number" name="quantity" id="<?php echo $data->id_brg; ?>" value="1" class="quantity form-control">
+								<input type="number" name="quantity" min="1" id="<?php echo $data->id_brg; ?>" value="1" class="quantity form-control">
 								<hr>
 								<p align="center">
 								<button class="add_cart btn btn-primary" data-produkid="<?php echo $data->id_brg;?>" data-produknama="<?php echo $data->nm_brg;?>" data-produkharga="<?php echo $data->harga;?>"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
@@ -71,7 +71,7 @@ fh5co-content-section -->
 										 <tr>
 										  <td>quantity</td>
 										<td>:</td>
-										<td style="text-transform:capitalize;"><input type="number" name="qty" id="qty" value="1" class="quantity form-control"></td>
+										<td style="text-transform:capitalize;"><input type="number" min="1" name="qty" id="qty" value="1" class="quantity form-control"></td>
 										 </tr>
 											<tr>
 										  <td>Price</td>

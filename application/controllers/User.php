@@ -24,7 +24,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('email','Email','required|valid_email|is_unique[login.email]');
 		$this->form_validation->set_rules('password','Password','required');
 		$this->form_validation->set_rules('password2','Konfirmasi Password','required|matches[password]');
-		
+		 
 		if($this->form_validation->run() != true){
 			$username = $this->session->username;
 			$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
@@ -197,15 +197,22 @@ class User extends CI_Controller {
 				$point = $this->M_Customer->getPoint($username);
 				$data['point'] = $point;
 
-				$hargatotal = $harga*$qty;
-			foreach($point as $data):
-				if($data->poin >= 100 && $hargatotal >= 50000){
-					$harga = $harga*$qty-50000;
-					$result3 = $this->M_Customer->update($username);
-				}else{
-					$harga = $hargatotal;
-				}
-			endforeach;
+				if($qty <= 0)
+				{
+					echo "<script type='text/javascript'>
+                    alert ('Anda Memesan Dibawah QTY !');
+                    window.location.replace('http://localhost/panenpangan/C_DaftarBarang/');
+                    </script>"; 
+				} else {
+					$hargatotal = $harga*$qty;
+				foreach($point as $data):
+					if($data->poin >= 100 && $hargatotal >= 50000){
+						$harga = $harga*$qty-50000;
+						$result3 = $this->M_Customer->update($username);
+					}else{
+						$harga = $hargatotal;
+					}
+				endforeach;
 		            $data = array(
 		                'id_pesan'=> $id_pesan,
 		                'id_brg' => $id,
@@ -239,7 +246,8 @@ class User extends CI_Controller {
 		                    window.location.replace('index');
 		                    </script>";       
 		                    redirect('Home');
-		        }
+		        	}
+				}
 			}
 		}
 	}

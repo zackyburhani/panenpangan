@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 11, 2018 at 11:02 AM
+-- Generation Time: May 13, 2018 at 06:45 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -64,13 +64,20 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_brg`, `nm_brg`, `stok`, `harga`, `ongkir`, `rating`, `gambar_barang`, `deskripsi`, `id_kategori`) VALUES
-('BR001', 'kangkung', '12', '120000.00', '10000.00', '3', 'cf2365dc2a77653b2b21457c2afdf7e7.jpg', 'baru di petik boss', 'KT001'),
-('BR002', 'apel', '9', '400000.00', '17000.00', '5', 'bf15828729299da01e03ed74a8654e73.jpg', 'masih seger banget nih', 'KT002'),
-('BR003', 'beras raskin', '50', '500000.00', '30000.00', '4', '943a931c439c6556a00b84cc048c92b6.jpg', 'lumayan pulen kok', 'KT001'),
-('BR004', 'asdas', '1231', '123.00', '123.00', '1', 'e92559120bde703bd46259890f6a90e6.jpg', 'sdasdasd', 'KT001'),
-('BR005', 'sdfd', '134', '234.00', '23423.00', '1', '0cfea618cb5103fcb1a55df6fd605d46.jpg', 'dsfdf', 'KT001'),
-('BR006', 'efdf', '234', '234.00', '234234.00', '1', 'd90fd18a30c2a0bcc327b3602878806f.jpg', 'sdfdf', 'KT002'),
-('BR007', 'apel jawa', '19', '20000.00', '10000.00', '4', '34f9caff515d6d124b6b791f4e8759f1.jpg', 'baru metik', 'KT002');
+('BR001', 'Beras Merah', '90', '100000.00', '20000.00', '1', 'c6a3d6878711ce77f4d09f18e28c9915.jpg', 'Beras Merah Asli Jawa Barat', 'KT001'),
+('BR002', 'Beras Raskin', '70', '90000.00', '20000.00', '1', '14fdf76d1c107bddc62d494b682e6d7e.jpg', 'Beras Raskin Mantap', 'KT001'),
+('BR003', 'Beras ', '40', '88000.00', '15000.00', '1', 'e557220b95cca640de23bc7dd369f447.jpg', 'Beras Original', 'KT001'),
+('BR004', 'Apel', '80', '20000.00', '10000.00', '1', 'f4241b16a31fb095cac572765e7ff90f.jpg', 'Apel Merah', 'KT002'),
+('BR005', 'Mangga', '20', '15000.00', '15000.00', '1', 'bde6c1cfbc2eeb6a48d6534c17e42e9f.jpeg', 'Mangga Bogor', 'KT002'),
+('BR006', 'Jeruk Bali', '70', '50000.00', '25000.00', '1', '9e07b72d23a53204c178d5701d0e55bf.jpeg', 'Jeruk Bali alsi impor dari Bali', 'KT002'),
+('BR007', 'Wortel', '88', '25000.00', '100000.00', '1', '94778ebb88125bbcd5ccc8b2802977c3.jpg', 'Wortel sehat', 'KT003'),
+('BR008', 'Pare', '20', '10000.00', '10000.00', '1', 'fc59e1a5fec5f6f93de7f7fa698c7516.jpg', 'Pare asli', 'KT003'),
+('BR009', 'Cabai', '15', '17000.00', '5000.00', '1', '0e3ca93d4b5309df789549a14484c203.jpg', 'Cabai Asli', 'KT003'),
+('BR010', 'Jengkol', '20', '25000.00', '10000.00', '1', 'ce6996874ce3b34133477c921006ac74.jpeg', 'Jengkol buat semur', 'KT003'),
+('BR011', 'Bawang Merah', '20', '15000.00', '7000.00', '1', '9eadc09c6a02cd42dd6f2b06cd53e7a6.jpg', 'Bawang merah murah meriah', 'KT004'),
+('BR012', 'Bawang Putih', '10', '17000.00', '7000.00', '1', '94d2410d4cbbc68fab30b2f2dc6e3e76.jpeg', 'Bawang Putih Murah meriah', 'KT004'),
+('BR013', 'Kayu Manis', '5', '15000.00', '8000.00', '1', '6db15d204d9ae4cde409a1cfce338069.jpeg', 'Kayu manis untuk keperluan bumbu dapur', 'KT004'),
+('BR014', 'Jahe', '80', '10000.00', '5000.00', '1', '133556af00d1327293c4884149dcb8e6.jpeg', 'Jahe asli', 'KT004');
 
 -- --------------------------------------------------------
 
@@ -83,6 +90,26 @@ CREATE TABLE `detil_barang` (
   `id_petani` char(5) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `detil_barang`
+--
+
+INSERT INTO `detil_barang` (`id_brg`, `id_petani`) VALUES
+('BR001', 'PT002'),
+('BR002', 'PT002'),
+('BR003', 'PT001'),
+('BR004', 'PT001'),
+('BR005', 'PT001'),
+('BR006', 'PT003'),
+('BR007', 'PT003'),
+('BR008', 'PT004'),
+('BR009', 'PT004'),
+('BR010', 'PT004'),
+('BR011', 'PT005'),
+('BR012', 'PT005'),
+('BR013', 'PT005'),
+('BR014', 'PT005');
+
 -- --------------------------------------------------------
 
 --
@@ -94,7 +121,7 @@ CREATE TABLE `detil_pesan` (
   `id_brg` char(5) NOT NULL DEFAULT '',
   `qty` int(11) NOT NULL,
   `harga_total` decimal(10,2) NOT NULL,
-  `poin` decimal(10,2) NOT NULL,
+  `poin` int(10) NOT NULL,
   `status` enum('Dalam Perjalanan','Selesai') NOT NULL,
   `status_bayar` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -104,7 +131,8 @@ CREATE TABLE `detil_pesan` (
 --
 
 INSERT INTO `detil_pesan` (`id_pesan`, `id_brg`, `qty`, `harga_total`, `poin`, `status`, `status_bayar`) VALUES
-('PS001', 'BR006', 1, '234.00', '0.00', 'Dalam Perjalanan', 'Lunas');
+('PS002', 'BR005', 5, '75000.00', 1, 'Selesai', 'Lunas'),
+('PS004', 'BR013', 1, '15000.00', 1, 'Selesai', 'Lunas');
 
 -- --------------------------------------------------------
 
@@ -123,9 +151,10 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nm_kategori`, `gambar_kategori`) VALUES
-('KT001', 'Sayuran', '7da8e4b95b78a4d9acd493a5fb8bfd4d.jpg'),
-('KT002', 'buah-buahan', 'f03326f14bbe66c241b7af10d4c2a611.jpg'),
-('KT003', 'beras', '84afbe4dd43ed7690b9a2b6f1fec9c0f.jpg');
+('KT001', 'Beras', '9276e2ae7b23d7df652d7765b0e6db5f.jpg'),
+('KT002', 'Buah-buahan', '797770b43f183ff93949e35fcea92acb.jpg'),
+('KT003', 'Sayuran', '7e4ace4964e014b90a61ce23deb0c999.jpg'),
+('KT004', 'Rempah-rempah', '44cd8b7d2d399c95ac8ac6b38a2a39a1.jpeg');
 
 -- --------------------------------------------------------
 
@@ -145,9 +174,8 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`username`, `nm_plg`, `email`, `password`) VALUES
-('lutviarfi', 'lutvi', 'lutvi04@gmail.com', '21232f297a57a5a743894a0e4a801fc3'),
-('paijo', 'paijo', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3'),
-('zackyburhani', 'Zacky Burhani', 'zackyburhani99@gmail.com', '202cb962ac59075b964b07152d234b70');
+('aldis', 'Aldis Fakhri', 'aldis@gmail.com', '202cb962ac59075b964b07152d234b70'),
+('zackyburhani', 'Zacky Burhani Hotib', 'zackyburhani99@gmail.com', '202cb962ac59075b964b07152d234b70');
 
 -- --------------------------------------------------------
 
@@ -162,6 +190,14 @@ CREATE TABLE `pelanggan` (
   `kodepos` varchar(5) DEFAULT NULL,
   `username` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pelanggan`
+--
+
+INSERT INTO `pelanggan` (`id_plg`, `no_telp`, `alamat`, `kodepos`, `username`) VALUES
+('PL001', '083891778014', 'Jakarta', '15226', 'zackyburhani'),
+('PL002', '083891778181 ', 'Pamulang', '12312', 'aldis');
 
 -- --------------------------------------------------------
 
@@ -180,16 +216,8 @@ CREATE TABLE `pesan` (
 --
 
 INSERT INTO `pesan` (`id_pesan`, `tgl_pesan`, `username`) VALUES
-('PS001', '2018-05-01', 'zackyburhani'),
-('PS002', '2018-05-09', 'zackyburhani'),
-('PS003', '2018-05-06', 'lutviarfi'),
-('PS004', '2018-05-06', 'lutviarfi'),
-('PS005', '2018-05-06', 'lutviarfi'),
-('PS006', '2018-05-06', 'lutviarfi'),
-('PS007', '2018-05-06', 'lutviarfi'),
-('PS008', '2018-05-06', 'lutviarfi'),
-('PS009', '2018-05-06', 'paijo'),
-('PS010', '2018-05-07', 'lutviarfi');
+('PS002', '2018-05-13', 'zackyburhani'),
+('PS004', '2018-05-13', 'zackyburhani');
 
 -- --------------------------------------------------------
 
@@ -210,7 +238,11 @@ CREATE TABLE `petani` (
 --
 
 INSERT INTO `petani` (`id_petani`, `nm_petani`, `tgl_lahir`, `alamat`, `no_telp`) VALUES
-('PT001', 'aldis', '2020-06-01', 'jakarta', '08976543');
+('PT001', 'aldis', '2020-06-01', 'jakarta', '08976543'),
+('PT002', 'Widya Pramesti', '1997-09-09', 'Pamulang', '083891778181'),
+('PT003', 'Luthfi', '1998-08-08', 'Ciledug', '08381777499'),
+('PT004', 'Zacky burhani  Hotib', '1997-09-09', 'Jakarta', '083891888014'),
+('PT005', 'Andy Chahyono', '1997-08-08', 'Cipadu', '083829281918');
 
 --
 -- Indexes for dumped tables

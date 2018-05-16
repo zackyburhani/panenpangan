@@ -31,12 +31,14 @@ class History extends CI_Controller {
 			$username = $this->session->username;
 			$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
 			$history = $this->M_Customer->history($username);
+			$point = $this->M_Customer->getPoint($username);
 
 			$data = [
 				'id_pesan' => $id_pesan,
 				'getNm_Plg' => $getNm_Plg,
 				'nama'=> $nama,
 				'history' => $history,
+				'point' => $point
 			];
 
 			$this->load->view('master/header',$data);

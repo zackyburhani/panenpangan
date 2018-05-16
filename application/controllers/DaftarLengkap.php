@@ -7,6 +7,7 @@ class DaftarLengkap extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('ModelDaftar');
 		$this->load->model('UserModel');
+		$this->load->model('M_Customer');
 	}
 
   public function index()
@@ -27,7 +28,9 @@ class DaftarLengkap extends CI_Controller {
 		$username = $this->session->username;
 		$getAllPelanggan = $this->ModelDaftar->getAllPelanggan($username);
 		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
+		$point = $this->M_Customer->getPoint($username);
 		$data = [
+			'point' => $point,
 			'id_pesan' => $id_pesan,
 			'nama' => $nama,
 			'username' => $username,

@@ -116,6 +116,12 @@ class M_Customer extends CI_Model {
   }
 
 
+  public function getPoint($username)
+    { 
+      $result = $this->db->query("SELECT SUM(poin) as poin FROM detil_pesan,pesan WHERE pesan.id_pesan = detil_pesan.id_pesan and pesan.username = '".$username."'");
+      return $result->result();
+    }
+
   //////////////// update point  ////////////////////
   public function update($username)
   {
