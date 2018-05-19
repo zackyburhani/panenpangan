@@ -79,8 +79,8 @@
 								<img src="<?php blink('assets/img/'.$data->gambar_barang.''); ?>" class="img-rounded" alt="Cinque Terre" style="width:100%; height:250px">
 								<div class="caption">
 					        <h3 align="center"><center><?php echo $data->nm_brg; ?></center></h3>
-					        <p align="center"><center><?php echo $data->harga; ?></center></p>
-							<input type="number" name="quantity" id="<?php echo $data->id_brg; ?>" value="1" class="quantity form-control">
+					        <p align="center"><center><?php echo number_format($data->harga); ?></center></p>
+							<input type="number" name="quantity" id="<?php echo $data->id_brg; ?>" value="1" min="1" class="quantity form-control">
 								<hr>
 								<p align="center">
 								<button class="add_cart btn btn-primary" data-produkid="<?php echo $data->id_brg;?>" data-produknama="<?php echo $data->nm_brg;?>" data-produkharga="<?php echo $data->harga;?>"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
@@ -123,12 +123,12 @@
 										 <tr>
 										  <td>quantity</td>
 										<td>:</td>
-										<td style="text-transform:capitalize;"><input type="number" name="qty" id="qty" value="1" class="quantity form-control"></td>
+										<td style="text-transform:capitalize;"><input type="number" name="qty" min="1" id="qty" value="1" class="quantity form-control"></td>
 										 </tr>
 											<tr>
 										  <td>Price</td>
 										  <td>:</td>
-										<td style="text-transform:capitalize;"><?php echo $data->harga; ?></td>
+										<td style="text-transform:capitalize;"><?php echo number_format($data->harga); ?></td>
 									  </tr>
 											<tr>
 										  <td>Description</td>

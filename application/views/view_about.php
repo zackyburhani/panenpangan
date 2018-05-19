@@ -76,7 +76,7 @@ fh5co-content-section -->
 											<tr>
 										  <td>Price</td>
 										  <td>:</td>
-										<td style="text-transform:capitalize;"><?php echo $data->harga; ?></td>
+										<td style="text-transform:capitalize;"><?php echo number_format($data->harga); ?></td>
 									  </tr>
 											<tr>
 										  <td>Description</td>
