@@ -71,6 +71,8 @@
 		// Load shopping cart
 		$('#detail_cart').load("<?php echo base_url();?>index.php/user/load_cart");
 
+		$('#item').load("<?php echo base_url();?>index.php/user/load_item");
+
 		//Hapus Item Cart
 		$(document).on('click','.hapus_cart',function(){
 			var row_id=$(this).attr("id"); //mengambil row_id dari artibut id

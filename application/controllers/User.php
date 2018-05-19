@@ -86,6 +86,10 @@ class User extends CI_Controller {
 		echo $this->show_cart(); //tampilkan cart setelah added
 	}
 
+	function load_item(){
+		echo $this->cart->total_items();
+	}
+
 	function show_cart(){ //Fungsi untuk menampilkan Cart
 
 		$output = '';
@@ -134,6 +138,16 @@ class User extends CI_Controller {
 		{
 			redirect('Login');
 		} else {
+			
+			$pelanggan = $this->UserModel->getTablePelanggan($nama);
+			if($pelanggan == null)
+			{
+			 echo "<script type='text/javascript'>
+                    alert ('Data Anda Belum Lengkap, Silahkan Lengkapi Terlebih Dahulu !');
+                    window.location.replace('http://localhost/panenpangan/DaftarLengkap');
+                    </script>";   
+
+			} else {
 		$id_pesan = $this->input->post('id_pesan');
 		
 		$cart = $this->cart->contents();
@@ -164,6 +178,7 @@ class User extends CI_Controller {
 			}
 	  $this->cart->destroy();
 	  redirect('User/invoice');
+			}
 		}
 	}
 
