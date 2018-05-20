@@ -135,6 +135,13 @@ $(document).ready( function () {
 		});
 	</script>
 	<!-- akhir ambil data -->
+
+<script>
+function refreshPage(){
+    window.location.reload();
+} 
+</script>
+	
 	</body>
 </html>
 

@@ -136,9 +136,10 @@ function search_blog($title){
 	/////////akhir searching///////////////////
 
 /////////best seller///////////
-
-public function bestseller(){
-	return $this->db->query('select * from barang order by rating desc limit 3')->result();
+public function bestseller()
+{
+	$no = rand(3,5);
+	return $this->db->query("SELECT * from barang WHERE rating = '".$no."' order by rating desc limit 3")->result();
 }
 
 ////akhir best seller//////////
