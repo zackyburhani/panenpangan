@@ -64,19 +64,5 @@ class C_DaftarBarang extends CI_Controller {
 		   	}
 		}
 	}
-
-	function search(){
-		$title=$this->input->get('title');
-		$data['dataBarang']=$this->BarangModel->search_blog($title);
-		$data['id_pesan'] = $this->UserModel->getKodePesan();
-
-		$semuaKategori = $this->BarangModel->getAllKategori();
-		$data['dataKategori'] = $semuaKategori;
-	
-		
-		$this->load->view('master/header');
-        $this->load->view('view_about',$data);
-        $this->load->view('master/footer');
-	}
     ///////////searching////////////////////
 }

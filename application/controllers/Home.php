@@ -69,5 +69,28 @@ class Home extends CI_Controller {
 		$this->load->view('master/footer');
 	}
 
+	function search(){
 
+		$nama = $this->session->nm_plg;
+		$kdpesan = $this->UserModel->getKodePesan();
+		$username = $this->session->username;
+		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
+		$data = [
+			'id_pesan' => $kdpesan,
+			'nama' => $nama,
+			'getNm_Plg' => $getNm_Plg
+		];
+
+		$title=$this->input->get('title');
+		$data['dataBarang']=$this->BarangModel->search_blog($title);
+		$data['id_pesan'] = $this->UserModel->getKodePesan();
+
+		$semuaKategori = $this->BarangModel->getAllKategori();
+		$data['dataKategori'] = $semuaKategori;
+	
+		
+		$this->load->view('master/header', $data);
+        $this->load->view('view_about',$data);
+        $this->load->view('master/footer');
+	}
 }

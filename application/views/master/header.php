@@ -88,7 +88,7 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-6 col-lg-offset-2" style="margin-top:20px">
-								<form id="form_search" action="<?php blink('C_DaftarBarang/search');?>" method="GET">
+								<form id="form_search" action="<?php blink('Home/search');?>" method="GET">
 									<div class="input-group">
 								      <input type="text" class="form-control" name="title" id="title" placeholder="Search...">
 								      <span class="input-group-btn">
