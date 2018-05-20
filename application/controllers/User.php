@@ -291,6 +291,9 @@ class User extends CI_Controller {
 
 	public function bayar($id){
 
+		$username = $this->session->username;
+		$invoice = $this->UserModel->invoiceEmail($username,$id);
+
 		$encrypted_id = md5($id);
 
 		$this->load->library('email');
@@ -304,7 +307,7 @@ class User extends CI_Controller {
 	    $config['smtp_timeout']= "400";
 	    $config['smtp_user']= "verifikasi802@gmail.com";
 	    $config['smtp_pass']= "admin123@"; 
-	    $config['crlf']="\r\n"; 
+	    $config['crlf']="\r\n";  
 	    $config['newline']="\r\n"; 
 	    $config['wordwrap'] = TRUE;
 
@@ -313,11 +316,84 @@ class User extends CI_Controller {
 	    $this->email->from($config['smtp_user']);
 	    $this->email->to("zackyburhani99@gmail.com");
 	    $this->email->subject("Pemesanan Barang");
-	    $this->email->message(
-	     "Pembelian Barang !!<br><br>".
-	      site_url('User/verification/'.$encrypted_id)
-	    );
 
+	    foreach ($invoice as $data) {
+	    	$this->email->message(
+		     "<b>Pemesanan Barang !!</b><br><br>".
+		     "<table>".
+			     "<tr>".
+			     	"<td>"."Kode Pesan"."</td>".
+			     	"<td>".": "."</td>".
+			     	"<td>".$data->id_pesan."</td>".
+			     "</tr>".
+			     "<tr>".
+			     	"<td>"."Nama Pembeli"."</td>".
+			     	"<td>".": "."</td>".
+			     	"<td>".$data->nm_plg."</td>".
+			     "</tr>".
+			     "<tr>".
+			     	"<td>"."Alamat"."</td>".
+			     	"<td>".": "."</td>".
+			     	"<td>".$data->alamat."</td>".
+			     "</tr>".
+			     "<tr>".
+			     	"<td>"."No. Telp"."</td>".
+			     	"<td>".": "."</td>".
+			     	"<td>".$data->no_telp."</td>".
+			     "</tr>".
+			     "<tr>".
+			     	"<td>"."Kode Pos"."</td>".
+			     	"<td>".": "."</td>".
+			     	"<td>".$data->kodepos."</td>".
+			     "</tr>".
+			     "<tr>".
+			     	"<td>"."Barang"."</td>".
+			     	"<td>".": "."</td>".
+			     	"<td>".$data->nm_brg."</td>".
+			     "</tr>".
+			     "<tr>".
+			     	"<td>"."QTY"."</td>".
+			     	"<td>".": "."</td>".
+			     	"<td>".$data->qty."</td>".
+			     "</tr>".
+			     "<tr>".
+			     	"<td>"."Harga"."</td>".
+			     	"<td>".": "."</td>".
+			     	"<td>"."Rp. ".$data->harga."</td>".
+			     "</tr>".
+			     "<tr>".
+			     	"<td>"."Ongkir"."</td>".
+			     	"<td>".": "."</td>".
+			     	"<td>"."Rp. ".$data->ongkir."</td>".
+			     "</tr>".
+			     "<tr>".
+			     	"<td>"."<b>Harga Total"."<b></td>".
+			     	"<td>"."<b>: </b>"."</td>".
+			     	"<td>"."<b>Rp. ".$total = $data->harga+$data->ongkir.".00"."</b></td>".
+			     "</tr>".
+		     "</table>".
+
+		     "<br><br>".
+
+		     "<table>".
+			     "<tr>".
+			     	"<td>"."Nama Petani"."</td>".
+			     	"<td>".": "."</td>".
+			     	"<td>".$data->nm_petani."</td>".
+			     "</tr>".
+			     "<tr>".
+			     	"<td>"."ID Petani"."</td>".
+			     	"<td>".": "."</td>".
+			     	"<td>".$data->id_petani."</td>".
+			     "</tr>".
+		     "</table>".
+
+		     "<br>"."<i>Silahkan Klik Link Berikut Untuk Verifikasi Pembayaran : </i><br><br>".
+		     
+		      site_url('User/verification/'.$encrypted_id)
+		    );		
+	    }
+	    
 	    if($this->email->send())
 	    {
 	        echo "<script type='text/javascript'>

@@ -1,6 +1,6 @@
 
 		<!-- CAROUSEL -->
-			<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top: 85px">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top: 80px">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
 					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -73,7 +73,7 @@
 			</div>
 			<div class="container">
 				<div class="row row-bottom-padded-md fh5co-blog animate-box">
-				<?php foreach($best as $data):?>
+				<?php foreach($best as $data):?> 
 					  <div class="col-sm-4 fh5co-blog animate-box">
 					    <div class="thumbnail">
 								<img src="<?php blink('assets/img/'.$data->gambar_barang.''); ?>" class="img-rounded" alt="Cinque Terre" style="width:100%; height:250px">
@@ -83,7 +83,7 @@
 							<input type="number" name="quantity" id="<?php echo $data->id_brg; ?>" value="1" min="1" class="quantity form-control">
 								<hr>
 								<p align="center">
-								<button class="add_cart btn btn-primary" data-produkid="<?php echo $data->id_brg;?>" data-produknama="<?php echo $data->nm_brg;?>" data-produkharga="<?php echo $data->harga;?>"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
+								<button class="add_cart btn btn-primary" onClick="refreshPage()" data-produkid="<?php echo $data->id_brg;?>" data-produknama="<?php echo $data->nm_brg;?>" data-produkharga="<?php echo $data->harga;?>"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
 								<a href="#modalform<?php echo $data->id_brg ?>" class="btn btn-primary" data-toggle="modal" role="button">Pesan</a></p>
 					 			</div>
 					    </div>

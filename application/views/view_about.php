@@ -32,7 +32,7 @@ fh5co-content-section -->
 					<?php } ?>
 					</div>
 <?php } else { ?>
-	<div class="animate-box">
+	<div class="animate-box" style="margin-bottom: 48px">
 		<center>Data Barang Kosong</center>
 	</div>
 <?php } ?>

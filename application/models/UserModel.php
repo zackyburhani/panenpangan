@@ -101,6 +101,19 @@ class UserModel extends CI_Model {
 		return $result->result();
   
 	}
+
+	public function invoiceEmail($username,$id){
+
+		$result = $this->db->query("SELECT * FROM login,pesan,detil_pesan,barang,pelanggan,petani,detil_barang
+		WHERE pesan.id_pesan = detil_pesan.id_pesan 
+		and pelanggan.username = pesan.username
+		and login.username = pelanggan.username
+		and barang.id_brg = detil_pesan.id_brg 
+		and detil_barang.id_petani = petani.id_petani
+		and pesan.username ='".$username."' and status_bayar = 'Belum Bayar' and pesan.id_pesan = '".$id."'");
+		return $result->result();
+  
+	}
 	///////////////akhir invoice/////////////////////
 
 	public function kwitansi($username){
