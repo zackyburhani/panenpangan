@@ -36,7 +36,7 @@
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url('assets/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
-
+<script src="<?php blink('/assets/js/jquery-ui.js')?>"></script>
 	<!-- DataTables JavaScript -->
 <script src="<?php blink('/assets/AdminLTE/plugins/datatables/jquery.dataTables.min.js')?>"></script>
 <script src="<?php blink('/assets/AdminLTE/plugins/datatables/dataTables.bootstrap.min.js')?>"></script>

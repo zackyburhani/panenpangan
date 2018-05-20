@@ -43,7 +43,7 @@
 	<link rel="stylesheet" href="<?php blink('assets/pentagon/css/style.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url().'assets/css/bootstrap.css'?>">
 	<link rel="stylesheet" href="<?php echo base_url().'assets/css/jquery-ui.css'?>">
-
+    <link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/   css" media="all" />  
 	<link rel="stylesheet" href="<?php blink('assets/AdminLTE/bower_components/font-awesome/css/font-awesome.min.css')?>">
 
 	<!-- Datatables -->
