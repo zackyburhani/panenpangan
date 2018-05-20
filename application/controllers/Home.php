@@ -75,9 +75,12 @@ class Home extends CI_Controller {
 		$kdpesan = $this->UserModel->getKodePesan();
 		$username = $this->session->username;
 		$getNm_Plg = $this->ModelDaftar->getNm_Plg($username);
+		$point = $this->M_Customer->getPoint($username);
+
 		$data = [
 			'id_pesan' => $kdpesan,
 			'nama' => $nama,
+			'point' => $point,
 			'getNm_Plg' => $getNm_Plg
 		];
 
