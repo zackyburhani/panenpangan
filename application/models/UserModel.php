@@ -122,6 +122,19 @@ class UserModel extends CI_Model {
 		return true;
 	}
 
+	function changePoin($key)
+	{
+		$this->load->database();
+	 	$data = array(
+			'poin'=>"1"
+	 	);
+
+		$this->db->where('md5(id_pesan)', $key);
+		$this->db->update('detil_pesan', $data);
+
+		return true;
+	}
+
 	public function deleteDetilPesan($id_pesan){
       $this->db->where('id_pesan', $id_pesan);
       $this->db->delete('detil_pesan');

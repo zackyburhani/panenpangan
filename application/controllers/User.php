@@ -161,7 +161,7 @@ class User extends CI_Controller {
 			'id_brg' => $item['id'],
 			'qty' => $item['qty'],
 			'harga_total' => $item['subtotal'],
-			'poin' => 1,
+			'poin' => 0,
 			'status' => "Dalam Perjalanan",
 			'status_bayar' => "Belum Bayar"
 		  );
@@ -233,7 +233,7 @@ class User extends CI_Controller {
 		                'id_brg' => $id,
 		                'qty' => $qty,
 		                'harga_total' => $harga,
-		                'poin' => 1,
+		                'poin' => 0,
 		                'status' => "Dalam Perjalanan",
 		                'status_bayar' => "Belum Bayar"
 		                );
@@ -341,6 +341,7 @@ class User extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('UserModel');
 		$this->UserModel->changeBayar($key);
+		$this->UserModel->changePoin($key);
 		echo "<script type='text/javascript'>
                     alert ('Status Bayar Telah Dikonfirmasi');
                     window.location.href='http://localhost/panenpangan';
