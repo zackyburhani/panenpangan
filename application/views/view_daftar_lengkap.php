@@ -51,7 +51,7 @@
               <div class="form-group">
                 <label class="col-md-2 control-label">Nomor Telepon</label>
                   <div class="col-md-9">
-                      <input name="no_telp" type="text" value="<?php echo $data->no_telp ?> " placeholder="Nomor Telepon" class="form-control" style="margin-bottom: 20px">
+                      <input name="no_telp" type="tel"  pattern="^\d{4}\d{4}\d{4}$" value="<?php echo $data->no_telp ?> " placeholder="Nomor Telepon" class="form-control" style="margin-bottom: 20px">
                   </div>
                   <?php echo form_error('no_telp'); ?>
               </div>
@@ -67,7 +67,7 @@
                 <div class="form-group">
                   <label class="col-md-2 control-label">Kodepos</label>
                     <div class="col-md-9">
-                      <input name="kodepos" type="text" value="<?php echo $data->kodepos ?>" placeholder="kodepos" class="form-control" style="margin-bottom: 20px">
+                      <input name="kodepos" type="tel"  pattern="^\d{5}$" value="<?php echo $data->kodepos ?>" placeholder="kodepos" class="form-control" style="margin-bottom: 20px">
                     </div>
                 </div>
 
@@ -112,7 +112,7 @@
                 <div class="form-group">
                   <label class="col-md-2 control-label">Nomor Telepon</label>
                     <div class="col-md-9">
-                        <input name="no_telp" type="text" placeholder="Nomor Telepon" class="form-control" style="margin-bottom: 20px">
+                        <input name="no_telp" type="tel"  pattern="^\d{4}\d{4}\d{4}$" placeholder="Nomor Telepon" class="form-control" style="margin-bottom: 20px">
                         <?php echo form_error('no_telp'); ?>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                 <div class="form-group">
                   <label class="col-md-2 control-label">Kodepos</label>
                     <div class="col-md-9">
-                      <input name="kodepos" type="text" placeholder="kodepos" class="form-control" style="margin-bottom: 20px">
+                      <input name="kodepos" type="tel"  pattern="^\d{5}$" placeholder="kodepos" class="form-control" style="margin-bottom: 20px">
                     </div>
                 </div>
 

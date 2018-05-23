@@ -51,13 +51,21 @@
 										</tr>
 										<tr>
 											<td colspan="5" align="center">
-												<a href="<?php echo site_url('User/hapus/'.$data->id_pesan) ?>" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> Batal</a>
-												<a href="<?php echo site_url('User/bayar/'.$data->id_pesan) ?>" class="btn btn-sm btn-success"><span class="fa fa-money"></span> Bayar Sekarang</a>
-												<a href="<?php echo site_url('Laporan/cetak/'.$data->id_pesan) ?>" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-print"></span>Cetak</a>
+												
 											</td>
 										</tr>	
 									</tbody>
 								</table>
+								<div class="row">
+									<div class="col-md-12">
+										<center>
+											<a href="<?php echo site_url('User/hapus/'.$data->id_pesan) ?>" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> Batal</a>
+											<a href="<?php echo site_url('User/bayar/'.$data->id_pesan) ?>" class="btn btn-sm btn-success"><span class="fa fa-money"></span> Bayar Sekarang</a>
+											<a href="<?php echo site_url('Laporan/cetak/'.$data->id_pesan) ?>" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-print"></span>Cetak</a>
+										</center>
+									</div>
+												
+								</div>
 							</div>
 			  	    	</div>
 					</div>
