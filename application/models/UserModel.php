@@ -102,6 +102,28 @@ class UserModel extends CI_Model {
   
 	}
 
+	public function bayarAdmin()
+	{
+		$result = $this->db->query("SELECT * FROM login,pesan,kategori,detil_pesan,barang,pelanggan,petani
+		WHERE pesan.id_pesan = detil_pesan.id_pesan 
+		and pelanggan.username = pesan.username
+		and login.username = pelanggan.username
+		and barang.id_kategori = kategori.id_kategori
+		and barang.id_brg = detil_pesan.id_brg and status_bayar != 'Lunas' group by pesan.id_pesan");
+		return $result->result();
+	}
+
+	public function HistorybayarAdmin()
+	{
+		$result = $this->db->query("SELECT * FROM login,pesan,kategori,detil_pesan,barang,pelanggan,petani
+		WHERE pesan.id_pesan = detil_pesan.id_pesan 
+		and pelanggan.username = pesan.username
+		and login.username = pelanggan.username
+		and barang.id_kategori = kategori.id_kategori
+		and barang.id_brg = detil_pesan.id_brg and status_bayar = 'Lunas' group by pesan.id_pesan");
+		return $result->result();
+	}
+
 	public function invoiceEmail($username,$id){
 
 		$result = $this->db->query("SELECT * FROM login,pesan,detil_pesan,barang,pelanggan,petani,detil_barang
@@ -143,6 +165,34 @@ class UserModel extends CI_Model {
 	 	);
 
 		$this->db->where('md5(id_pesan)', $key);
+		$this->db->update('detil_pesan', $data);
+
+		return true;
+	}
+
+	//admin
+	function changeBayar1($key)
+	{
+		$this->load->database();
+	 	$data = array(
+			'status_bayar'=>"Lunas"
+	 	);
+
+		$this->db->where('id_pesan', $key);
+		$this->db->update('detil_pesan', $data);
+
+		return true;
+	}
+
+	//admin
+	function changePoin1($key)
+	{
+		$this->load->database();
+	 	$data = array(
+			'poin'=>"1"
+	 	);
+
+		$this->db->where('id_pesan', $key);
 		$this->db->update('detil_pesan', $data);
 
 		return true;

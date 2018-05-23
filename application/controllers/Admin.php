@@ -426,6 +426,61 @@ class Admin extends CI_Controller {
 
 /////////////////////END-BARANG//////////////////////////
 
-/////////////////////LAPORAN//////////////////////////
+/////////////////////Pembayaran//////////////////////////
+	public function bayar()
+	{	
+
+		$username = $this->session->username;
+		if($username == null){
+			redirect('Admin/login');
+		} else {
+			$this->load->model('UserModel');
+			$bayar = $this->UserModel->bayarAdmin();
+
+			$data = [
+				'bayar' =>$bayar,
+				'nama' => $username
+			];
+
+			$this->load->view('admin/template/header',$data);
+			$this->load->view('admin/template/sidebar',$data);	
+			$this->load->view('admin/data_bayar',$data);
+			$this->load->view('admin/template/footer',$data);
+		}
+	}
+
+	public function verification($key)
+	{
+		$this->load->helper('url');
+		$this->load->model('UserModel');
+		$bayar = $this->UserModel->changeBayar1($key);
+		$poin  = $this->UserModel->changePoin1($key);
+
+		$this->session->set_flashdata('pesan','Data Berhasil Diubah');
+    	redirect('Admin/bayar');	
+	}
+
+	/////////////////////Pembayaran//////////////////////////
+	public function Historybayar()
+	{	
+
+		$username = $this->session->username;
+		if($username == null){
+			redirect('Admin/login');
+		} else {
+			$this->load->model('UserModel');
+			$bayar = $this->UserModel->HistorybayarAdmin();
+
+			$data = [
+				'bayar' =>$bayar,
+				'nama' => $username
+			];
+
+			$this->load->view('admin/template/header',$data);
+			$this->load->view('admin/template/sidebar',$data);	
+			$this->load->view('admin/data_history',$data);
+			$this->load->view('admin/template/footer',$data);
+		}
+	}
 
 }
