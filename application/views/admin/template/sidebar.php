@@ -36,6 +36,7 @@
             <i class="ion ion-cube"></i> <span>Data Barang</span>
           </a>
         </li>
+        <li class="header"><i class="fa fa-database"></i> Transaksi</li>
         <li>
           <a href="<?php echo site_url('Admin/Bayar') ?>">
             <i class="fa fa-money"></i> <span>Konfirmasi Pembelian</span>
@@ -44,6 +45,12 @@
         <li>
           <a href="<?php echo site_url('Admin/HistoryBayar') ?>">
             <i class="fa fa-clock-o"></i> <span>History Pembelian</span>
+          </a>
+        </li>
+        <li class="header"><i class="fa fa-database"></i> Laporan</li>
+        <li>
+          <a href="<?php echo site_url('Admin/Laporan') ?>">
+            <i class="fa fa-money"></i> <span>Laporan Barang</span>
           </a>
         </li>
       </ul>

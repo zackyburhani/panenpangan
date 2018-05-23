@@ -113,6 +113,18 @@ class UserModel extends CI_Model {
 		return $result->result();
 	}
 
+	public function jumlahBayar()
+  	{
+    	$query = $this->db->query("SELECT * FROM detil_pesan where status_bayar = 'Belum Bayar'");
+    	return $query->num_rows();
+  	}
+
+  	public function jumlahHistory()
+  	{
+    	$query = $this->db->query("SELECT * FROM detil_pesan where status_bayar = 'Lunas'");
+    	return $query->num_rows();
+  	}
+
 	public function HistorybayarAdmin()
 	{
 		$result = $this->db->query("SELECT * FROM login,pesan,kategori,detil_pesan,barang,pelanggan,petani

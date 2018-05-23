@@ -13,21 +13,27 @@ class Admin extends CI_Controller {
 	}
 
 	public function index()
-	{
+	{	$this->load->model('UserModel');
 		$username = $this->session->username;
 		// $status_admin = $this->ModelAdmin->getAllLogin(1);
-		if($username == null)
+		if($username != 'admin')
 		{
+			$this->session->sess_destroy();
 			redirect('Admin/login');
 		} else {
-			$totalPetani = $this->ModelAdmin->jumlah('petani');
-			$totalKategori = $this->ModelAdmin->jumlah('kategori');
-			$totalBarang = $this->ModelAdmin->jumlah('barang');
+			$totalPetani 	 = $this->ModelAdmin->jumlah('petani');
+			$totalKategori 	 = $this->ModelAdmin->jumlah('kategori');
+			$totalBarang 	 = $this->ModelAdmin->jumlah('barang');
+			$totalPembayaran = $this->UserModel->jumlahBayar();
+			$totalHistory 	 = $this->UserModel->jumlahHistory();
+
 			$data = [
-				'nama' => $username,
-				'totalPetani' => $totalPetani,
-				'totalKategori' => $totalKategori,
-				'totalBarang' => $totalBarang,
+				'totalHistory'    => $totalHistory,
+				'totalPembayaran' => $totalPembayaran,
+				'nama' 			  => $username,
+				'totalPetani' 	  => $totalPetani,
+				'totalKategori'   => $totalKategori,
+				'totalBarang'     => $totalBarang,
 			];
 			$this->load->view('admin/template/header',$data);
 			$this->load->view('admin/template/sidebar',$data);	
@@ -53,7 +59,8 @@ class Admin extends CI_Controller {
 	public function petani()
 	{
 		$username = $this->session->username;
-		if($username == null){
+		if($username != 'admin'){
+			$this->session->sess_destroy();
 			redirect('Admin/login');
 		} else {
 			$semuaPetani = $this->ModelAdmin->getAllPetani();
@@ -137,8 +144,8 @@ class Admin extends CI_Controller {
 	public function kategori()
 	{
 		$username = $this->session->username;
-		if($username == null){
-			redirect('Admin/login');
+		if($username != 'admin'){
+			$this->session->sess_destroy();
 		} else {
 			$semuaKategori = $this->ModelAdmin->getAllKategori();
 			$data['dataKategori'] = $semuaKategori;
@@ -261,9 +268,8 @@ class Admin extends CI_Controller {
 
 	public function barang()
 	{
-		$username = $this->session->username;
-		if($username == null){
-			redirect('Admin/login');
+		if($username != 'admin'){
+			$this->session->sess_destroy();
 		} else {
 			$joinBarang = $this->ModelAdmin->joinBarang();
 			$semuaBarang = $this->ModelAdmin->getAllBarang();
@@ -431,8 +437,8 @@ class Admin extends CI_Controller {
 	{	
 
 		$username = $this->session->username;
-		if($username == null){
-			redirect('Admin/login');
+		if($username != 'admin'){
+			$this->session->sess_destroy();
 		} else {
 			$this->load->model('UserModel');
 			$bayar = $this->UserModel->bayarAdmin();
@@ -456,7 +462,7 @@ class Admin extends CI_Controller {
 		$bayar = $this->UserModel->changeBayar1($key);
 		$poin  = $this->UserModel->changePoin1($key);
 
-		$this->session->set_flashdata('pesan','Data Berhasil Diubah');
+		$this->session->set_flashdata('pesan','Pesan Berhasil Dikonfirmasi');
     	redirect('Admin/bayar');	
 	}
 
@@ -465,8 +471,8 @@ class Admin extends CI_Controller {
 	{	
 
 		$username = $this->session->username;
-		if($username == null){
-			redirect('Admin/login');
+		if($username != 'admin'){
+			$this->session->sess_destroy();
 		} else {
 			$this->load->model('UserModel');
 			$bayar = $this->UserModel->HistorybayarAdmin();
@@ -483,4 +489,9 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	/////////////////////Laporan//////////////////////////
+	public function laporan()
+	{
+
+	}
 }

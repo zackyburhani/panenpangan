@@ -87,6 +87,39 @@
         <!-- ./col -->
       </div>
       <!-- /.row -->
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-md-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3><?php echo $totalPembayaran ?></h3>
+
+              <p>Data Pembayaran</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-money fa-fw"></i>
+            </div>
+            <a href="<?php blink('Admin/bayar') ?>" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <!-- small box -->
+          <div class="small-box bg-orange">
+            <div class="inner">
+              <h3><?php echo $totalHistory ?></h3>
+
+              <p>Data History Pembayaran</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-clock-o fa-fw"></i>
+            </div>
+            <a href="<?php blink('Admin/historyBayar') ?>" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
     </section>
     <!-- right col -->
   </div>
