@@ -19,9 +19,10 @@ if(isset($beli)){
 <section class="content">
   <div class="panel panel-default">
     <div class="panel-body"><h4><i class="fa fa-chart"></i> Data Barang Terlaris</h4></div>
+    <div id="container" style="height: 400px"></div>
   </div>
 
-    
+
   </section>
   <!-- right col -->
 
@@ -59,5 +60,5 @@ if(isset($beli)){
                     data: [<?php echo join($datanew,',')?>]
                 }]
             });
-          
+
     </script>
