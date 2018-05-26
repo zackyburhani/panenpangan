@@ -12,14 +12,13 @@ if(isset($beli)){
 <section class="content-header">
   <h1>
     Dashboard
-    <small>Halaman History Pembelian</small>
   </h1>
   </section>
 
 <!-- Main content -->
 <section class="content">
   <div class="panel panel-default">
-    <div class="panel-body"><h4><i class="fa fa-money"></i> Data History Pembelian</h4></div>
+    <div class="panel-body"><h4><i class="fa fa-chart"></i> Data Barang Terlaris</h4></div>
   </div>
 
     
