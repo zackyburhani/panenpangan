@@ -220,4 +220,12 @@ class UserModel extends CI_Model {
       $this->db->delete('pesan');
     }
 
+	////////////// laporan ////////////////////////////
+	public function beli(){
+		return $this->db->query('select a.nm_brg as barang,count(b.id_brg) as jumlah
+								 from barang a,detil_pesan b
+								 where a.id_brg = b.id_brg
+								 group by a.nm_brg
+								 order by jumlah desc limit 5')->result();
+	 }
 }

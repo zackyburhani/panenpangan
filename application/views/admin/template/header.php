@@ -49,8 +49,13 @@
   <link rel="stylesheet" href="<?php blink('/assets/AdminLTE/plugins/datatables/dataTables.bootstrap.min.css')?>">
   <link rel="stylesheet" href="<?php blink('/assets/AdminLTE/plugins/datatables/jquery.dataTables.css')?>">
   <link rel="stylesheet" href="<?php blink('/assets/AdminLTE/plugins/datatables/jquery.dataTables.min.css')?>">
+  <!-- Highchart -->
+  <script src="<?php blink('assets/Highcharts-6.1.0/code/highcharts.js')?>"></script>
+  <script src="<?php blink('assets/Highcharts-6.1.0/code/highcharts-3d.js')?>"></script>
+  <script src="<?php blink('assets/Highcharts-6.1.0/code/modules/exporting.js')?>"></script>
+  <script src="<?php blink('assets/Highcharts-6.1.0/code/modules/export-data.js')?>"></script>
+  
   <!--END PLUGINS-->
-
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

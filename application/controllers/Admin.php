@@ -490,8 +490,25 @@ class Admin extends CI_Controller {
 	}
 
 	/////////////////////Laporan//////////////////////////
-	public function laporan()
+	public function Laporan()
 	{
 
+		$username = $this->session->username;
+		if($username != 'admin'){
+			$this->session->sess_destroy();
+		} else {
+			$this->load->model('UserModel');
+			$bayar = $this->UserModel->beli();
+
+			$data = [
+				'beli' =>$bayar,
+				'nama' => $username
+			];
+	   
+		$this->load->view('admin/template/header',$data);
+		$this->load->view('admin/template/sidebar',$data);	
+		$this->load->view('admin/template/chart',$data);
+		$this->load->view('admin/template/footer',$data);
+		}
 	}
 }
